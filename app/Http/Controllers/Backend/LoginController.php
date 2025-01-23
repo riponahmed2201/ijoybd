@@ -33,7 +33,7 @@ class LoginController extends Controller
                 $request->session()->regenerate();
 
                 // Redirect to the dashboard
-                return redirect()->intended(route('dashboard'))->with('success', 'Login successful');
+                return redirect()->intended(route('admin.dashboard'))->with('success', 'Login successful');
             }
 
             return back()->withErrors(['email' => 'The provided credentials do not match our records.']);

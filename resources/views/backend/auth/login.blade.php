@@ -5,18 +5,18 @@
 
 <head>
     <base href="../../../">
-    <title>Login - ijoybd</title>
+    <title>Login - Ijoy</title>
     <meta charset="utf-8" />
     <meta name="description" content="The most advanced Bootstrap Admin Theme on Themeforest trusted " />
     <meta name="keywords" content="Metronic, bootstrap, bootstrap 5, Angular, VueJs, React" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="Sajektourism - ijoybd is travel agency app" />
-    <meta property="og:url" content="https://sajektourism.com/" />
+    <meta property="og:title" content="Ijoybd - ijoybd is travel agency app" />
+    <meta property="og:url" content="https://ijoybd.com/" />
     <meta property="og:site_name" content="Sajek | Tourism" />
 
-    <link rel="canonical" href="https://sajektourism.com/" />
+    <link rel="canonical" href="https://ijoybd.com/" />
     <link rel="shortcut icon" href="{{ asset('assets/logo/favicon.ico') }}" />
 
     <!--begin::Fonts-->
@@ -38,19 +38,18 @@
             style="background-image: url(assets/backend/media/illustrations/sketchy-1/14.png)">
             <div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
 
-                <a href="/login" class="mb-12">
-                    Ijoybd
-                    {{-- <img alt="Logo" src="{{ asset('assets/logo/logo.svg') }}" class="h-40px" /> --}}
+                <a href="/admin/login" class="mb-12">
+                    <img alt="Logo" src="{{ asset('assets/backend/media/logos/logo-1.svg') }}" class="h-40px" />
                 </a>
 
                 <div class="w-lg-500px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
 
-                    <form class="form w-100" novalidate="novalidate" action="{{ route('login') }}" method="POST">
+                    <form class="form w-100" novalidate="novalidate" action="{{ route('admin.login') }}" method="POST">
 
                         @csrf
 
                         <div class="text-center mb-10">
-                            <h1 class="text-dark mb-3">Sign In to ijoybd</h1>
+                            <h1 class="text-dark mb-3">Sign In to Ijoy</h1>
                         </div>
 
                         <div class="fv-row mb-5">

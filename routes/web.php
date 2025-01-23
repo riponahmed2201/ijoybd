@@ -1,12 +1,47 @@
 <?php
 
+use App\Http\Controllers\Backend\BrandController;
+use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\LoginController;
+use App\Http\Controllers\Backend\ProfileController;
+use App\Http\Controllers\Web\HomeController;
 use Illuminate\Support\Facades\Route;
 
-//Login
-Route::get('login', [LoginController::class, 'showLoginForm']);
-Route::post('login', [LoginController::class, 'login'])->name('login');
+/*
+ * Web Module
+ * This comment block provides details about the admin module route.
+ * It includes the route name and the corresponding URL.
+ */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [HomeController::class, 'index']);
+
+
+/*
+ * Admin Module
+ * This comment block provides details about the admin module route.
+ * It includes the route name and the corresponding URL.
+ */
+
+//Login
+Route::get('admin/login', [LoginController::class, 'showLoginForm']);
+Route::post('admin/login', [LoginController::class, 'login'])->name('admin.login');
+
+//Admin Route Here
+Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
+
+    //Dashboard
+    Route::get('dashbaord', DashboardController::class)->name('admin.dashboard');
+
+    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+    Route::put('password/update', [LoginController::class, 'updatePassword'])->name('password.update');
+
+    //Profile
+    Route::get('profile', [ProfileController::class, 'index'])->name('profile');
+    Route::put('profile/update', [ProfileController::class, 'update'])->name('profile.update');
+
+    Route::resources([
+        'categories' => CategoryController::class,
+        'brands' => BrandController::class,
+    ]);
 });
