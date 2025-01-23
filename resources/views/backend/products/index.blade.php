@@ -1,0 +1,103 @@
+@extends('backend.master')
+
+@section('admin-content')
+    <!--begin::Toolbar  -->
+    <x-toolbar title="Products" :breadcrumbs="[
+        ['label' => 'Home', 'url' => route('admin.dashboard')],
+        ['label' => 'Products', 'url' => 'javascript:void(0)'],
+        ['label' => 'Products', 'active' => true],
+    ]" actionUrl="{{ route('products.create') }}" actionIcon="fas fa-plus-circle"
+        actionLabel="Add product" />
+    <!--end::Toolbar -->
+
+    <div class="post d-flex flex-column-fluid" id="kt_post">
+        <!--begin::Container-->
+        <div id="kt_content_container" class="container-xxl">
+            <!--begin::product-->
+            <div class="card card-flush">
+                <!--begin::Card header-->
+                <div class="card-header align-items-center py-5 gap-2 gap-md-5">
+                    <!--begin::Card title-->
+                    <div class="card-title">
+                        <!--begin::Search-->
+                        <x-search />
+                        <!--end::Search-->
+                    </div>
+                    <!--end::Card title-->
+                </div>
+                <!--end::Card header-->
+                <!--begin::Card body-->
+                <div class="card-body pt-0">
+                    <!--begin::Table-->
+                    <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_product">
+                        <!--begin::Table head-->
+                        <thead>
+                            <!--begin::Table row-->
+                            <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
+                                <th>#</th>
+                                <th class="min-w-250px">Product</th>
+                                <th class="min-w-150px">Status</th>
+                                <th class="text-end min-w-70px">Actions</th>
+                            </tr>
+                            <!--end::Table row-->
+                        </thead>
+                        <!--end::Table head-->
+                        <!--begin::Table body-->
+                        <tbody class="fw-bold text-gray-600">
+
+                            @foreach ($products as $product)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>
+                                        <div class="d-flex">
+                                            <a target="_blank" href="{{ Storage::url($product->logo) }}"
+                                                class="symbol symbol-50px">
+                                                @if (!empty($product->logo))
+                                                    <span class="symbol-label"
+                                                        style="background-image:url({{ Storage::url($product->logo) }});"></span>
+                                                @else
+                                                    <span class="symbol-label"
+                                                        style="background-image:url(assets/backend/media/stock/ecommerce/68.gif);"></span>
+                                                @endif
+                                            </a>
+                                            <div class="ms-5">
+                                                <a href="javscript:void(0)"
+                                                    class="text-gray-800 text-hover-primary fs-5 fw-bolder mb-1"
+                                                    data-kt-ecommerce-product-filter="product_name">{{ $product->name }}</a>
+                                                <div class="text-muted fs-7 fw-bolder">{{ $product->slug }}</div>
+                                                <div class="text-muted fs-7 fw-bolder">{{ $product->description }}</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        @if ($product?->status?->value == 'active')
+                                            <div class="badge badge-light-success">Active</div>
+                                        @else
+                                            <div class="badge badge-light-danger">Inactive</div>
+                                        @endif
+                                    </td>
+                                    <td class="text-end">
+                                        <a href="{{ route('products.edit', $product->id) }}"
+                                            class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
+                                            <i class="bi bi-eye-fill"></i>
+                                        </a>
+
+                                        <a href="{{ route('products.edit', $product->id) }}"
+                                            class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
+                                            <i class="bi bi-pencil-fill"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                        <!--end::Table body-->
+                    </table>
+                    <!--end::Table-->
+                </div>
+                <!--end::Card body-->
+            </div>
+            <!--end::product-->
+        </div>
+        <!--end::Container-->
+    </div>
+@endsection
