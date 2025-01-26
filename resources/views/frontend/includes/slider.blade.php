@@ -4,13 +4,14 @@
         <div class="swiper-wrapper">
             <div class="swiper-slide" lazy="true">
                 <div class="wrap-slider">
-                    <img class="lazyload" data-src="assets/frontend/images/slider/fashion-slideshow-10.jpg"
-                        src="assets/frontend/images/slider/fashion-slideshow-10.jpg" alt="fashion-slideshow-01">
+                    <img class="lazyload" data-src="{{ asset('assets/frontend/images/slider/slider_adidas.png') }}"
+                        src="{{ asset('assets/frontend/images/slider/slider_adidas.png') }}" alt="Adidas">
                     <div class="box-content text-center">
                         <div class="container">
-                            <h1 class="fade-item fade-item-1 text-white heading">Effortless Elegance</h1>
-                            <p class="fade-item fade-item-2 text-white">From casual to formal, we've got you covered</p>
-                            <a href="shop-collection-list.html"
+                            <h1 class="fade-item fade-item-1 text-white heading">Adidas - Sport and Style</h1>
+                            <p class="fade-item fade-item-2 text-white">Elevate your game with Adidas. Iconic,
+                                innovative, and always in style.</p>
+                            <a href="/shop"
                                 class="fade-item fade-item-3 tf-btn btn-light-icon animate-hover-btn btn-xl radius-3"><span>Shop
                                     collection</span><i class="icon icon-arrow-right"></i></a>
                         </div>
@@ -20,29 +21,15 @@
             </div>
             <div class="swiper-slide" lazy="true">
                 <div class="wrap-slider">
-                    <img class="lazyload" data-src="assets/frontend/images/slider/fashion-slideshow-11.jpg"
-                        src="assets/frontend/images/slider/fashion-slideshow-11.jpg" alt="fashion-slideshow-01">
+                    <img class="lazyload" data-src="{{ asset('assets/frontend/images/slider/slider_puma.png') }}"
+                        src="{{ asset('assets/frontend/images/slider/slider_puma.png') }}" alt="Puma">
                     <div class="box-content text-center">
                         <div class="container">
-                            <h1 class="fade-item fade-item-1 text-white heading">The mystery behind</h1>
-                            <p class="fade-item fade-item-2 text-white">From casual to formal, we've got you covered</p>
-                            <a href="shop-collection-list.html"
-                                class="fade-item fade-item-3 tf-btn btn-light-icon animate-hover-btn btn-xl radius-3"><span>Shop
-                                    collection</span><i class="icon icon-arrow-right"></i></a>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <div class="swiper-slide" lazy="true">
-                <div class="wrap-slider">
-                    <img class="lazyload" data-src="assets/frontend/images/slider/fashion-slideshow-12.jpg"
-                        src="assets/frontend/images/slider/fashion-slideshow-12.jpg" alt="fashion-slideshow-01">
-                    <div class="box-content text-center">
-                        <div class="container">
-                            <h1 class="fade-item fade-item-1 text-white">Multi-faceted Beauty</h1>
-                            <p class="fade-item fade-item-2 text-white">From casual to formal, we've got you covered</p>
-                            <a href="shop-collection-list.html"
+                            <h1 class="fade-item fade-item-1 text-white heading">Puma - Forever Faster</h1>
+                            <p class="fade-item fade-item-2 text-white">Bold designs meet top performance. Stay fast and
+                                stylish with Puma.
+                            </p>
+                            <a href="/shop"
                                 class="fade-item fade-item-3 tf-btn btn-light-icon animate-hover-btn btn-xl radius-3"><span>Shop
                                     collection</span><i class="icon icon-arrow-right"></i></a>
                         </div>

@@ -1,4 +1,23 @@
-<header id="header" class="header-default header-absolute header-white bg_light-grey-2">
+@php
+
+$fields = ['id', 'name', 'slug', 'category_type', 'avatar'];
+
+    $menCategories = App\Models\Category::query()
+        ->where('status', 'active')
+        ->where(function ($query) {
+            $query->where('category_type', 'men')->orWhere('category_type', 'both');
+        })
+        ->get($fields);
+
+    $womenCategories = App\Models\Category::query()
+        ->where('status', 'active')
+        ->where(function ($query) {
+            $query->where('category_type', 'women')->orWhere('category_type', 'both');
+        })
+        ->get($fields);
+@endphp
+
+<header id="header" class="header-default">
     <div class="px_15 lg-px_40">
         <div class="row wrapper-header align-items-center">
             <div class="col-md-4 col-3 tf-lg-hidden">
@@ -24,44 +43,19 @@
                         </li>
 
                         <li class="menu-item">
-                            <a href="#" class="item-link">Shop</a>
+                            <a href="/shop" class="item-link">Shop</a>
                         </li>
 
                         <li class="menu-item position-relative">
                             <a href="#" class="item-link">Men<i class="icon icon-arrow-down"></i></a>
                             <div class="sub-menu submenu-default">
                                 <ul class="menu-list">
-                                    <li>
-                                        <a href="" class="menu-link-text link text_black-2">T-Shirt</a>
-                                    </li>
-                                    <li>
-                                        <a href="" class="menu-link-text link text_black-2">Short Pant</a>
-                                    </li>
-                                    <li>
-                                        <a href="" class="menu-link-text link text_black-2">Trouser</a>
-                                    </li>
-                                    <li>
-                                        <a href="" class="menu-link-text link text_black-2">Joggers </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="" class="menu-link-text link text_black-2">Sendos</a>
-                                    </li>
-                                    <li>
-                                        <a href="" class="menu-link-text link text_black-2">Megi</a>
-                                    </li>
-                                    <li>
-                                        <a href="" class="menu-link-text link text_black-2">Shoe</a>
-                                    </li>
-                                    <li>
-                                        <a href="" class="menu-link-text link text_black-2">Running Shoe</a>
-                                    </li>
-                                    <li>
-                                        <a href="" class="menu-link-text link text_black-2">Bag</a>
-                                    </li>
-                                    <li>
-                                        <a href="" class="menu-link-text link text_black-2">Sunglass</a>
-                                    </li>
+                                    @foreach ($menCategories as $menCategory)
+                                        <li>
+                                            <a href="/shop"
+                                                class="menu-link-text link text_black-2">{{ $menCategory->name }}</a>
+                                        </li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </li>
@@ -70,43 +64,18 @@
                             <a href="#" class="item-link">Women<i class="icon icon-arrow-down"></i></a>
                             <div class="sub-menu submenu-default">
                                 <ul class="menu-list">
-                                    <li>
-                                        <a href="" class="menu-link-text link text_black-2">T-Shirt</a>
-                                    </li>
-                                    <li>
-                                        <a href="" class="menu-link-text link text_black-2">Short Pant</a>
-                                    </li>
-                                    <li>
-                                        <a href="" class="menu-link-text link text_black-2">Trouser</a>
-                                    </li>
-                                    <li>
-                                        <a href="" class="menu-link-text link text_black-2">Joggers </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="" class="menu-link-text link text_black-2">Sendos</a>
-                                    </li>
-                                    <li>
-                                        <a href="" class="menu-link-text link text_black-2">Megi</a>
-                                    </li>
-                                    <li>
-                                        <a href="" class="menu-link-text link text_black-2">Shoe</a>
-                                    </li>
-                                    <li>
-                                        <a href="" class="menu-link-text link text_black-2">Running Shoe</a>
-                                    </li>
-                                    <li>
-                                        <a href="" class="menu-link-text link text_black-2">Bag</a>
-                                    </li>
-                                    <li>
-                                        <a href="" class="menu-link-text link text_black-2">Sunglass</a>
-                                    </li>
+                                    @foreach ($womenCategories as $womenCategory)
+                                        <li>
+                                            <a href="/shop"
+                                                class="menu-link-text link text_black-2">{{ $womenCategory->name }}</a>
+                                        </li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </li>
 
-                        <li class="menu-item"><a href="" class="item-link">Contact Us</a></li>
-                        <li class="menu-item"><a href="" class="item-link">About Us</a></li>
+                        <li class="menu-item"><a href="/contact-us" class="item-link">Contact Us</a></li>
+                        <li class="menu-item"><a href="/about-us" class="item-link">About Us</a></li>
                     </ul>
                 </nav>
             </div>

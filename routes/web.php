@@ -28,6 +28,16 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('admin/login', [LoginController::class, 'showLoginForm']);
 Route::post('admin/login', [LoginController::class, 'login'])->name('admin.login');
 
+//Home Route
+Route::get('shop', [HomeController::class, 'showShop']);
+Route::get('shop/view', [HomeController::class, 'showShopView']);
+
+//Contact Us
+Route::get('contact-us', [HomeController::class, 'showContactUs']);
+
+//About Us
+Route::get('about-us', [HomeController::class, 'showAboutUs']);
+
 //Admin Route Here
 Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
 

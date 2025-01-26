@@ -117,32 +117,6 @@
                                     </div>
                                     <div id="subscribe-msg"></div>
                                 </form>
-                                <div class="tf-cur">
-                                    <div class="tf-currencies">
-                                        <select class="image-select center style-default type-currencies">
-                                            <option data-thumbnail="assets/frontend/images/country/fr.svg">EUR <span>€ |
-                                                    France</span>
-                                            </option>
-                                            <option data-thumbnail="assets/frontend/images/country/de.svg">EUR <span>€ |
-                                                    Germany</span>
-                                            </option>
-                                            <option selected=""
-                                                data-thumbnail="assets/frontend/images/country/us.svg">USD <span>$ |
-                                                    United States</span></option>
-                                            <option data-thumbnail="assets/frontend/images/country/vn.svg">VND <span>₫ |
-                                                    Vietnam</span>
-                                            </option>
-                                        </select>
-                                    </div>
-                                    <div class="tf-languages">
-                                        <select class="image-select center style-default type-languages">
-                                            <option>English</option>
-                                            <option>العربية</option>
-                                            <option>简体中文</option>
-                                            <option>اردو</option>
-                                        </select>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -155,7 +129,7 @@
                     <div class="col-12">
                         <div
                             class="footer-bottom-wrap d-flex gap-20 flex-wrap justify-content-between align-items-center">
-                            <div class="footer-menu_item">© 2024 Ecomus Store. All Rights Reserved</div>
+                            <div class="footer-menu_item">© {{ date('Y') }} I-Joybd Store. All Rights Reserved</div>
                             <div class="tf-payment">
                                 <img src="assets/frontend/images/payments/visa.png" alt="">
                                 <img src="assets/frontend/images/payments/img-1.png" alt="">
