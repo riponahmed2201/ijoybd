@@ -20,9 +20,12 @@ class ProductSeeder extends Seeder
                 'description' => 'Latest iPhone with great features.',
                 'price' => 999.99,
                 'stock_quantity' => 50,
-                'category_id' => 1, // Electronics category
-                'brand_id' => 1, // Apple brand
-                'image' => 'products/iphone14.png',
+                'category_id' => 1,
+                'brand_id' => 1,
+                'size' => json_encode(['S', 'M', 'L']),
+                'color' => json_encode(['#111111', '#000000']),
+                'thumbnail' => 'products/iphone14.png',
+                'images' => 'products/iphone14.png',
             ],
             [
                 'name' => 'Samsung Galaxy S23',
@@ -30,9 +33,12 @@ class ProductSeeder extends Seeder
                 'description' => 'Flagship smartphone from Samsung.',
                 'price' => 899.99,
                 'stock_quantity' => 40,
-                'category_id' => 1, // Electronics category
-                'brand_id' => 2, // Samsung brand
-                'image' => 'products/samsung-galaxy-s23.png',
+                'category_id' => 1,
+                'brand_id' => 2,
+                'size' => json_encode(['S', 'M', 'L']),
+                'color' => json_encode(['#111111', '#000000']),
+                'thumbnail' => 'products/iphone14.png',
+                'images' => 'products/samsung-galaxy-s23.png',
             ],
             [
                 'name' => 'Nike Air Max 2024',
@@ -40,9 +46,12 @@ class ProductSeeder extends Seeder
                 'description' => 'Comfortable running shoes.',
                 'price' => 120.00,
                 'stock_quantity' => 100,
-                'category_id' => 2, // Fashion category
-                'brand_id' => 3, // Nike brand
-                'image' => 'products/nike-air-max-2024.png',
+                'category_id' => 2,
+                'brand_id' => 3,
+                'size' => json_encode(['S', 'M', 'L']),
+                'color' => json_encode(['#111111', '#000000']),
+                'thumbnail' => 'products/iphone14.png',
+                'images' => 'products/nike-air-max-2024.png',
             ],
             [
                 'name' => 'Adidas Ultraboost 22',
@@ -50,9 +59,12 @@ class ProductSeeder extends Seeder
                 'description' => 'High-performance shoes for athletes.',
                 'price' => 180.00,
                 'stock_quantity' => 80,
-                'category_id' => 2, // Fashion category
-                'brand_id' => 4, // Adidas brand
-                'image' => 'products/adidas-ultraboost-22.png',
+                'category_id' => 2,
+                'brand_id' => 4,
+                'size' => json_encode(['S', 'M', 'L']),
+                'color' => json_encode(['#111111', '#000000']),
+                'thumbnail' => 'products/iphone14.png',
+                'images' => 'products/adidas-ultraboost-22.png',
             ],
         ];
 

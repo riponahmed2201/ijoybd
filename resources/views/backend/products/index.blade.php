@@ -35,9 +35,15 @@
                             <!--begin::Table row-->
                             <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                                 <th>#</th>
-                                <th class="min-w-250px">Product</th>
-                                <th class="min-w-150px">Status</th>
-                                <th class="text-end min-w-70px">Actions</th>
+                                <th>Product</th>
+                                <th>Category</th>
+                                <th>Brand</th>
+                                <th>Color</th>
+                                <th>Size</th>
+                                <th>Price</th>
+                                <th>Stock Quantity</th>
+                                <th>Status</th>
+                                <th>Actions</th>
                             </tr>
                             <!--end::Table row-->
                         </thead>
@@ -50,11 +56,11 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>
                                         <div class="d-flex">
-                                            <a target="_blank" href="{{ Storage::url($product->logo) }}"
+                                            <a target="_blank" href="{{ Storage::url($product->thumbnail) }}"
                                                 class="symbol symbol-50px">
-                                                @if (!empty($product->logo))
+                                                @if (!empty($product->thumbnail))
                                                     <span class="symbol-label"
-                                                        style="background-image:url({{ Storage::url($product->logo) }});"></span>
+                                                        style="background-image:url({{ Storage::url($product->thumbnail) }});"></span>
                                                 @else
                                                     <span class="symbol-label"
                                                         style="background-image:url(assets/backend/media/stock/ecommerce/68.gif);"></span>
@@ -69,6 +75,13 @@
                                             </div>
                                         </div>
                                     </td>
+                                    <td> <b>{{ $product->category->category_type }} -></b> {{ $product?->category?->name }}
+                                    </td>
+                                    <td>{{ $product?->brand?->name }}</td>
+                                    <td>{{ $product?->brand?->name }}</td>
+                                    <td>{{ $product?->brand?->name }}</td>
+                                    <td>{{ $product->price }}</td>
+                                    <td>{{ $product->stock_quantity }}</td>
                                     <td>
                                         @if ($product?->status?->value == 'active')
                                             <div class="badge badge-light-success">Active</div>
@@ -76,7 +89,7 @@
                                             <div class="badge badge-light-danger">Inactive</div>
                                         @endif
                                     </td>
-                                    <td class="text-end">
+                                    <td>
                                         <a href="{{ route('products.edit', $product->id) }}"
                                             class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
                                             <i class="bi bi-eye-fill"></i>

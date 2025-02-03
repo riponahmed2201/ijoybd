@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\StatusEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -20,7 +21,11 @@ return new class extends Migration
             $table->integer('stock_quantity'); // quantity available
             $table->foreignId('category_id')->constrained()->onDelete('cascade'); // Foreign key to categories
             $table->foreignId('brand_id')->constrained()->onDelete('cascade'); // Foreign key to brands
-            $table->string('image')->nullable(); // Optional product image
+            $table->string('size');
+            $table->string('color');
+            $table->string('thumbnail');
+            $table->longText('images')->nullable(); // Optional product image
+            $table->enum('status', array_column(StatusEnum::cases(), 'value'))->default(StatusEnum::INACTIVE->value);
             $table->timestamps();
         });
     }

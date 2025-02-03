@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\StatusEnum;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
@@ -14,7 +15,14 @@ class Product extends Model
         'stock_quantity',
         'category_id',
         'brand_id',
-        'image',
+        'size',
+        'color',
+        'thumbnail',
+        'images',
+    ];
+
+    protected $casts = [
+        'status' => StatusEnum::class,
     ];
 
     public function category()

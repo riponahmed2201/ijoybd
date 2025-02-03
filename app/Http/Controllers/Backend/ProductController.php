@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Enums\ProductSizeEnum;
 use App\Enums\StatusEnum;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
@@ -9,15 +10,20 @@ use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Brand;
 use App\Models\Category;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::latest()->get();
+        // if ($request->ajax()) {
+        // }
+
+        $products = Product::with(['category', 'brand'])->latest()->get();
+
         return view('backend.products.index', compact('products'));
     }
 
@@ -30,7 +36,16 @@ class ProductController extends Controller
         $brands = Brand::where('status', 'active')->latest()->get();
 
         $statuses = StatusEnum::options();
-        return view('backend.products.form', compact('statuses', 'categories', 'brands'));
+        $sizes = ProductSizeEnum::options();
+
+        $data = [
+            'statuses' => $statuses,
+            'sizes' => $sizes,
+            'categories' => $categories,
+            'brands' => $brands
+        ];
+
+        return view('backend.products.create', $data);
     }
 
     /**
