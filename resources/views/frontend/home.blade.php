@@ -29,7 +29,6 @@
                                 <div class="collection-item style-2 hover-img">
                                     <div class="collection-inner">
                                         <a href="#" class="collection-image img-style">
-
                                             @if (!empty($category->avatar))
                                                 <img style="width:260px; height:317px" class="lazyload"
                                                     data-src="{{ Storage::url($category->avatar) }}"
@@ -1170,17 +1169,15 @@
                             <div class="swiper-slide" data-swiper-slide-index="0" role="group" aria-label="1 / 6"
                                 style="width: 292.167px; margin-right: 30px;">
                                 <div class="brand-item-v2">
-                                    {{-- @if (!empty($brand->logo))
-                                        <img class="lazyload img-hover" data-src="{{ Storage::url($brand->logo) }}"
-                                            src="{{ Storage::url($brand->logo) }}" alt="image-gallery">
+                                    @if (!empty($brand->logo))
+                                        <img class="ls-is-cached lazyloaded" style="width:215px; height:89px"
+                                            data-src="{{ Storage::url($brand->logo) }}"
+                                            src="{{ Storage::url($brand->logo) }}" alt="{{ $brand->slug }}">
                                     @else
-                                        <img class="lazyload img-hover"
-                                            data-src="assets/backend/media/stock/ecommerce/68.gif"
-                                            src="assets/backend/media/stock/ecommerce/68.gif" alt="image-gallery">
-                                    @endif --}}
-                                    <img class="ls-is-cached lazyloaded" style="width:215px; height:89px"
-                                        data-src="assets/frontend/images/brand/brand-01.png"
-                                        src="assets/frontend/images/brand/brand-01.png" alt="image-brand">
+                                        <img class="ls-is-cached lazyloaded" style="width:215px; height:89px"
+                                            data-src="{{ asset('assets/frontend/images/default.jpeg') }}"
+                                            src="{{ asset('assets/frontend/images/default.jpeg') }}" alt="brand">
+                                    @endif
                                 </div>
                             </div>
                         @endforeach
