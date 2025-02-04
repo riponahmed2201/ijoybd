@@ -29,10 +29,17 @@
                                 <div class="collection-item style-2 hover-img">
                                     <div class="collection-inner">
                                         <a href="#" class="collection-image img-style">
-                                            <img style="width:264px; height:317px" class="lazyload"
-                                                data-src="assets/frontend/images/collections/collection-16.jpg"
-                                                src="assets/frontend/images/collections/collection-16.jpg"
-                                                alt="{{ $category->slug }}">
+
+                                            @if (!empty($category->avatar))
+                                                <img style="width:260px; height:317px" class="lazyload"
+                                                    data-src="{{ Storage::url($category->avatar) }}"
+                                                    src="{{ Storage::url($category->avatar) }}" alt="{{ $category->slug }}">
+                                            @else
+                                                <img style="width:260px; height:317px" class="lazyload"
+                                                    data-src="{{ asset('assets/frontend/images/default.jpeg') }}"
+                                                    src="{{ asset('assets/frontend/images/default.jpeg') }}"
+                                                    alt="{{ $category->slug }}">
+                                            @endif
                                         </a>
                                         <div class="collection-content">
                                             <a href="#"
