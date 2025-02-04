@@ -6,8 +6,8 @@
                     <div class="col-xl-3 col-md-6 col-12">
                         <div class="footer-infor">
                             <div class="footer-logo">
-                                <a href="index.html">
-                                    <img src="assets/frontend/images/logo/logo.svg" alt="">
+                                <a href="/">
+                                    <img style="width: 136px" src="{{ asset('assets/logo/black-logo.png') }}" alt="Logo">
                                 </a>
                             </div>
                             <ul>

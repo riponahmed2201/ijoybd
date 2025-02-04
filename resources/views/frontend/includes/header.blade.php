@@ -1,6 +1,6 @@
 @php
 
-$fields = ['id', 'name', 'slug', 'category_type', 'avatar'];
+    $fields = ['id', 'name', 'slug', 'category_type', 'avatar'];
 
     $menCategories = App\Models\Category::query()
         ->where('status', 'active')
@@ -32,7 +32,7 @@ $fields = ['id', 'name', 'slug', 'category_type', 'avatar'];
             </div>
             <div class="col-xl-3 col-md-4 col-6">
                 <a href="/" class="logo-header">
-                    <img src="assets/frontend/images/logo/logo-white%402x.png" alt="logo" class="logo">
+                    <img src="{{ asset('assets/logo/black-logo.png') }}" alt="logo" class="logo">
                 </a>
             </div>
             <div class="col-xl-6 tf-md-hidden">
