@@ -7,32 +7,38 @@
                         <div class="footer-infor">
                             <div class="footer-logo">
                                 <a href="/">
-                                    <img style="width: 136px" src="{{ asset('assets/logo/black-logo.png') }}" alt="Logo">
+                                    <img style="width: 136px" src="{{ asset('assets/logo/black-logo.png') }}"
+                                        alt="Logo">
                                 </a>
                             </div>
                             <ul>
                                 <li>
-                                    <p>Address: 1234 Fashion Street, Suite 567, <br> New York, NY 10001</p>
+                                    <p> <b>Address: </b>Mirpur-2, Dhaka-1216, Bangladesh </p>
                                 </li>
                                 <li>
-                                    <p>Email: <a href="#">info@fashionshop.com</a></p>
+                                    <p><b>Email: </b> <a href="javascript:void(0)">info@ijoybd.com</a></p>
                                 </li>
                                 <li>
-                                    <p>Phone: <a href="#">(212) 555-1234</a></p>
+                                    <p><b>Phone: </b> <a href="javascript:void(0)">+8801784-761071</a></p>
                                 </li>
                             </ul>
-                            <a href="contact-1.html" class="tf-btn btn-line">Get direction<i
+                            <a href="/contact-us" class="tf-btn btn-line">Get direction<i
                                     class="icon icon-arrow1-top-left"></i></a>
                             <ul class="tf-social-icon d-flex gap-10">
-                                <li><a href="#" class="box-icon w_34 round social-facebook social-line"><i
+                                <li><a href="javascript:void(0)"
+                                        class="box-icon w_34 round social-facebook social-line"><i
                                             class="icon fs-14 icon-fb"></i></a></li>
-                                <li><a href="#" class="box-icon w_34 round social-twiter social-line"><i
+                                <li><a href="javascript:void(0)"
+                                        class="box-icon w_34 round social-twiter social-line"><i
                                             class="icon fs-12 icon-Icon-x"></i></a></li>
-                                <li><a href="#" class="box-icon w_34 round social-instagram social-line"><i
+                                <li><a href="javascript:void(0)"
+                                        class="box-icon w_34 round social-instagram social-line"><i
                                             class="icon fs-14 icon-instagram"></i></a></li>
-                                <li><a href="#" class="box-icon w_34 round social-tiktok social-line"><i
+                                <li><a href="javascript:void(0)"
+                                        class="box-icon w_34 round social-tiktok social-line"><i
                                             class="icon fs-14 icon-tiktok"></i></a></li>
-                                <li><a href="#" class="box-icon w_34 round social-pinterest social-line"><i
+                                <li><a href="javascript:void(0)"
+                                        class="box-icon w_34 round social-pinterest social-line"><i
                                             class="icon fs-14 icon-pinterest-1"></i></a></li>
                             </ul>
                         </div>
@@ -46,25 +52,25 @@
                         </div>
                         <ul class="footer-menu-list tf-collapse-content">
                             <li>
-                                <a href="privacy-policy.html" class="footer-menu_item">Privacy Policy</a>
+                                <a href="javascript:void(0)" class="footer-menu_item">Privacy Policy</a>
                             </li>
                             <li>
-                                <a href="delivery-return.html" class="footer-menu_item"> Returns + Exchanges </a>
+                                <a href="javascript:void(0)" class="footer-menu_item"> Returns + Exchanges </a>
                             </li>
                             <li>
-                                <a href="shipping-delivery.html" class="footer-menu_item">Shipping</a>
+                                <a href="javascript:void(0)" class="footer-menu_item">Shipping</a>
                             </li>
                             <li>
-                                <a href="terms-conditions.html" class="footer-menu_item">Terms &amp; Conditions</a>
+                                <a href="javascript:void(0)" class="footer-menu_item">Terms &amp; Conditions</a>
                             </li>
                             <li>
-                                <a href="faq-1.html" class="footer-menu_item">FAQ’s</a>
+                                <a href="javascript:void(0)" class="footer-menu_item">FAQ’s</a>
                             </li>
                             <li>
-                                <a href="compare.html" class="footer-menu_item">Compare</a>
+                                <a href="javascript:void(0)" class="footer-menu_item">Compare</a>
                             </li>
                             <li>
-                                <a href="wishlist.html" class="footer-menu_item">My Wishlist</a>
+                                <a href="javascript:void(0)" class="footer-menu_item">My Wishlist</a>
                             </li>
                         </ul>
                     </div>
@@ -77,16 +83,16 @@
                         </div>
                         <ul class="footer-menu-list tf-collapse-content">
                             <li>
-                                <a href="about-us.html" class="footer-menu_item">Our Story</a>
+                                <a href="/about-us" class="footer-menu_item">Our Story</a>
                             </li>
                             <li>
-                                <a href="our-store.html" class="footer-menu_item">Visit Our Store</a>
+                                <a href="/shop" class="footer-menu_item">Visit Our Store</a>
                             </li>
                             <li>
-                                <a href="contact-1.html" class="footer-menu_item">Contact Us</a>
+                                <a href="/contact-us" class="footer-menu_item">Contact Us</a>
                             </li>
                             <li>
-                                <a href="login.html" class="footer-menu_item">Account</a>
+                                <a href="javascript:void(0)" class="footer-menu_item">Account</a>
                             </li>
                         </ul>
                     </div>
@@ -101,8 +107,8 @@
                             <div class="tf-collapse-content">
                                 <div class="footer-menu_item">Sign up to get first dibs on new arrivals, sales,
                                     exclusive content, events and more!</div>
-                                <form class="form-newsletter" id="subscribe-form" action="#" method="post"
-                                    accept-charset="utf-8" data-mailchimp="true">
+                                <form class="form-newsletter" id="subscribe-form" action="javascript:void(0)"
+                                    method="post" accept-charset="utf-8" data-mailchimp="true">
                                     <div id="subscribe-content">
                                         <fieldset class="email">
                                             <input type="email" name="email-form" id="subscribe-email"
@@ -131,11 +137,11 @@
                             class="footer-bottom-wrap d-flex gap-20 flex-wrap justify-content-between align-items-center">
                             <div class="footer-menu_item">© {{ date('Y') }} I-Joybd Store. All Rights Reserved</div>
                             <div class="tf-payment">
-                                <img src="assets/frontend/images/payments/visa.png" alt="">
-                                <img src="assets/frontend/images/payments/img-1.png" alt="">
-                                <img src="assets/frontend/images/payments/img-2.png" alt="">
-                                <img src="assets/frontend/images/payments/img-3.png" alt="">
-                                <img src="assets/frontend/images/payments/img-4.png" alt="">
+                                <img src="assets/frontend/images/payments/visa.png" alt="visa">
+                                <img src="assets/frontend/images/payments/img-1.png" alt="visa">
+                                <img src="assets/frontend/images/payments/img-2.png" alt="visa">
+                                <img src="assets/frontend/images/payments/img-3.png" alt="visa">
+                                <img src="assets/frontend/images/payments/img-4.png" alt="visa">
                             </div>
                         </div>
                     </div>
