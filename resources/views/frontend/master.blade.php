@@ -3,14 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
 
 <head>
-    <meta charset="utf-8">
-    <title>Home - IJOY</title>
-
-    <meta name="author" content="themesflat.com">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
     @include('frontend.includes.css')
-
 </head>
 
 <body class="preload-wrapper">
@@ -37,10 +30,13 @@
                             data-loop="true" data-speed="1000" data-delay="2000">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
-                                    <p class="noti-bar-text text-white fw-5">Welcome to our store</p>
+                                    <p class="noti-bar-text text-white fw-5">Welcome to ijoy store</p>
                                 </div>
                                 <div class="swiper-slide">
-                                    <p class="noti-bar-text text-white fw-5">The best HTML theme</p>
+                                    <p class="noti-bar-text text-white fw-5">The best sports shop</p>
+                                </div>
+                                <div class="swiper-slide">
+                                    <p class="noti-bar-text text-white fw-5">New arrivals</p>
                                 </div>
                             </div>
                         </div>
@@ -471,8 +467,8 @@
             <div class="mb-body">
                 <ul class="nav-ul-mb" id="wrapper-menu-navigation">
                     <li class="nav-mb-item">
-                        <a href="#dropdown-menu-one" class="collapsed mb-menu-link current"
-                            data-bs-toggle="collapse" aria-expanded="true" aria-controls="dropdown-menu-one">
+                        <a href="#dropdown-menu-one" class="collapsed mb-menu-link current" data-bs-toggle="collapse"
+                            aria-expanded="true" aria-controls="dropdown-menu-one">
                             <span>Home</span>
                             <span class="btn-open-sub"></span>
                         </a>
@@ -521,16 +517,15 @@
 
                     </li>
                     <li class="nav-mb-item">
-                        <a href="#dropdown-menu-two" class="collapsed mb-menu-link current"
-                            data-bs-toggle="collapse" aria-expanded="true" aria-controls="dropdown-menu-two">
+                        <a href="#dropdown-menu-two" class="collapsed mb-menu-link current" data-bs-toggle="collapse"
+                            aria-expanded="true" aria-controls="dropdown-menu-two">
                             <span>Shop</span>
                             <span class="btn-open-sub"></span>
                         </a>
                         <div id="dropdown-menu-two" class="collapse">
                             <ul class="sub-nav-menu" id="sub-menu-navigation">
-                                <li><a href="#sub-shop-one" class="sub-nav-link collapsed"
-                                        data-bs-toggle="collapse" aria-expanded="true"
-                                        aria-controls="sub-shop-one">
+                                <li><a href="#sub-shop-one" class="sub-nav-link collapsed" data-bs-toggle="collapse"
+                                        aria-expanded="true" aria-controls="sub-shop-one">
                                         <span>Shop layouts</span>
                                         <span class="btn-open-sub"></span>
                                     </a>
@@ -551,9 +546,8 @@
                                     </div>
                                 </li>
                                 <li>
-                                    <a href="#sub-shop-two" class="sub-nav-link collapsed"
-                                        data-bs-toggle="collapse" aria-expanded="true"
-                                        aria-controls="sub-shop-two">
+                                    <a href="#sub-shop-two" class="sub-nav-link collapsed" data-bs-toggle="collapse"
+                                        aria-expanded="true" aria-controls="sub-shop-two">
                                         <span>Features</span>
                                         <span class="btn-open-sub"></span>
                                     </a>
@@ -563,8 +557,8 @@
                                             </li>
                                             <li><a href="shop-loadmore.html" class="sub-nav-link">Pagination
                                                     loadmore</a></li>
-                                            <li><a href="shop-infinite-scrolling.html"
-                                                    class="sub-nav-link">Pagination infinite scrolling</a></li>
+                                            <li><a href="shop-infinite-scrolling.html" class="sub-nav-link">Pagination
+                                                    infinite scrolling</a></li>
                                             <li><a href="shop-filter-sidebar.html" class="sub-nav-link">Filter
                                                     sidebar</a></li>
                                             <li><a href="shop-filter-hidden.html" class="sub-nav-link">Filter
@@ -630,8 +624,8 @@
                                                     stacked</a></li>
                                             <li><a href="product-right-thumbnails.html" class="sub-nav-link">Product
                                                     right thumbnails</a></li>
-                                            <li><a href="product-bottom-thumbnails.html"
-                                                    class="sub-nav-link">Product bottom thumbnails</a></li>
+                                            <li><a href="product-bottom-thumbnails.html" class="sub-nav-link">Product
+                                                    bottom thumbnails</a></li>
                                             <li><a href="product-drawer-sidebar.html" class="sub-nav-link">Product
                                                     drawer sidebar</a></li>
                                             <li><a href="product-description-accordion.html"
@@ -666,8 +660,8 @@
                                             </li>
                                             <li><a href="product-3d.html" class="sub-nav-link">Product 3D, AR
                                                     models</a></li>
-                                            <li><a href="product-options-customizer.html"
-                                                    class="sub-nav-link">Product options & customizer</a></li>
+                                            <li><a href="product-options-customizer.html" class="sub-nav-link">Product
+                                                    options & customizer</a></li>
                                             <li><a href="product-advanced-types.html" class="sub-nav-link">Advanced
                                                     product types</a></li>
                                             <li><a href="product-giftcard.html" class="sub-nav-link">Recipient
@@ -763,9 +757,8 @@
                                         Confirmation</a></li>
                                 <li><a href="payment-failure.html" class="sub-nav-link line-clamp">Payment
                                         Failure</a></li>
-                                <li><a href="#sub-account" class="sub-nav-link collapsed"
-                                        data-bs-toggle="collapse" aria-expanded="true"
-                                        aria-controls="sub-account">
+                                <li><a href="#sub-account" class="sub-nav-link collapsed" data-bs-toggle="collapse"
+                                        aria-expanded="true" aria-controls="sub-account">
                                         <span>My Account</span>
                                         <span class="btn-open-sub"></span>
                                     </a>
@@ -816,8 +809,7 @@
                 <div class="mb-other-content">
                     <div class="d-flex group-icon">
                         <a href="wishlist.html" class="site-nav-icon"><i class="icon icon-heart"></i>Wishlist</a>
-                        <a href="home-search.html" class="site-nav-icon"><i
-                                class="icon icon-search"></i>Search</a>
+                        <a href="home-search.html" class="site-nav-icon"><i class="icon icon-search"></i>Search</a>
                     </div>
                     <div class="mb-notice">
                         <a href="contact-1.html" class="text-need">Need help ?</a>
@@ -840,7 +832,8 @@
                                     Germany</span></option>
                             <option selected="" data-thumbnail="assets/frontend/images/country/us.svg">USD
                                 <span>$ | United
-                                    States</span></option>
+                                    States</span>
+                            </option>
                             <option data-thumbnail="assets/frontend/images/country/vn.svg">VND <span>₫ |
                                     Vietnam</span></option>
                         </select>
@@ -873,8 +866,8 @@
                 <div class="tf-search-sticky">
                     <form class="tf-mini-search-frm">
                         <fieldset class="text">
-                            <input type="text" placeholder="Search" class="" name="text"
-                                tabindex="0" value="" aria-required="true" required="">
+                            <input type="text" placeholder="Search" class="" name="text" tabindex="0"
+                                value="" aria-required="true" required="">
                         </fieldset>
                         <button class="" type="submit"><i class="icon-search"></i></button>
                     </form>
@@ -1004,8 +997,7 @@
                                 <li>
                                     <a href="#cate-shop-one"
                                         class="tf-category-link has-children sub-nav-link collapsed"
-                                        data-bs-toggle="collapse" aria-expanded="true"
-                                        aria-controls="cate-shop-one">
+                                        data-bs-toggle="collapse" aria-expanded="true" aria-controls="cate-shop-one">
                                         <div class="image">
                                             <img src="assets/frontend/images/shop/cate/cate6.jpg" alt="">
                                         </div>
@@ -1038,8 +1030,7 @@
                                 <li>
                                     <a href="#cate-shop-two"
                                         class="tf-category-link has-children sub-nav-link collapsed"
-                                        data-bs-toggle="collapse" aria-expanded="true"
-                                        aria-controls="cate-shop-two">
+                                        data-bs-toggle="collapse" aria-expanded="true" aria-controls="cate-shop-two">
                                         <div class="image">
                                             <img src="assets/frontend/images/shop/cate/cate9.jpg" alt="">
                                         </div>
