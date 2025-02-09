@@ -1,6 +1,7 @@
 @extends('frontend.master')
 
 @section('home-content')
+
     <!-- Slider -->
     @include('frontend.includes.slider')
     <!-- /Slider -->

@@ -9,7 +9,7 @@
    <link rel="stylesheet" type="text/css" href="{{ asset('assets/frontend/css/styles.css') }}">
 
    <!-- Favicon and Touch Icons  -->
-   <link rel="shortcut icon" href="{{ asset('assets/logo/white-logo.png') }}">
-   <link rel="apple-touch-icon-precomposed" href="{{ asset('assets/logo/white-logo.png') }}">
+   <link rel="shortcut icon" href="{{ asset('assets/logo/logo icone-01.png') }}">
+   <link rel="apple-touch-icon-precomposed" href="{{ asset('assets/logo/logo icone-01.png') }}">
 
    @yield('page_css')
