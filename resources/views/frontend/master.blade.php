@@ -38,6 +38,9 @@
                                 <div class="swiper-slide">
                                     <p class="noti-bar-text text-white fw-5">New arrivals</p>
                                 </div>
+                                <div class="swiper-slide">
+                                    <p class="noti-bar-text text-white fw-5">Welcome offer 10% off</p>
+                                </div>
                             </div>
                         </div>
                         <div class="navigation-topbar nav-next-topbar"><span class="icon icon-arrow-left"></span></div>
