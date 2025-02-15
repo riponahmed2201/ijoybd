@@ -1,5 +1,7 @@
 @extends('backend.master')
 
+@section('title', 'Category List')
+
 @section('admin-content')
     <!--begin::Toolbar  -->
     <x-toolbar title="Categories" :breadcrumbs="[
@@ -51,7 +53,8 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>
                                         <div class="d-flex">
-                                            <a target="_blank" href="{{ Storage::url($category->avatar) }}" class="symbol symbol-50px">
+                                            <a target="_blank" href="{{ Storage::url($category->avatar) }}"
+                                                class="symbol symbol-50px">
                                                 @if (!empty($category->avatar))
                                                     <span class="symbol-label"
                                                         style="background-image:url({{ Storage::url($category->avatar) }});"></span>

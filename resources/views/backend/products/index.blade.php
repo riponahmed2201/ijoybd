@@ -1,5 +1,7 @@
 @extends('backend.master')
 
+@section('title', 'Product List')
+
 @section('admin-content')
     <!--begin::Toolbar  -->
     <x-toolbar title="Products" :breadcrumbs="[
@@ -32,12 +34,9 @@
                     <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_product">
                         <!--begin::Table head-->
                         <thead>
-                            <!--begin::Table row-->
                             <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                                 <th>#</th>
                                 <th>Product</th>
-                                <th>Category</th>
-                                <th>Brand</th>
                                 <th>Color</th>
                                 <th>Size</th>
                                 <th>Price</th>
@@ -45,11 +44,8 @@
                                 <th>Status</th>
                                 <th>Actions</th>
                             </tr>
-                            <!--end::Table row-->
                         </thead>
-                        <!--end::Table head-->
-                        <!--begin::Table body-->
-                        <tbody class="fw-bold text-gray-600">
+                        <tbody>
 
                             @foreach ($products as $product)
                                 <tr>
@@ -68,19 +64,23 @@
                                             </a>
                                             <div class="ms-5">
                                                 <a href="javscript:void(0)"
-                                                    class="text-gray-800 text-hover-primary fs-5 fw-bolder mb-1"
-                                                    data-kt-ecommerce-product-filter="product_name">{{ $product->name }}</a>
-                                                <div class="text-muted fs-7 fw-bolder">{{ $product->slug }}</div>
-                                                <div class="text-muted fs-7 fw-bolder">{{ $product->description }}</div>
+                                                    class="text-gray-800 text-hover-primary fs-5 fw-bolder mb-1">{{ $product->name }}</a>
+                                                <div class="fs-8 fw-bolder"> Brand Name:
+                                                    {{ $product?->brand?->name }}</div>
+                                                <div class="fs-8 fw-bolder">
+                                                    Category:
+                                                    {{ $product?->category?->category_type }} ->
+                                                    {{ $product?->category?->name }}
+                                                </div>
                                             </div>
                                         </div>
                                     </td>
-                                    <td> <b>{{ $product->category->category_type }} -></b> {{ $product?->category?->name }}
+                                    <td>{{ $product?->brand?->name }}</td>
+                                    <td>{{ $product?->brand?->name }}</td>
+                                    <td> <strong>Price: </strong> {{ $product->price }} <br>
+                                        <strong>Discount(%): </strong>{{ $product->discount }} <br>
+                                        <strong>Discounted Price: </strong>{{ $product->discount }}
                                     </td>
-                                    <td>{{ $product?->brand?->name }}</td>
-                                    <td>{{ $product?->brand?->name }}</td>
-                                    <td>{{ $product?->brand?->name }}</td>
-                                    <td>{{ $product->price }}</td>
                                     <td>{{ $product->stock_quantity }}</td>
                                     <td>
                                         @if ($product?->status?->value == 'active')

@@ -1,5 +1,7 @@
 @extends('backend.master')
 
+@section('title', 'Admin Dashboard')
+
 @section('admin-content')
     <!--begin::Toolbar  -->
     <x-toolbar title="Dashboard" :breadcrumbs="[['label' => 'Home', 'url' => route('admin.dashboard')], ['label' => 'Dashboard', 'active' => true]]" />

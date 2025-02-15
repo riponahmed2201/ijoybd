@@ -1,15 +1,15 @@
 @extends('backend.master')
 
-@section('title', 'Brand List')
+@section('title', 'Product Color List')
 
 @section('admin-content')
     <!--begin::Toolbar  -->
-    <x-toolbar title="Brands" :breadcrumbs="[
+    <x-toolbar title="Product Color" :breadcrumbs="[
         ['label' => 'Home', 'url' => route('admin.dashboard')],
-        ['label' => 'Brands', 'url' => 'javascript:void(0)'],
-        ['label' => 'Brands', 'active' => true],
-    ]" actionUrl="{{ route('brands.create') }}" actionIcon="fas fa-plus-circle"
-        actionLabel="Add Brand" />
+        ['label' => 'Product Color', 'url' => 'javascript:void(0)'],
+        ['label' => 'Product Color', 'active' => true],
+    ]" actionUrl="{{ route('product-colors.create') }}"
+        actionIcon="fas fa-plus-circle" actionLabel="Add Color" />
     <!--end::Toolbar -->
 
     <div class="post d-flex flex-column-fluid" id="kt_post">
@@ -37,7 +37,7 @@
                             <!--begin::Table row-->
                             <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                                 <th>#</th>
-                                <th class="min-w-250px">Brand</th>
+                                <th class="min-w-250px">Name</th>
                                 <th class="min-w-150px">Status</th>
                                 <th class="text-end min-w-70px">Actions</th>
                             </tr>
@@ -47,44 +47,19 @@
                         <!--begin::Table body-->
                         <tbody class="fw-bold text-gray-600">
 
-                            @foreach ($brands as $brand)
+                            @foreach ($colors as $color)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
+                                    <td> {{ $color->name }} </td>
                                     <td>
-                                        <div class="d-flex">
-                                            <a target="_blank" href="{{ Storage::url($brand->logo) }}"
-                                                class="symbol symbol-50px">
-                                                @if (!empty($brand->logo))
-                                                    <span class="symbol-label"
-                                                        style="background-image:url({{ Storage::url($brand->logo) }});"></span>
-                                                @else
-                                                    <span class="symbol-label"
-                                                        style="background-image:url(assets/backend/media/stock/ecommerce/68.gif);"></span>
-                                                @endif
-                                            </a>
-                                            <div class="ms-5">
-                                                <a href="javscript:void(0)"
-                                                    class="text-gray-800 text-hover-primary fs-5 fw-bolder mb-1"
-                                                    data-kt-ecommerce-brand-filter="brand_name">{{ $brand->name }}</a>
-                                                <div class="text-muted fs-7 fw-bolder">{{ $brand->slug }}</div>
-                                                <div class="text-muted fs-7 fw-bolder">{{ $brand->description }}</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        @if ($brand?->status?->value == 'active')
+                                        @if ($color?->status?->value == 'active')
                                             <div class="badge badge-light-success">Active</div>
                                         @else
                                             <div class="badge badge-light-danger">Inactive</div>
                                         @endif
                                     </td>
                                     <td class="text-end">
-                                        <a href="{{ route('brands.edit', $brand->id) }}"
-                                            class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
-                                            <i class="bi bi-eye-fill"></i>
-                                        </a>
-
-                                        <a href="{{ route('brands.edit', $brand->id) }}"
+                                        <a href="{{ route('product-colors.edit', $color->id) }}"
                                             class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
                                             <i class="bi bi-pencil-fill"></i>
                                         </a>

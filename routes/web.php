@@ -2,9 +2,12 @@
 
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\LoginController;
+use App\Http\Controllers\Backend\ProductColorController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\ProductSizeController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Web\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -54,6 +57,11 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::resources([
         'categories' => CategoryController::class,
         'brands' => BrandController::class,
+        'product-colors' => ProductColorController::class,
+        'product-sizes' => ProductSizeController::class,
         'products' => ProductController::class,
     ]);
+
+    //Customers
+    Route::get('customers', [CustomerController::class, 'index'])->name('customer');
 });

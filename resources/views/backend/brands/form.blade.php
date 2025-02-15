@@ -1,5 +1,11 @@
 @extends('backend.master')
 
+@if (isset($brand))
+    @section('title', 'Edit Brand')
+@else
+    @section('title', 'Add Brand')
+@endif
+
 @section('admin-content')
     <!--begin::Toolbar -->
     <x-toolbar :title="isset($brand) && $brand->id ? 'Edit brand' : 'Add brand'" :breadcrumbs="[

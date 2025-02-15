@@ -18,11 +18,12 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->text('description')->nullable();
             $table->decimal('price', 10, 2); // price in decimal format
+            $table->integer('discount');
             $table->integer('stock_quantity'); // quantity available
             $table->foreignId('category_id')->constrained()->onDelete('cascade'); // Foreign key to categories
             $table->foreignId('brand_id')->constrained()->onDelete('cascade'); // Foreign key to brands
-            $table->string('size');
-            $table->string('color');
+            $table->unsignedBigInteger('size_id');
+            $table->unsignedBigInteger('color_id');
             $table->string('thumbnail');
             $table->longText('images')->nullable(); // Optional product image
             $table->enum('status', array_column(StatusEnum::cases(), 'value'))->default(StatusEnum::INACTIVE->value);

@@ -1,5 +1,7 @@
 @extends('backend.master')
 
+@section('title', 'Add Product')
+
 @section('admin-content')
     <!--begin::Toolbar -->
     <x-toolbar :title="'Add product'" :breadcrumbs="[
@@ -28,36 +30,36 @@
 
                                 <div class="col-md-6 mb-3 fv-row">
                                     <label class="required form-label">Category</label>
-                                    <select class="form-select form-select-solid" name="size" required
+                                    <select class="form-select form-select-solid" name="category" required
                                         data-control="select2" data-hide-search="true" data-placeholder="Select Category">
                                         <option></option>
                                         @foreach ($categories as $category)
                                             <option value="{{ $category->id }}"> {{ $category->name }} </option>
                                         @endforeach
                                     </select>
-                                    @error('size')
+                                    @error('category')
                                         <span class="text-danger mt-2">{{ $message }}</span>
                                     @enderror
                                 </div>
 
                                 <div class="col-md-6 mb-3 fv-row">
                                     <label class="required form-label">Brand</label>
-                                    <select class="form-select form-select-solid" name="size" required
+                                    <select class="form-select form-select-solid" name="brand" required
                                         data-control="select2" data-hide-search="true" data-placeholder="Select Brand">
                                         <option></option>
                                         @foreach ($brands as $brand)
                                             <option value="{{ $brand->id }}"> {{ $brand->name }} </option>
                                         @endforeach
                                     </select>
-                                    @error('size')
+                                    @error('brand')
                                         <span class="text-danger mt-2">{{ $message }}</span>
                                     @enderror
                                 </div>
 
                                 <div class="col-md-6 mb-3 fv-row">
-                                    <label class="required form-label">Name</label>
+                                    <label class="required form-label">Product Name</label>
                                     <input type="text" name="name" class="form-control form-control-solid mb-2"
-                                        placeholder="Enter name" required />
+                                        placeholder="Enter product name" required />
                                     @error('name')
                                         <span class="text-danger mt-2">{{ $message }}</span>
                                     @enderror
@@ -65,9 +67,18 @@
 
                                 <div class="col-md-6 mb-3 fv-row">
                                     <label class="required form-label">Price</label>
-                                    <input type="text" name="price" class="form-control form-control-solid mb-2"
-                                        placeholder="Enter price" required />
+                                    <input type="number" step=".01" name="price"
+                                        class="form-control form-control-solid mb-2" placeholder="Enter price" required />
                                     @error('price')
+                                        <span class="text-danger mt-2">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-6 mb-3 fv-row">
+                                    <label class="required form-label">Discount(%)</label>
+                                    <input type="number" name="discount" class="form-control form-control-solid mb-2"
+                                        placeholder="Enter discount" required />
+                                    @error('discount')
                                         <span class="text-danger mt-2">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -83,8 +94,14 @@
 
                                 <div class="col-md-6 mb-3 fv-row">
                                     <label class="required form-label">Color</label>
-                                    <input type="text" name="color" class="form-control form-control-solid mb-2"
-                                        placeholder="Enter color" required />
+                                    <select class="form-select form-select-solid" name="color[]" required
+                                        data-control="select2" data-hide-search="true" multiple="multiple"
+                                        data-placeholder="Select Color">
+                                        <option></option>
+                                        @foreach ($colors as $color)
+                                            <option value="{{ $color->id }}"> {{ $color->name }} </option>
+                                        @endforeach
+                                    </select>
                                     @error('color')
                                         <span class="text-danger mt-2">{{ $message }}</span>
                                     @enderror
@@ -92,12 +109,12 @@
 
                                 <div class="col-md-6 mb-3 fv-row">
                                     <label class="required form-label">Size</label>
-                                    <select class="form-select form-select-solid" name="size" required
+                                    <select class="form-select form-select-solid" name="size[]" required
                                         data-control="select2" data-hide-search="true" multiple="multiple"
                                         data-placeholder="Select Size">
                                         <option></option>
                                         @foreach ($sizes as $size)
-                                            <option value="{{ $size['value'] }}"> {{ $size['label'] }} </option>
+                                            <option value="{{ $size->id }}"> {{ $size->name }} </option>
                                         @endforeach
                                     </select>
                                     @error('size')
@@ -115,8 +132,8 @@
                                 </div>
 
                                 <div class="col-md-6 mb-3 fv-row">
-                                    <label class="required form-label">Images</label>
-                                    <input type="file" name="images" multiple
+                                    <label class="form-label">Images</label>
+                                    <input type="file" name="images[]" multiple="multiple"
                                         class="form-control form-control-solid mb-2" />
                                     @error('images')
                                         <span class="text-danger mt-2">{{ $message }}</span>
@@ -142,7 +159,7 @@
                                 <div class="col-md-12 mb-3 fv-row">
                                     <label class="form-label">Description</label>
                                     <textarea class="form-control form-control-solid mb-2" data-kt-autosize="true" name="description"
-                                        placeholder="Enter description">{{ isset($product) ? $product->description : '' }}</textarea>
+                                        placeholder="Enter description"></textarea>
                                     @error('description')
                                         <span class="text-danger mt-2">{{ $message }}</span>
                                     @enderror

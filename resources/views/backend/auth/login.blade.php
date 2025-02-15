@@ -12,12 +12,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="Ijoybd - ijoybd is travel agency app" />
+    <meta property="og:title" content="Ijoybd - ijoybd is ecommerce app" />
     <meta property="og:url" content="https://ijoybd.com/" />
-    <meta property="og:site_name" content="Sajek | Tourism" />
+    <meta property="og:site_name" content="Ijoy | Ecommerce" />
 
-    <link rel="canonical" href="https://ijoybd.com/" />
-    <link rel="shortcut icon" href="{{ asset('assets/logo/favicon.ico') }}" />
+    <link rel="canonical" href="https://ijoybd.com" />
+
+    <!-- Favicon and Touch Icons  -->
+    <link rel="shortcut icon" href="{{ asset('assets/logo/logo icone-01.png') }}">
+    <link rel="apple-touch-icon-precomposed" href="{{ asset('assets/logo/logo icone-01.png') }}">
 
     <!--begin::Fonts-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
@@ -39,7 +42,7 @@
             <div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
 
                 <a href="/admin/login" class="mb-12">
-                    <img alt="Logo" src="{{ asset('assets/backend/media/logos/logo-1.svg') }}" class="h-40px" />
+                    <img alt="Logo" src="{{ asset('assets/logo/black-logo.png') }}" class="h-40px" />
                 </a>
 
                 <div class="w-lg-500px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">

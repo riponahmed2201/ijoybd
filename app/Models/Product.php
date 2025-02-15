@@ -12,6 +12,7 @@ class Product extends Model
         'slug',
         'description',
         'price',
+        'discount',
         'stock_quantity',
         'category_id',
         'brand_id',
@@ -19,6 +20,7 @@ class Product extends Model
         'color',
         'thumbnail',
         'images',
+        'status',
     ];
 
     protected $casts = [
@@ -27,12 +29,22 @@ class Product extends Model
 
     public function category()
     {
-        return $this->belongsTo(Category::class);
+        return $this->hasOne(Category::class, 'id', 'category_id');
     }
 
     public function brand()
     {
-        return $this->belongsTo(Brand::class);
+        return $this->hasOne(Brand::class, 'id', 'brand_id');
+    }
+
+    public function size()
+    {
+        return $this->hasMany(ProductSize::class, 'id', 'size_id');
+    }
+
+    public function color()
+    {
+        return $this->hasMany(ProductColor::class, 'id', 'colro_id');
     }
 
     // Relationship with the Review model

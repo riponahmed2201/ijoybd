@@ -1,5 +1,9 @@
-<link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
-<link rel="shortcut icon" href="{{ asset('assets/media/logos/favicon.ico') }}" />
+<link rel="canonical" href="https://ijoybd.com" />
+
+<!-- Favicon and Touch Icons  -->
+<link rel="shortcut icon" href="{{ asset('assets/logo/logo icone-01.png') }}">
+<link rel="apple-touch-icon-precomposed" href="{{ asset('assets/logo/logo icone-01.png') }}">
+
 <!--begin::Fonts-->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
 <!--end::Fonts-->

@@ -4,11 +4,13 @@
     data-kt-drawer-toggle="#kt_aside_mobile_toggle">
     <!--begin::Brand-->
     <div class="aside-logo flex-column-auto" id="kt_aside_logo">
+
         <!--begin::Logo-->
         <a href="/admin/dashboard">
-            <img alt="Logo" src="{{ asset('assets/backend/media/logos/logo-1.svg') }}" class="h-25px logo" />
+            <img alt="Logo" src="{{ asset('assets/logo/black-logo.png') }}" class="h-25px logo" />
         </a>
         <!--end::Logo-->
+
         <!--begin::Aside toggler-->
         <div id="kt_aside_toggle" class="btn btn-icon w-auto px-0 btn-active-color-primary aside-toggle"
             data-kt-toggle="true" data-kt-toggle-state="active" data-kt-toggle-target="body"
@@ -58,7 +60,7 @@
 
                 <div class="menu-item">
                     <div class="menu-content pt-8 pb-2">
-                        <span class="menu-section text-muted text-uppercase fs-8 ls-1">Crafted</span>
+                        <span class="menu-section text-muted text-uppercase fs-8 ls-1">Category Management</span>
                     </div>
                 </div>
 
@@ -72,11 +74,43 @@
                 </div>
 
                 <div class="menu-item">
+                    <div class="menu-content pt-8 pb-2">
+                        <span class="menu-section text-muted text-uppercase fs-8 ls-1">Brand Management</span>
+                    </div>
+                </div>
+
+                <div class="menu-item">
                     <a class="menu-link {{ Request::is('admin/brands') ? 'active' : '' }}" href="/admin/brands">
                         <span class="menu-icon">
                             <i class="bi bi-patch-check fs-3"></i>
                         </span>
                         <span class="menu-title">Brands</span>
+                    </a>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-content pt-8 pb-2">
+                        <span class="menu-section text-muted text-uppercase fs-8 ls-1">Product Management</span>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <a class="menu-link {{ Request::is('admin/product-colors') ? 'active' : '' }}"
+                        href="/admin/product-colors">
+                        <span class="menu-icon">
+                            <i class="bi bi-hr fs-3"></i>
+                        </span>
+                        <span class="menu-title">Product Color</span>
+                    </a>
+                </div>
+
+                <div class="menu-item">
+                    <a class="menu-link {{ Request::is('admin/product-sizes') ? 'active' : '' }}"
+                        href="/admin/product-sizes">
+                        <span class="menu-icon">
+                            <i class="bi bi-printer fs-3"></i>
+                        </span>
+                        <span class="menu-title">Product Size</span>
                     </a>
                 </div>
 
@@ -87,6 +121,27 @@
                         </span>
                         <span class="menu-title">Products</span>
                     </a>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-content pt-8 pb-2">
+                        <span class="menu-section text-muted text-uppercase fs-8 ls-1">Customer Management</span>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <a class="menu-link {{ Request::is('admin/customers') ? 'active' : '' }}" href="/admin/customers">
+                        <span class="menu-icon">
+                            <i class="bi bi-people fs-3"></i>
+                        </span>
+                        <span class="menu-title">Customers</span>
+                    </a>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-content pt-8 pb-2">
+                        <span class="menu-section text-muted text-uppercase fs-8 ls-1">Order Management</span>
+                    </div>
                 </div>
 
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
