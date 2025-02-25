@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
@@ -25,5 +26,11 @@ class Order extends Model
     public function orderItems()
     {
         return $this->hasMany(OrderItem::class);
+    }
+
+    // Accessor (Getter) for order_date
+    public function getFormattedOrderDateAttribute()
+    {
+        return Carbon::parse($this->created_at)->format('d M Y, h:i A');
     }
 }

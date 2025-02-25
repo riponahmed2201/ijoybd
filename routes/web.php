@@ -5,10 +5,12 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\LoginController;
+use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\ProductColorController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ProductSizeController;
 use App\Http\Controllers\Backend\ProfileController;
+use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Web\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -45,7 +47,7 @@ Route::get('about-us', [HomeController::class, 'showAboutUs']);
 Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
 
     //Dashboard
-    Route::get('dashbaord', DashboardController::class)->name('admin.dashboard');
+    Route::get('dashboard', DashboardController::class)->name('admin.dashboard');
 
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
     Route::put('password/update', [LoginController::class, 'updatePassword'])->name('password.update');
@@ -63,5 +65,11 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     ]);
 
     //Customers
-    Route::get('customers', [CustomerController::class, 'index'])->name('customer');
+    Route::get('customers', [CustomerController::class, 'index'])->name('customers.index');
+
+    //Users
+    Route::get('users', [UserController::class, 'index'])->name('users.index');
+
+    //Order
+    Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
 });

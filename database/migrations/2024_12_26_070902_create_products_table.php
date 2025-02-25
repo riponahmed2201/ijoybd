@@ -22,8 +22,8 @@ return new class extends Migration
             $table->integer('stock_quantity'); // quantity available
             $table->foreignId('category_id')->constrained()->onDelete('cascade'); // Foreign key to categories
             $table->foreignId('brand_id')->constrained()->onDelete('cascade'); // Foreign key to brands
-            $table->unsignedBigInteger('size_id');
-            $table->unsignedBigInteger('color_id');
+            $table->json('sizes')->nullable(); // Storing multiple size IDs
+            $table->json('colors')->nullable(); // Storing multiple color IDs
             $table->string('thumbnail');
             $table->longText('images')->nullable(); // Optional product image
             $table->enum('status', array_column(StatusEnum::cases(), 'value'))->default(StatusEnum::INACTIVE->value);

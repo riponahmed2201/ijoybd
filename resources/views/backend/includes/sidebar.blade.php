@@ -149,52 +149,68 @@
                         <span class="menu-icon">
                             <i class="bi bi-archive fs-3"></i>
                         </span>
-                        <span class="menu-title">Order</span>
+                        <span class="menu-title">Orders</span>
                         <span class="menu-arrow"></span>
                     </span>
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
                         <div class="menu-item">
-                            <a class="menu-link" href="../../demo1/dist/pages/about.html">
+                            <a class="menu-link" href="/admin/orders">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">About Us</span>
+                                <span class="menu-title">All Orders</span>
                             </a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link" href="../../demo1/dist/pages/contact.html">
+                            <a class="menu-link" href="">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">Contact Us</span>
+                                <span class="menu-title">Pending Orders</span>
                             </a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link" href="../../demo1/dist/pages/team.html">
+                            <a class="menu-link" href="">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">Our Team</span>
+                                <span class="menu-title">Approved Orders</span>
                             </a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link" href="../../demo1/dist/pages/licenses.html">
+                            <a class="menu-link" href="">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">Licenses</span>
+                                <span class="menu-title">Deliver Orders</span>
                             </a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link" href="../../demo1/dist/pages/sitemap.html">
+                            <a class="menu-link" href="">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">Sitemap</span>
+                                <span class="menu-title">Cancel Orders</span>
                             </a>
                         </div>
                     </div>
                 </div>
+
+                <div class="menu-item">
+                    <div class="menu-content pt-8 pb-2">
+                        <span class="menu-section text-muted text-uppercase fs-8 ls-1">User Management</span>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <a class="menu-link {{ Request::is('admin/users') ? 'active' : '' }}" href="/admin/users">
+                        <span class="menu-icon">
+                            <i class="bi bi-people fs-3"></i>
+                        </span>
+                        <span class="menu-title">Users</span>
+                    </a>
+                </div>
+
 
                 {{-- <div class="menu-item">
                     <div class="menu-content pt-8 pb-2">

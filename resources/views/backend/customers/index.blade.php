@@ -6,7 +6,7 @@
     <!--begin::Toolbar  -->
     <x-toolbar title="Customer" :breadcrumbs="[
         ['label' => 'Home', 'url' => route('admin.dashboard')],
-        ['label' => 'Customer', 'url' => 'javascript:void(0)'],
+        ['label' => 'Customer Management', 'url' => 'javascript:void(0)'],
         ['label' => 'Customer', 'active' => true],
     ]" />
     <!--end::Toolbar -->

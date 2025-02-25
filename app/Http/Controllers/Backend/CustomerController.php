@@ -12,6 +12,6 @@ class CustomerController extends Controller
     {
         $customers  = User::where('role', '=', 'customer')->latest()->paginate(10);
 
-        return view('backend.customer.index', compact('customers'));
+        return view('backend.customers.index', compact('customers'));
     }
 }

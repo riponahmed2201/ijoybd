@@ -37,8 +37,8 @@
                             <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                                 <th>#</th>
                                 <th>Product</th>
-                                <th>Color</th>
-                                <th>Size</th>
+                                <th>Colors</th>
+                                <th>Sizes</th>
                                 <th>Price</th>
                                 <th>Stock Quantity</th>
                                 <th>Status</th>
@@ -75,11 +75,21 @@
                                             </div>
                                         </div>
                                     </td>
+                                    <td>
+                                        @forelse ($product?->color_details as $color)
+                                            <div
+                                                style="display: inline-block; width: 20px; height: 20px; background-color: {{ $color->name }}; margin-right: 5px;">
+                                            </div>
+                                        @empty
+                                            <strong class="text-danger">No colors available</strong>
+                                        @endforelse
+                                    </td>
                                     <td>{{ $product?->brand?->name }}</td>
-                                    <td>{{ $product?->brand?->name }}</td>
-                                    <td> <strong>Price: </strong> {{ $product->price }} <br>
-                                        <strong>Discount(%): </strong>{{ $product->discount }} <br>
-                                        <strong>Discounted Price: </strong>{{ $product->discount }}
+
+                                    <td> <strong>Price: </strong> {{ $product->price }} TK <br>
+                                        <strong>Discount(%): </strong>{{ $product->discount }} %<br>
+                                        <strong>Discounted Price:
+                                        </strong>{{ $product->price - ($product->discount * $product->price) / 100 }} TK
                                     </td>
                                     <td>{{ $product->stock_quantity }}</td>
                                     <td>

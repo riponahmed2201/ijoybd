@@ -26,9 +26,6 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        // if ($request->ajax()) {
-        // }
-
         $products = Product::with(['category', 'brand'])->latest()->get();
 
         return view('backend.products.index', compact('products'));
@@ -67,6 +64,8 @@ class ProductController extends Controller
         $input['slug'] = strtolower(Str::slug($input['name']));
         $input['category_id'] = $input['category'];
         $input['brand_id'] = $input['brand'];
+        $input['sizes'] = $input['size'];
+        $input['colors'] = $input['color'];
 
         // Handle single thumbnail upload
         if ($request->hasFile('thumbnail')) {
@@ -82,7 +81,7 @@ class ProductController extends Controller
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
                 if ($image->isValid()) {
-                    $imageName = md5(Str::random(30) . time()) . '.' . $image->getClientOriginalExtension();
+                    $imageName = md5(Str::random(5) . time()) . '.' . $image->getClientOriginalExtension();
                     $imagePath = $image->storeAs('products', $imageName, 'public');
                     $imagePaths[] = $imagePath;
                 }

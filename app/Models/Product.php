@@ -16,8 +16,8 @@ class Product extends Model
         'stock_quantity',
         'category_id',
         'brand_id',
-        'size',
-        'color',
+        'sizes',
+        'colors',
         'thumbnail',
         'images',
         'status',
@@ -25,7 +25,27 @@ class Product extends Model
 
     protected $casts = [
         'status' => StatusEnum::class,
+        'sizes' => 'array',  // Laravel will automatically decode JSON
+        'colors' => 'array',
     ];
+
+    public function getSizeDetailsAttribute()
+    {
+        if (!empty($this->colors)) {
+            return ProductSize::whereIn('id', $this->sizes)->get();
+        }
+
+        return [];
+    }
+
+    public function getColorDetailsAttribute()
+    {
+        if (!empty($this->colors)) {
+            return ProductColor::whereIn('id', $this->colors)->get();
+        }
+
+        return [];
+    }
 
     public function category()
     {
