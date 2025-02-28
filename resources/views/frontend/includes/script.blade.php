@@ -10,4 +10,7 @@
 <script type="text/javascript" src="{{ asset('assets/frontend/js/multiple-modal.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/frontend/js/main.js') }}"></script>
 
+<!-- IziToast Js-->
+<script src="{{ asset('js/iziToast.js') }}"></script>
+
 @yield('page_js')

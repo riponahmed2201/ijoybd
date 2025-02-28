@@ -1,5 +1,5 @@
 <meta charset="utf-8">
-<title>Home - IJOY</title>
+<title> @yield('home_title') - IJOY</title>
 
 <meta name="author" content="themesflat.com">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -17,5 +17,8 @@
 <!-- Favicon and Touch Icons  -->
 <link rel="shortcut icon" href="{{ asset('assets/logo/logo icone-01.png') }}">
 <link rel="apple-touch-icon-precomposed" href="{{ asset('assets/logo/logo icone-01.png') }}">
+
+<!-- IziToast CSS-->
+<link href="{{ asset('css/iziToast.css') }}" rel="stylesheet">
 
 @yield('page_css')

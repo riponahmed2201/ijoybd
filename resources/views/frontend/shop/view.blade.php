@@ -1,5 +1,7 @@
 @extends('frontend.master')
 
+@section('home_title', 'Shop Details')
+
 @section('home-content')
     <!-- breadcrumb -->
     <div class="tf-breadcrumb">

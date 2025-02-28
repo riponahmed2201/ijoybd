@@ -1,5 +1,7 @@
 @extends('frontend.master')
 
+@section('home_title', 'Home')
+
 @section('home-content')
 
     <!-- Slider -->

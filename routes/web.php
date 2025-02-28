@@ -11,6 +11,8 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ProductSizeController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\Web\AuthController;
+use App\Http\Controllers\Web\CustomerAccountController;
 use App\Http\Controllers\Web\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,9 +31,26 @@ Route::get('/', [HomeController::class, 'index']);
  * It includes the route name and the corresponding URL.
  */
 
-//Login
-Route::get('admin/login', [LoginController::class, 'showLoginForm']);
-Route::post('admin/login', [LoginController::class, 'login'])->name('admin.login');
+//Admin Login
+Route::get('login', [AuthController::class, 'showLoginForm']);
+Route::post('login', [AuthController::class, 'login'])->name('customer.login');
+
+Route::get('register', [AuthController::class, 'showRegisterForm']);
+Route::post('register', [AuthController::class, 'register'])->name('customer.register');
+
+//Customer Private Route
+Route::group(['middleware' => 'user'], function () {
+
+    //Customer Account Details
+    Route::get('my-account-dashboard', [CustomerAccountController::class, 'myAccountDashboard'])->name('customer.dashboard');
+    Route::get('my-account-address', [CustomerAccountController::class, 'myAccountAddress']);
+    Route::get('my-account-edit', [CustomerAccountController::class, 'myAccountEdit']);
+    Route::get('my-account-orders', [CustomerAccountController::class, 'myAccountOrders']);
+    Route::get('my-account-wishlist', [CustomerAccountController::class, 'myAccountWishlist']);
+
+    Route::get('/customer/logout', [AuthController::class, 'logout'])->name('customer.logout');
+});
+
 
 //Home Route
 Route::get('shop', [HomeController::class, 'showShop']);
@@ -44,6 +63,11 @@ Route::get('contact-us', [HomeController::class, 'showContactUs']);
 Route::get('about-us', [HomeController::class, 'showAboutUs']);
 
 //Admin Route Here
+
+//Admin Login
+Route::get('admin/login', [LoginController::class, 'showLoginForm']);
+Route::post('admin/login', [LoginController::class, 'login'])->name('admin.login');
+
 Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
 
     //Dashboard

@@ -1,5 +1,7 @@
 @extends('frontend.master')
 
+@section('home_title', 'Shop')
+
 @section('home-content')
     <!-- page-title -->
     <div class="tf-page-title">
