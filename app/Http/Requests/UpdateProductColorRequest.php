@@ -24,6 +24,7 @@ class UpdateProductColorRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:20|unique:product_colors,name,' . $this->route('product_color')->id,
+            'code' => 'required|string|max:20|unique:product_colors,code,' . $this->route('product_color')->id,
             'status' => 'required|string|min:6|max:8|in:' . implode(',', array_map(fn($case) => $case->value, StatusEnum::cases()))
         ];
     }

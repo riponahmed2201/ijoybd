@@ -100,7 +100,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="{{ route('products.edit', $product->id) }}"
+                                        <a href="{{ route('products.show', $product->id) }}"
                                             class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
                                             <i class="bi bi-eye-fill"></i>
                                         </a>

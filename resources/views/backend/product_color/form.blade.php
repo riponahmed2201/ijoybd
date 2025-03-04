@@ -45,6 +45,15 @@
                                 @enderror
                             </div>
 
+                            <div class="mb-3 fv-row">
+                                <label class="required form-label">Code</label>
+                                <input type="text" name="code" class="form-control mb-2" placeholder="Enter code"
+                                    required value="{{ isset($productColor) ? $productColor->code : '' }}" />
+                                @error('code')
+                                    <span class="text-danger mt-2">{{ $message }}</span>
+                                @enderror
+                            </div>
+
                             <div class="fv-row">
                                 <label class="required form-label">Status</label>
                                 <select class="form-select" name="status" data-control="select2" data-hide-search="true"

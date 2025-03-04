@@ -36,7 +36,7 @@ class ProductColorController extends Controller
      */
     public function store(StoreProductColorRequest $request)
     {
-        $input = $request->only(['name', 'status']);
+        $input = $request->only(['name', 'code', 'status']);
 
         try {
             ProductColor::create($input);
@@ -71,7 +71,7 @@ class ProductColorController extends Controller
      */
     public function update(UpdateProductColorRequest $request, ProductColor $productColor)
     {
-        $input = $request->only(['name', 'status']);
+        $input = $request->only(['name', 'code', 'status']);
 
         try {
             $productColor->update($input);

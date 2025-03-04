@@ -15,6 +15,7 @@ return new class extends Migration
         Schema::create('product_colors', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('code');
             $table->enum('status', array_column(StatusEnum::cases(), 'value'))->default(StatusEnum::INACTIVE->value);
             $table->timestamps();
         });

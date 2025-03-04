@@ -15,11 +15,13 @@ class ProductColorSeeder extends Seeder
     {
         $productColors = [
             [
-                'name' => '#111111',
+                'name' => 'white',
+                'code' => '#111111',
                 'status' => 'active'
             ],
             [
-                'name' => '#000000',
+                'name' => 'black',
+                'code' => '#000000',
                 'status' => 'active'
             ]
         ];

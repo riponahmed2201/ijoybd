@@ -38,6 +38,7 @@
                             <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                                 <th>#</th>
                                 <th class="min-w-250px">Name</th>
+                                <th class="min-w-250px">Code</th>
                                 <th class="min-w-150px">Status</th>
                                 <th class="text-end min-w-70px">Actions</th>
                             </tr>
@@ -51,6 +52,11 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td> {{ $color->name }} </td>
+                                    <td>
+                                        <div
+                                            style="display: inline-block; width: 20px; height: 20px; background-color: {{ $color->code }}; margin-right: 5px;">
+                                        </div>
+                                    </td>
                                     <td>
                                         @if ($color?->status?->value == 'active')
                                             <div class="badge badge-light-success">Active</div>

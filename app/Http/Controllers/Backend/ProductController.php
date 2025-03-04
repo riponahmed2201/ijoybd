@@ -125,7 +125,9 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        $product->load(['category', 'brand']);
+
+        return view('backend.products.show', compact('product'));
     }
 
     /**

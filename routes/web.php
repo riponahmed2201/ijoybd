@@ -54,7 +54,7 @@ Route::group(['middleware' => 'user'], function () {
 
 //Home Route
 Route::get('shop', [HomeController::class, 'showShop']);
-Route::get('shop/view', [HomeController::class, 'showShopView']);
+Route::get('shop/view/{product}', [HomeController::class, 'showShopView'])->name('shop.view');
 
 //Contact Us
 Route::get('contact-us', [HomeController::class, 'showContactUs']);
