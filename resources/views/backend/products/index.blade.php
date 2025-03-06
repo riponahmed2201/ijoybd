@@ -86,9 +86,7 @@
                                     </td>
                                     <td>
                                         @forelse ($product?->size_details as $size)
-                                            <div
-                                                style="display: inline-block; width: 20px; height: 20px; background-color: {{ $size->name }}; margin-right: 5px;">
-                                            </div>
+                                            {{ $size->name }}
                                         @empty
                                             <strong class="text-danger">No colors available</strong>
                                         @endforelse
@@ -169,7 +167,7 @@
                                         "The product and its images have been deleted.",
                                         "success")
                                     .then(() => location
-                                .reload()); // Reload page after deletion
+                                        .reload()); // Reload page after deletion
                             },
                             error: function() {
                                 Swal.fire("Error!", "Something went wrong.", "error");
