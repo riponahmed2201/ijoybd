@@ -1,6 +1,6 @@
 @extends('backend.master')
 
-@if (isset($brand))
+@if (isset($category))
     @section('title', 'Edit Category')
 @else
     @section('title', 'Add Category')
