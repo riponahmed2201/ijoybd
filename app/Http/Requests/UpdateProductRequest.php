@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\StatusEnum;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateProductRequest extends FormRequest
@@ -11,7 +12,7 @@ class UpdateProductRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +23,18 @@ class UpdateProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string',
+            'description' => 'required|string',
+            'price' => 'required|numeric',
+            'discount' => 'required|numeric',
+            'stock_quantity' => 'required|numeric',
+            'category' => 'required|numeric',
+            'brand' => 'required|numeric',
+            'size' => 'required',
+            'color' => 'required',
+            'thumbnail' => 'nullable|file|mimes:jpg,jpeg,png|max:2048',
+            'images' => 'nullable',
+            'status' => 'required|string|min:6|max:8|in:' . implode(',', array_map(fn($case) => $case->value, StatusEnum::cases())),
         ];
     }
 }

@@ -1,22 +1,23 @@
 @extends('backend.master')
 
-@section('title', 'Add Product')
+@section('title', 'Edit Product')
 
 @section('admin-content')
     <!--begin::Toolbar -->
-    <x-toolbar :title="'Add product'" :breadcrumbs="[
+    <x-toolbar :title="'Edit product'" :breadcrumbs="[
         ['label' => 'Home', 'url' => route('admin.dashboard')],
         ['label' => 'Products', 'url' => route('products.index')],
-        ['label' => 'Add product', 'active' => true],
+        ['label' => 'Edit product', 'active' => true],
     ]" :actionUrl="route('products.index')" actionIcon="bi bi-cart fs-3"
         actionLabel="Product List" />
     <!--end::Toolbar -->
 
     <div class="post d-flex flex-column-fluid" id="kt_post">
         <div id="kt_content_container" class="container-fluid">
-            <form method="POST" action="{{ route('products.store') }}" class="form d-flex flex-column flex-lg-row"
-                enctype="multipart/form-data">
+            <form method="POST" action="{{ route('products.update', $product->id) }}"
+                class="form d-flex flex-column flex-lg-row" enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
 
                 <div class="col-md-12">
                     <div class="card py-4">
@@ -34,7 +35,8 @@
                                         data-control="select2" data-hide-search="true" data-placeholder="Select Category">
                                         <option></option>
                                         @foreach ($categories as $category)
-                                            <option value="{{ $category->id }}"> {{ $category->name }} </option>
+                                            <option {{ $product->category_id == $category->id ? 'selected' : '' }}
+                                                value="{{ $category->id }}"> {{ $category->name }} </option>
                                         @endforeach
                                     </select>
                                     @error('category')
@@ -48,7 +50,8 @@
                                         data-control="select2" data-hide-search="true" data-placeholder="Select Brand">
                                         <option></option>
                                         @foreach ($brands as $brand)
-                                            <option value="{{ $brand->id }}"> {{ $brand->name }} </option>
+                                            <option {{ $product->brand_id == $brand->id ? 'selected' : '' }}
+                                                value="{{ $brand->id }}"> {{ $brand->name }} </option>
                                         @endforeach
                                     </select>
                                     @error('brand')
@@ -59,7 +62,7 @@
                                 <div class="col-md-6 mb-3 fv-row">
                                     <label class="required form-label">Product Name</label>
                                     <input type="text" name="name" class="form-control form-control-solid mb-2"
-                                        placeholder="Enter product name" required />
+                                        placeholder="Enter product name" required value="{{ $product->name }}" />
                                     @error('name')
                                         <span class="text-danger mt-2">{{ $message }}</span>
                                     @enderror
@@ -68,7 +71,8 @@
                                 <div class="col-md-6 mb-3 fv-row">
                                     <label class="required form-label">Price</label>
                                     <input type="number" step=".01" name="price"
-                                        class="form-control form-control-solid mb-2" placeholder="Enter price" required />
+                                        class="form-control form-control-solid mb-2" placeholder="Enter price" required
+                                        value="{{ $product->price }}" />
                                     @error('price')
                                         <span class="text-danger mt-2">{{ $message }}</span>
                                     @enderror
@@ -77,7 +81,7 @@
                                 <div class="col-md-6 mb-3 fv-row">
                                     <label class="required form-label">Discount(%)</label>
                                     <input type="number" name="discount" class="form-control form-control-solid mb-2"
-                                        placeholder="Enter discount" required />
+                                        placeholder="Enter discount" required value="{{ $product->discount }}" />
                                     @error('discount')
                                         <span class="text-danger mt-2">{{ $message }}</span>
                                     @enderror
@@ -86,7 +90,8 @@
                                 <div class="col-md-6 mb-3 fv-row">
                                     <label class="required form-label">Stock Quantity</label>
                                     <input type="text" name="stock_quantity" class="form-control form-control-solid mb-2"
-                                        placeholder="Enter stock quantity" required />
+                                        placeholder="Enter stock quantity" required
+                                        value="{{ $product->stock_quantity }}" />
                                     @error('stock_quantity')
                                         <span class="text-danger mt-2">{{ $message }}</span>
                                     @enderror
@@ -99,7 +104,8 @@
                                         data-placeholder="Select Color">
                                         <option></option>
                                         @foreach ($colors as $color)
-                                            <option value="{{ $color->id }}"> {{ $color->name }} </option>
+                                            <option {{ in_array($color->id, $product?->colors) ? 'selected' : '' }}
+                                                value="{{ $color->id }}"> {{ $color->name }} </option>
                                         @endforeach
                                     </select>
                                     @error('color')
@@ -114,7 +120,8 @@
                                         data-placeholder="Select Size">
                                         <option></option>
                                         @foreach ($sizes as $size)
-                                            <option value="{{ $size->id }}"> {{ $size->name }} </option>
+                                            <option {{ in_array($size->id, $product?->sizes) ? 'selected' : '' }}
+                                                value="{{ $size->id }}"> {{ $size->name }} </option>
                                         @endforeach
                                     </select>
                                     @error('size')
@@ -124,12 +131,13 @@
 
                                 <div class="col-md-6 mb-3 fv-row">
                                     <label class="required form-label">Thumbnail</label>
-                                    <input type="file" name="thumbnail" class="form-control form-control-solid mb-2"
-                                        required />
+                                    <input type="file" name="thumbnail" class="form-control form-control-solid mb-2" />
 
-                                    <!-- Thumbnail Preview -->
-                                    <img id="thumbnail-preview" src="#" alt="Thumbnail Preview"
-                                        class="img-thumbnail mt-2" width="100" height="100" style="display: none;">
+                                    <!-- Show existing thumbnail -->
+                                    <img id="thumbnail-preview"
+                                        src="{{ $product->thumbnail ? asset('storage/' . $product->thumbnail) : '#' }}"
+                                        alt="Thumbnail Preview" class="img-thumbnail mt-2" width="100" height="100"
+                                        style="display: {{ $product->thumbnail ? 'block' : 'none' }};">
 
                                     @error('thumbnail')
                                         <span class="text-danger mt-2">{{ $message }}</span>
@@ -141,12 +149,19 @@
                                     <input type="file" name="images[]" multiple="multiple"
                                         class="form-control form-control-solid mb-2" />
 
-                                    <!-- Multiple Images Preview -->
-                                    <div id="images-preview" class="d-flex mt-2"></div>
+                                    <!-- Show existing images -->
+                                    <div id="images-preview" class="d-flex mt-2">
+                                        @foreach (json_decode($product->images, true) ?? [] as $image)
+                                            <img src="{{ asset('storage/' . $image) }}" class="img-thumbnail me-2"
+                                                width="100" height="100">
+                                        @endforeach
+                                    </div>
+
                                     @error('images')
                                         <span class="text-danger mt-2">{{ $message }}</span>
                                     @enderror
                                 </div>
+
 
                                 <div class="col-md-6 mb-3 fv-row">
                                     <label class="required form-label">Status</label>
@@ -154,7 +169,8 @@
                                         data-hide-search="true" required data-placeholder="Select Status">
                                         <option></option>
                                         @foreach ($statuses as $status)
-                                            <option value="{{ $status['value'] }}">
+                                            <option {{ $product->status->value == $status['value'] ? 'selected' : '' }}
+                                                value="{{ $status['value'] }}">
                                                 {{ $status['label'] }}
                                             </option>
                                         @endforeach
@@ -167,7 +183,7 @@
                                 <div class="col-md-12 mb-3 fv-row">
                                     <label class="form-label">Description</label>
                                     <textarea class="form-control form-control-solid mb-2" data-kt-autosize="true" name="description"
-                                        placeholder="Enter description"></textarea>
+                                        placeholder="Enter description">{{ $product->description }}</textarea>
                                     @error('description')
                                         <span class="text-danger mt-2">{{ $message }}</span>
                                     @enderror
@@ -191,9 +207,8 @@
 @push('page_js')
     <script>
         $(document).ready(function() {
-
-            // Thumbnail preview
-            $(document).on('change', 'input[name="thumbnail"]', function(event) {
+            // Preview for thumbnail
+            $('input[name="thumbnail"]').on('change', function(event) {
                 let input = event.target;
                 if (input.files && input.files[0]) {
                     let reader = new FileReader();
@@ -204,18 +219,16 @@
                 }
             });
 
-            // Multiple images preview
-            $(document).on('change', 'input[name="images[]"]', function(event) {
+            // Preview for multiple images
+            $('input[name="images[]"]').on('change', function(event) {
                 let input = event.target;
                 $('#images-preview').empty(); // Clear old previews
                 if (input.files) {
                     $.each(input.files, function(index, file) {
                         let reader = new FileReader();
                         reader.onload = function(e) {
-                            $('#images-preview').append(
-                                '<img src="' + e.target.result +
-                                '" class="img-thumbnail me-2" width="100" height="100">'
-                            );
+                            $('#images-preview').append('<img src="' + e.target.result +
+                                '" class="img-thumbnail me-2" width="100" height="100">');
                         };
                         reader.readAsDataURL(file);
                     });

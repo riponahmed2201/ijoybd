@@ -78,13 +78,21 @@
                                     <td>
                                         @forelse ($product?->color_details as $color)
                                             <div
-                                                style="display: inline-block; width: 20px; height: 20px; background-color: {{ $color->name }}; margin-right: 5px;">
+                                                style="display: inline-block; width: 20px; height: 20px; background-color: {{ $color->code }}; margin-right: 5px;">
                                             </div>
                                         @empty
                                             <strong class="text-danger">No colors available</strong>
                                         @endforelse
                                     </td>
-                                    <td>{{ $product?->brand?->name }}</td>
+                                    <td>
+                                        @forelse ($product?->size_details as $size)
+                                            <div
+                                                style="display: inline-block; width: 20px; height: 20px; background-color: {{ $size->name }}; margin-right: 5px;">
+                                            </div>
+                                        @empty
+                                            <strong class="text-danger">No colors available</strong>
+                                        @endforelse
+                                    </td>
 
                                     <td> <strong>Price: </strong> {{ $product->price }} TK <br>
                                         <strong>Discount(%): </strong>{{ $product->discount }} %<br>
@@ -109,6 +117,12 @@
                                             class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
                                             <i class="bi bi-pencil-fill"></i>
                                         </a>
+
+                                        <button type="button"
+                                            class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm delete-product"
+                                            data-id="{{ $product->id }}">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -124,3 +138,46 @@
         <!--end::Container-->
     </div>
 @endsection
+
+@push('page_js')
+    <script>
+        $(document).ready(function() {
+            $('.delete-product').on('click', function(e) {
+                e.preventDefault();
+                let productId = $(this).data('id');
+                let deleteUrl = "{{ route('products.destroy', ':id') }}".replace(':id', productId);
+
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "This will delete the product along with its images.",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#d33",
+                    cancelButtonColor: "#3085d6",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: deleteUrl,
+                            type: "POST",
+                            data: {
+                                _method: "DELETE",
+                                _token: "{{ csrf_token() }}"
+                            },
+                            success: function(response) {
+                                Swal.fire("Deleted!",
+                                        "The product and its images have been deleted.",
+                                        "success")
+                                    .then(() => location
+                                .reload()); // Reload page after deletion
+                            },
+                            error: function() {
+                                Swal.fire("Error!", "Something went wrong.", "error");
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+@endpush

@@ -135,7 +135,23 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $categories = Category::where('status', 'active')->latest()->get(['id', 'name']);
+        $brands = Brand::where('status', 'active')->latest()->get(['id', 'name']);
+        $sizes = ProductSize::where('status', 'active')->latest()->get(['id', 'name']);
+        $colors = ProductColor::where('status', 'active')->latest()->get(['id', 'name']);
+
+        $statuses = StatusEnum::options();
+
+        $data = [
+            'statuses' => $statuses,
+            'sizes' => $sizes,
+            'colors' => $colors,
+            'categories' => $categories,
+            'brands' => $brands,
+            'product' => $product,
+        ];
+
+        return view('backend.products.edit', $data);
     }
 
     /**
@@ -143,7 +159,71 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        //
+        $input = $request->only(['name', 'description', 'price', 'discount', 'stock_quantity', 'category', 'brand', 'size', 'color', 'status']);
+
+        $input['slug'] = strtolower(Str::slug($input['name']));
+        $input['category_id'] = $input['category'];
+        $input['brand_id'] = $input['brand'];
+        $input['sizes'] = $input['size'];
+        $input['colors'] = $input['color'];
+
+        // Handle single thumbnail upload
+        if ($request->hasFile('thumbnail')) {
+            if ($product->thumbnail && Storage::disk('public')->exists($product->thumbnail)) {
+                Storage::disk('public')->delete($product->thumbnail);
+            }
+
+            $thumbnail = $request->file('thumbnail');
+            $thumbnailName = md5(Str::random(30) . time()) . '.' . $thumbnail->getClientOriginalExtension();
+            $thumbnailPath = $thumbnail->storeAs('products', $thumbnailName, 'public');
+            $input['thumbnail'] = $thumbnailPath;
+        }
+
+        // Handle multiple image uploads
+        $imagePaths = json_decode($product->images, true) ?? [];
+
+        if ($request->hasFile('images')) {
+            // Delete existing images before updating
+            foreach ($imagePaths as $existingImage) {
+                if (Storage::disk('public')->exists($existingImage)) {
+                    Storage::disk('public')->delete($existingImage);
+                }
+            }
+            $imagePaths = []; // Reset image paths
+
+            foreach ($request->file('images') as $image) {
+                if ($image->isValid()) {
+                    $imageName = md5(Str::random(5) . time()) . '.' . $image->getClientOriginalExtension();
+                    $imagePath = $image->storeAs('products', $imageName, 'public');
+                    $imagePaths[] = $imagePath;
+                }
+            }
+        }
+
+        // Store multiple image paths as JSON
+        $input['images'] = json_encode($imagePaths);
+
+        DB::beginTransaction();
+        try {
+            $product->update($input);
+
+            DB::commit();
+
+            notify()->success("Product updated successfully", "Success");
+
+            return to_route('products.index');
+        } catch (Exception $exception) {
+            DB::rollBack();
+
+            // Rollback uploaded files if an error occurs
+            if (isset($input['thumbnail']) && Storage::disk('public')->exists($input['thumbnail'])) {
+                Storage::disk('public')->delete($input['thumbnail']);
+            }
+
+            notify()->error("Something went wrong! Please try again", "Error");
+
+            return back()->withInput();
+        }
     }
 
     /**
@@ -151,6 +231,30 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        try {
+            // Delete thumbnail from storage
+            if ($product->thumbnail && Storage::disk('public')->exists($product->thumbnail)) {
+                Storage::disk('public')->delete($product->thumbnail);
+            }
+
+            // Delete multiple images from storage
+            if (!empty($product->images)) {
+                $images = json_decode($product->images, true);
+                if (is_array($images)) {
+                    foreach ($images as $image) {
+                        if (Storage::disk('public')->exists($image)) {
+                            Storage::disk('public')->delete($image);
+                        }
+                    }
+                }
+            }
+
+            // Delete product from database
+            $product->delete();
+
+            return response()->json(['success' => true, 'message' => 'Product and images deleted successfully']);
+        } catch (Exception $e) {
+            return response()->json(['success' => false, 'message' => 'Failed to delete product'], 500);
+        }
     }
 }
