@@ -82,14 +82,14 @@
                         <div class="card-product fl-item" data-price="18.95" data-size="m l xl"
                             data-color="brown light-purple light-green">
                             <div class="card-product-wrapper">
-                                <a href="product-detail.html" class="product-img">
+                                <a href="{{ route('shop.view', $product->id) }}" class="product-img">
                                     <img class="lazyload img-product" data-src="{{ Storage::url($product->thumbnail) }}"
                                         src="{{ Storage::url($product->thumbnail) }}" alt="{{ $product->name }}">
                                     <img class="lazyload img-hover" data-src="{{ Storage::url($product->thumbnail) }}"
                                         src="{{ Storage::url($product->thumbnail) }}" alt="{{ $product->name }}">
                                 </a>
                                 <div class="list-product-btn">
-                                    <a href="#quick_add" data-bs-toggle="modal"
+                                    <a href="#" data-bs-toggle="modal"
                                         class="box-icon bg_white quick-add tf-btn-loading">
                                         <span class="icon icon-bag"></span>
                                         <span class="tooltip">Quick Add</span>
@@ -99,7 +99,7 @@
                                         <span class="tooltip">Add to Wishlist</span>
                                         <span class="icon icon-delete"></span>
                                     </a>
-                                    <a href="#quick_view" data-bs-toggle="modal"
+                                    <a href="{{ route('shop.view', $product->id) }}"
                                         class="box-icon bg_white quickview tf-btn-loading">
                                         <span class="icon icon-view"></span>
                                         <span class="tooltip">Quick View</span>
