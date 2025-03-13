@@ -9,7 +9,7 @@
 
     <div class="post d-flex flex-column-fluid" id="kt_post">
         <!--begin::Container-->
-        <div id="kt_content_container" class="container-xxl">
+        <div id="kt_content_container" class="container-fluid">
             <div class="row g-5 g-xl-8">
                 <div class="col-xl-3">
                     <!--begin::Statistics Widget 5-->

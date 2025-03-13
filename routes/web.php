@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\ProductColorController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ProductSizeController;
 use App\Http\Controllers\Backend\ProfileController;
+use App\Http\Controllers\Backend\SubcategoryController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Web\AuthController;
 use App\Http\Controllers\Web\CustomerAccountController;
@@ -82,6 +83,7 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
 
     Route::resources([
         'categories' => CategoryController::class,
+        'subcategories' => SubcategoryController::class,
         'brands' => BrandController::class,
         'product-colors' => ProductColorController::class,
         'product-sizes' => ProductSizeController::class,

@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
-use App\Enums\CategoryType;
 use App\Enums\StatusEnum;
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Subcategory extends Model
 {
-    protected $table = 'categories';
+    protected $table = 'subcategories';
 
     protected $fillable = [
         'name',

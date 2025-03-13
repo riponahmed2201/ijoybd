@@ -4,25 +4,26 @@ namespace App\Http\Controllers\Backend;
 
 use App\Enums\StatusEnum;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreSubcategoryRequest;
+use App\Http\Requests\UpdateSubcategoryRequest;
 use App\Models\Category;
-use App\Http\Requests\StoreCategoryRequest;
-use App\Http\Requests\UpdateCategoryRequest;
+use App\Models\Subcategory;
 use Exception;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
 
-class CategoryController extends Controller
+class SubcategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $categories = Category::latest()->get();
+        $subcategories = Category::latest()->get();
 
-        return view('backend.categories.index', compact('categories'));
+        return view('backend.subcategories.index', compact('subcategories'));
     }
 
     /**
@@ -30,15 +31,16 @@ class CategoryController extends Controller
      */
     public function create()
     {
+        $categories = Category::where('status', 'YES')->latest()->get();
         $statuses = StatusEnum::options();
 
-        return view('backend.categories.form', compact('statuses'));
+        return view('backend.subcategories.form', compact('categories', 'statuses'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCategoryRequest $request)
+    public function store(StoreSubcategoryRequest $request)
     {
         $input = $request->only(['name', 'description', 'status']);
         $input['slug'] = strtolower(Str::slug($input['name'])); // Ensure slug is derived from 'name'
@@ -49,19 +51,19 @@ class CategoryController extends Controller
             // Generate unique name for the avatar
             $avatarName = md5(Str::random(30) . time()) . '.' . $avatar->getClientOriginalExtension();
             // Store the avatar in the specified directory
-            $avatarPath = $avatar->storeAs('categories', $avatarName, 'public');
+            $avatarPath = $avatar->storeAs('subcategories', $avatarName, 'public');
             $input['avatar'] = $avatarPath;
         }
 
         DB::beginTransaction();
         try {
-            Category::create($input);
+            Subcategory::create($input);
 
             DB::commit();
 
-            notify()->success("Category added successfully", "Success");
+            notify()->success("Subcategory added successfully", "Success");
 
-            return to_route('categories.index');
+            return to_route('subcategories.index');
         } catch (Exception $exception) {
 
             DB::rollBack();
@@ -86,28 +88,29 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Category $category)
+    public function show(Subcategory $subcategory)
     {
-        return $category;
+        return $subcategory;
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Category $category)
+    public function edit(Subcategory $subcategory)
     {
+        $categories = Category::where('status', 'YES')->latest()->get();
         $statuses = StatusEnum::options();
 
-        return view('backend.categories.form', compact('category', 'statuses'));
+        return view('backend.subcategories.form', compact('subcategory', 'categories', 'statuses'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCategoryRequest $request, Category $category)
+    public function update(UpdateSubcategoryRequest $request, Subcategory $subcategory)
     {
         // Get only the necessary inputs
-        $input = $request->only(['category_type', 'name', 'description', 'status']);
+        $input = $request->only(['name', 'description', 'status']);
         $input['slug'] = strtolower(Str::slug($input['name'])); // Ensure slug is derived from 'name'
 
         // Check if a new avatar is being uploaded
@@ -117,27 +120,28 @@ class CategoryController extends Controller
             // Generate a unique name for the avatar
             $avatarName = md5(Str::random(30) . time()) . '.' . $avatar->getClientOriginalExtension();
             // Store the avatar in the specified directory
-            $avatarPath = $avatar->storeAs('categories', $avatarName, 'public');
+            $avatarPath = $avatar->storeAs('subcategories', $avatarName, 'public');
             $input['avatar'] = $avatarPath;
 
             // Delete the old avatar if it exists
-            if ($category->avatar && Storage::disk('public')->exists($category->avatar)) {
-                Storage::disk('public')->delete($category->avatar);
+            if ($subcategory->avatar && Storage::disk('public')->exists($subcategory->avatar)) {
+                Storage::disk('public')->delete($subcategory->avatar);
             }
         }
 
         DB::beginTransaction();
 
         try {
-            // Update the category with the new data
-            $category->update($input);
+            // Update the subcategory with the new data
+            $subcategory->update($input);
 
             DB::commit();
 
-            notify()->success("Category updated successfully", "Success");
+            notify()->success("Subcategory updated successfully", "Success");
 
-            return to_route('categories.index');
+            return to_route('subcategories.index');
         } catch (Exception $exception) {
+            dd($exception);
             DB::rollBack();
 
             // If an avatar was uploaded, delete the newly uploaded file to prevent orphaned files
@@ -146,7 +150,7 @@ class CategoryController extends Controller
             }
 
             // Log the error for debugging
-            Log::error('Error while updating category', [
+            Log::error('Error while updating subcategory', [
                 'error' => $exception->getMessage(),
                 'trace' => $exception->getTraceAsString(),
             ]);

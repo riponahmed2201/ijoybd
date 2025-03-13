@@ -268,7 +268,7 @@
                                             <span class="tooltip">Add to Wishlist</span>
                                             <span class="icon icon-delete"></span>
                                         </a>
-                                        <a href="#quick_view" data-bs-toggle="modal"
+                                        <a href="{{ route('shop.view', $product->id) }}"
                                             class="box-icon bg_white quickview tf-btn-loading">
                                             <span class="icon icon-view"></span>
                                             <span class="tooltip">Quick View</span>

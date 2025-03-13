@@ -1,17 +1,17 @@
 @extends('backend.master')
 
-@if (isset($category))
-    @section('title', 'Edit Category')
+@if (isset($subcategory))
+    @section('title', 'Edit Subcategory')
 @else
-    @section('title', 'Add Category')
+    @section('title', 'Add Subcategory')
 @endif
 
 @section('admin-content')
     <!--begin::Toolbar -->
-    <x-toolbar :title="isset($category) && $category->id ? 'Edit Category' : 'Add Category'" :breadcrumbs="[
+    <x-toolbar :title="isset($subcategory) && $subcategory->id ? 'Edit Subcategory' : 'Add Subcategory'" :breadcrumbs="[
         ['label' => 'Home', 'url' => route('admin.dashboard')],
-        ['label' => 'Categories', 'url' => route('categories.index')],
-        ['label' => isset($category) && $category->id ? 'Edit Category' : 'Add Category', 'active' => true],
+        ['label' => 'Subcategories', 'url' => route('subcategories.index')],
+        ['label' => isset($subcategory) && $subcategory->id ? 'Edit Subcategory' : 'Add Subcategory', 'active' => true],
     ]" :actionUrl="route('categories.index')" actionIcon="fas fa-list" actionLabel="Back to List" />
     <!--end::Toolbar -->
 
@@ -20,10 +20,10 @@
         <div id="kt_content_container" class="container-fluid">
             <!-- Form -->
             <form method="POST"
-                action="{{ isset($category) && $category->id ? route('categories.update', $category->id) : route('categories.store') }}"
+                action="{{ isset($subcategory) && $subcategory->id ? route('subcategories.update', $subcategory->id) : route('subcategories.store') }}"
                 class="form d-flex flex-column flex-lg-row" enctype="multipart/form-data">
                 @csrf
-                @if (isset($category) && $category->id)
+                @if (isset($subcategory) && $subcategory->id)
                     @method('PUT')
                 @endif
 
@@ -37,7 +37,7 @@
                         </div>
                         <div class="card-body text-center pt-0">
                             <div class="image-input image-input-empty image-input-outline mb-12" data-kt-image-input="true"
-                                style="background-image: url({{ isset($category) && $category->avatar ? Storage::url($category->avatar) : 'assets/backend/media/svg/files/blank-image.svg' }})">
+                                style="background-image: url({{ isset($subcategory) && $subcategory->avatar ? Storage::url($subcategory->avatar) : 'assets/backend/media/svg/files/blank-image.svg' }})">
                                 <div class="image-input-wrapper w-150px h-150px"></div>
 
                                 <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
@@ -66,43 +66,65 @@
 
                 <!-- Begin: Main column -->
                 <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
-                    <div class="card card-flush py-8">
+                    <div class="card card-flush py-4">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <h2>General</h2>
+                            </div>
+                        </div>
+
                         @include('message')
                         @include('multiple_message')
 
                         <div class="card-body pt-0">
                             <div class="mb-3 fv-row">
-                                <label class="required form-label">Category Name</label>
-                                <input type="text" name="name" class="form-control form-control-solid mb-2"
-                                    placeholder="Enter name" required
-                                    value="{{ isset($category) ? $category->name : '' }}" />
-                                @error('name')
+                                <label class="required form-label">Category</label>
+                                <select class="form-select" name="category_name" required data-control="select2"
+                                    data-hide-search="true" data-placeholder="Select Category Name">
+                                    <option></option>
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}"
+                                            {{ isset($subcategory) && $category?->category_id == $category->id ? 'selected' : '' }}>
+                                            {{ $category->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @error('category_name')
                                     <span class="text-danger mt-2">{{ $message }}</span>
                                 @enderror
                             </div>
 
                             <div class="mb-3 fv-row">
-                                <label class="required form-label">Status</label>
-                                <select class="form-select form-select-solid" name="status" data-control="select2"
-                                    data-hide-search="true" required data-placeholder="Select Status">
-                                    <option></option>
-                                    @foreach ($statuses as $status)
-                                        <option value="{{ $status['value'] }}"
-                                            {{ isset($category) && $category->status->value == $status['value'] ? 'selected' : '' }}>
-                                            {{ $status['label'] }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                @error('status')
+                                <label class="required form-label">Subcategory Name</label>
+                                <input type="text" name="subcategory_name" class="form-control mb-2"
+                                    placeholder="Enter subcategory name" required
+                                    value="{{ isset($subcategory) ? $subcategory->subcategory_name : '' }}" />
+                                @error('subcategory_name')
+                                    <span class="text-danger mt-2">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3 fv-row">
+                                <label class="form-label">Description</label>
+                                <textarea class="form-control mb-2" data-kt-autosize="true" name="description" placeholder="Enter description">{{ isset($subcategory) ? $subcategory->description : '' }}</textarea>
+                                @error('description')
                                     <span class="text-danger mt-2">{{ $message }}</span>
                                 @enderror
                             </div>
 
                             <div class="fv-row">
-                                <label class="form-label">Description</label>
-                                <textarea class="form-control form-control-solid mb-2" data-kt-autosize="true" name="description"
-                                    placeholder="Enter description">{{ isset($category) ? $category->description : '' }}</textarea>
-                                @error('description')
+                                <label class="required form-label">Status</label>
+                                <select class="form-select" name="status" data-control="select2" data-hide-search="true"
+                                    required data-placeholder="Select Status">
+                                    <option></option>
+                                    @foreach ($statuses as $status)
+                                        <option value="{{ $status['value'] }}"
+                                            {{ isset($subcategory) && $subcategory->status->value == $status['value'] ? 'selected' : '' }}>
+                                            {{ $status['label'] }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @error('status')
                                     <span class="text-danger mt-2">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -112,7 +134,7 @@
                     <div class="d-flex justify-content-end">
                         <button type="submit" class="btn btn-primary">
                             <span
-                                class="indicator-label">{{ isset($category) && $category->id ? 'Update' : 'Submit' }}</span>
+                                class="indicator-label">{{ isset($subcategory) && $subcategory->id ? 'Update' : 'Submit' }}</span>
                         </button>
                     </div>
                 </div>

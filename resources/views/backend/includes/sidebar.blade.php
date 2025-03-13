@@ -74,6 +74,16 @@
                 </div>
 
                 <div class="menu-item">
+                    <a class="menu-link {{ Request::is('admin/subcategories') ? 'active' : '' }}"
+                        href="/admin/subcategories">
+                        <span class="menu-icon">
+                            <i class="bi bi-shield-check fs-3"></i>
+                        </span>
+                        <span class="menu-title">Subcategoris</span>
+                    </a>
+                </div>
+
+                <div class="menu-item">
                     <div class="menu-content pt-8 pb-2">
                         <span class="menu-section text-muted text-uppercase fs-8 ls-1">Brand Management</span>
                     </div>
