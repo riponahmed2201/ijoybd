@@ -40,11 +40,11 @@
                 },
                 success: function(response) {
                     if (response.success) {
-                        toast.success(response
+                        toastr.success(response
                             .message); // Can be replaced with a UI feedback element
                         $('#cart-count').text(response.cartCount);
                     } else {
-                        toast.error(response.message);
+                        toastr.error(response.message);
                     }
                 },
                 error: function() {
@@ -66,14 +66,14 @@
                 },
                 success: function(response) {
                     if (response.success) {
-                        toast.success(response.message);
+                        toastr.success(response.message);
                         location.reload(); // Reload to update the cart and count
                     } else {
-                        toast.error(response.message);
+                        toastr.error(response.message);
                     }
                 },
                 error: function() {
-                    toast.error("Something went wrong!");
+                    toastr.error("Something went wrong!");
                 }
             });
         });
@@ -93,16 +93,16 @@
                 },
                 success: function(response) {
                     if (response.success) {
-                        toast.success(response.message);
+                        toastr.success(response.message);
                         $('#cart-count').text(response.cartCount); // Update cart count
                         $('#cart-total').text(response.totalPrice +
                             ' TK'); // Update total price
                     } else {
-                        toast.error(response.message);
+                        toastr.error(response.message);
                     }
                 },
                 error: function() {
-                    toast.error("Something went wrong!");
+                    toastr.error("Something went wrong!");
                 }
             });
         });
@@ -156,12 +156,12 @@
                         $('#cart-total').text(totalPrice + ' TK');
                         $('#cart-count').text(response.cartCount);
                     } else {
-                        toast.error(response.message);
+                        toastr.error(response.message);
                     }
                 },
                 error: function() {
                     alert();
-                    toast.error("Something went wrong!");
+                    toastr.error("Something went wrong!");
                 }
             });
         });
@@ -193,11 +193,11 @@
                         $('#cart-count').text(response.cartCount);
                         $('#cart-total').text(response.totalPrice + ' TK');
                     } else {
-                        toast.error(response.message);
+                        toastr.error(response.message);
                     }
                 },
                 error: function() {
-                    toast.error("Something went wrong!");
+                    toastr.error("Something went wrong!");
                 }
             });
         });
