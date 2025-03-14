@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use App\Models\Subcategory;
 use Exception;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
@@ -102,5 +103,24 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         //
+    }
+
+    public function getSubcategories($category_id)
+    {
+        try {
+            $subcategories = Subcategory::where('category_id', $category_id)->where('status', 'active')->get();
+            return response()->json([
+                'success' => true,
+                'statusCode' => 200,
+                'message' => 'Subcategory list fetch successfully.',
+                'subcategories' => $subcategories
+            ]);
+        } catch (Exception $exception) {
+            return response()->json([
+                'success' => false,
+                'statusCode' => 200,
+                'message' => $exception->getMessage()
+            ]);
+        }
     }
 }

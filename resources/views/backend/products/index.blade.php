@@ -14,7 +14,7 @@
 
     <div class="post d-flex flex-column-fluid" id="kt_post">
         <!--begin::Container-->
-        <div id="kt_content_container" class="container-xxl">
+        <div id="kt_content_container" class="container-fluid">
             <!--begin::product-->
             <div class="card card-flush">
                 <!--begin::Card header-->
@@ -37,6 +37,9 @@
                             <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                                 <th>#</th>
                                 <th>Product</th>
+                                <th>Category Name</th>
+                                <th>Subcategory Name</th>
+                                <th>Brand Name</th>
                                 <th>Colors</th>
                                 <th>Sizes</th>
                                 <th>Price</th>
@@ -65,16 +68,13 @@
                                             <div class="ms-5">
                                                 <a href="javscript:void(0)"
                                                     class="text-gray-800 text-hover-primary fs-5 fw-bolder mb-1">{{ $product->name }}</a>
-                                                <div class="fs-8 fw-bolder"> Brand Name:
-                                                    {{ $product?->brand?->name }}</div>
-                                                <div class="fs-8 fw-bolder">
-                                                    Category:
-                                                    {{ $product?->category?->category_type }} ->
-                                                    {{ $product?->category?->name }}
-                                                </div>
                                             </div>
                                         </div>
                                     </td>
+
+                                    <td>{{$product?->category?->name}}</td>
+                                    <td>{{$product?->subcategory?->name}}</td>
+                                    <td>{{$product?->brand?->name}}</td>
                                     <td>
                                         @forelse ($product?->color_details as $color)
                                             <div

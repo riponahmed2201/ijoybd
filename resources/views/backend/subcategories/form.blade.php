@@ -131,7 +131,7 @@
                         </div>
                     </div>
 
-                    <div class="d-flex justify-content-end">
+                    <div class="d-flex justify-content-start">
                         <button type="submit" class="btn btn-primary">
                             <span
                                 class="indicator-label">{{ isset($subcategory) && $subcategory->id ? 'Update' : 'Submit' }}</span>

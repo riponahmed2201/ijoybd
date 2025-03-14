@@ -12,6 +12,6 @@ if (!function_exists(function: 'getCategories')) {
      */
     function getCategories()
     {
-        return Category::latest()->get();
+        return Category::with('subcategories')->latest()->get();
     }
 }

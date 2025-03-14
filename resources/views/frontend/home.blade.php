@@ -17,8 +17,8 @@
             </div> --}}
             <div class="tf-shop-control grid-3 align-items-center">
                 <div class="tf-control-filter">
-                    <a href="#filterShop" data-bs-toggle="offcanvas" aria-controls="offcanvasLeft" class="tf-btn-filter"><span
-                            class="icon icon-filter"></span><span class="text">Categories</span></a>
+                    <a href="#filterShop" data-bs-toggle="offcanvas" aria-controls="offcanvasLeft"
+                        class="tf-btn-filter"><span class="icon icon-filter"></span><span class="text">Categories</span></a>
                 </div>
             </div>
 
@@ -27,7 +27,7 @@
                     data-space-lg="30" data-space-md="30" data-space="15" data-loop="false" data-auto-play="false">
                     <div class="swiper-wrapper">
 
-                        @foreach ($categories as $category)
+                        @foreach (getCategories() as $category)
                             <div class="swiper-slide" lazy="true">
                                 <div class="collection-item style-2 hover-img">
                                     <div class="collection-inner">
@@ -89,8 +89,7 @@
                                         src="{{ Storage::url($product->thumbnail) }}" alt="{{ $product->name }}">
                                 </a>
                                 <div class="list-product-btn">
-                                    <a href="#" data-bs-toggle="modal"
-                                        class="box-icon bg_white quick-add tf-btn-loading">
+                                    <a href="#" data-bs-toggle="modal" class="box-icon bg_white quick-add tf-btn-loading">
                                         <span class="icon icon-bag"></span>
                                         <span class="tooltip">Quick Add</span>
                                     </a>
@@ -120,12 +119,10 @@
                                 @endif
                             </div>
                             <div class="card-product-info">
-                                <a href="{{ route('shop.view', $product->id) }}"
-                                    class="title link">{{ $product->name }}</a>
+                                <a href="{{ route('shop.view', $product->id) }}" class="title link">{{ $product->name }}</a>
 
                                 @if ($product->discount > 0)
-                                    <span
-                                        class="price">{{ $product->price - ($product->discount * $product->price) / 100 }}
+                                    <span class="price">{{ $product->price - ($product->discount * $product->price) / 100 }}
                                         TK</span>
                                 @else
                                     <span class="price">{{ $product->price }} TK</span>
@@ -222,8 +219,8 @@
             <div class="wrap-carousel wrap-brand wrap-brand-v2 autoplay-linear">
                 <div dir="ltr"
                     class="swiper tf-sw-brand border-0 swiper-initialized swiper-horizontal swiper-pointer-events"
-                    data-play="true" data-loop="true" data-preview="6" data-tablet="4" data-mobile="2"
-                    data-space-lg="30" data-space-md="15">
+                    data-play="true" data-loop="true" data-preview="6" data-tablet="4" data-mobile="2" data-space-lg="30"
+                    data-space-md="15">
                     <div class="swiper-wrapper" id="swiper-wrapper-6220e8bd24b1b04a" aria-live="off"
                         style="transform: translate3d(-2899.5px, 0px, 0px); transition-duration: 0ms;">
 
@@ -233,8 +230,8 @@
                                 <div class="brand-item-v2">
                                     @if (!empty($brand->logo))
                                         <img class="ls-is-cached lazyloaded" style="width:215px; height:89px"
-                                            data-src="{{ Storage::url($brand->logo) }}"
-                                            src="{{ Storage::url($brand->logo) }}" alt="{{ $brand->slug }}">
+                                            data-src="{{ Storage::url($brand->logo) }}" src="{{ Storage::url($brand->logo) }}"
+                                            alt="{{ $brand->slug }}">
                                     @else
                                         <img class="ls-is-cached lazyloaded" style="width:215px; height:89px"
                                             data-src="{{ asset('assets/frontend/images/default.jpeg') }}"

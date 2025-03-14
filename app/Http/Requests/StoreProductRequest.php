@@ -28,13 +28,26 @@ class StoreProductRequest extends FormRequest
             'price' => 'required|numeric',
             'discount' => 'required|numeric',
             'stock_quantity' => 'required|numeric',
-            'category' => 'required|numeric',
-            'brand' => 'required|numeric',
+            'category_id' => 'required|numeric',
+            'subcategory_id' => 'required|numeric',
+            'brand_id' => 'required|numeric',
             'size' => 'required',
             'color' => 'required',
             'thumbnail' => 'nullable|file|mimes:jpg,jpeg,png|max:2048',
             'images' => 'nullable',
             'status' => 'required|string|min:6|max:8|in:' . implode(',', array_map(fn($case) => $case->value, StatusEnum::cases())),
+        ];
+    }
+
+       /**
+     * Custom messages for validation errors (optional).
+     */
+    public function messages(): array
+    {
+        return [
+            'category_id.required' => 'The category name is required.',
+            'subcategory_id.required' => 'The subcategory name is required.',
+            'brand_id.required' => 'The brand name is required.',
         ];
     }
 }

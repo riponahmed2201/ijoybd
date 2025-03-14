@@ -20,8 +20,9 @@ return new class extends Migration
             $table->decimal('price', 10, 2); // price in decimal format
             $table->integer('discount');
             $table->integer('stock_quantity'); // quantity available
-            $table->foreignId('category_id')->constrained()->onDelete('cascade'); // Foreign key to categories
-            $table->foreignId('brand_id')->constrained()->onDelete('cascade'); // Foreign key to brands
+            $table->unsignedBigInteger('category_id'); // Foreign key to categories
+            $table->unsignedBigInteger('subcategory_id'); // Foreign key to subcategories
+            $table->unsignedBigInteger('brand_id'); // Foreign key to brands
             $table->json('sizes')->nullable(); // Storing multiple size IDs
             $table->json('colors')->nullable(); // Storing multiple color IDs
             $table->string('thumbnail');

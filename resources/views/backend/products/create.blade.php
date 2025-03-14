@@ -5,11 +5,10 @@
 @section('admin-content')
     <!--begin::Toolbar -->
     <x-toolbar :title="'Add product'" :breadcrumbs="[
-        ['label' => 'Home', 'url' => route('admin.dashboard')],
-        ['label' => 'Products', 'url' => route('products.index')],
-        ['label' => 'Add product', 'active' => true],
-    ]" :actionUrl="route('products.index')" actionIcon="bi bi-cart fs-3"
-        actionLabel="Product List" />
+            ['label' => 'Home', 'url' => route('admin.dashboard')],
+            ['label' => 'Products', 'url' => route('products.index')],
+            ['label' => 'Add product', 'active' => true],
+        ]" :actionUrl="route('products.index')" actionIcon="bi bi-cart fs-3" actionLabel="Product List" />
     <!--end::Toolbar -->
 
     <div class="post d-flex flex-column-fluid" id="kt_post">
@@ -30,28 +29,40 @@
 
                                 <div class="col-md-6 mb-3 fv-row">
                                     <label class="required form-label">Category</label>
-                                    <select class="form-select form-select-solid" name="category" required
+                                    <select class="form-select form-select-solid" name="category_id" id="category" required
                                         data-control="select2" data-hide-search="true" data-placeholder="Select Category">
-                                        <option></option>
+                                        <option value=""></option>
                                         @foreach ($categories as $category)
                                             <option value="{{ $category->id }}"> {{ $category->name }} </option>
                                         @endforeach
                                     </select>
-                                    @error('category')
+                                    @error('category_id')
+                                        <span class="text-danger mt-2">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-6 mb-3 fv-row">
+                                    <label class="required form-label">Subcategory</label>
+                                    <select class="form-select form-select-solid" name="subcategory_id" id="subcategory"
+                                        required data-control="select2" data-hide-search="true"
+                                        data-placeholder="Select Subcategory">
+                                        <option></option>
+                                    </select>
+                                    @error('subcategory_id')
                                         <span class="text-danger mt-2">{{ $message }}</span>
                                     @enderror
                                 </div>
 
                                 <div class="col-md-6 mb-3 fv-row">
                                     <label class="required form-label">Brand</label>
-                                    <select class="form-select form-select-solid" name="brand" required
+                                    <select class="form-select form-select-solid" name="brand_id" required
                                         data-control="select2" data-hide-search="true" data-placeholder="Select Brand">
                                         <option></option>
                                         @foreach ($brands as $brand)
                                             <option value="{{ $brand->id }}"> {{ $brand->name }} </option>
                                         @endforeach
                                     </select>
-                                    @error('brand')
+                                    @error('brand_id')
                                         <span class="text-danger mt-2">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -128,8 +139,8 @@
                                         required />
 
                                     <!-- Thumbnail Preview -->
-                                    <img id="thumbnail-preview" src="#" alt="Thumbnail Preview"
-                                        class="img-thumbnail mt-2" width="100" height="100" style="display: none;">
+                                    <img id="thumbnail-preview" src="#" alt="Thumbnail Preview" class="img-thumbnail mt-2"
+                                        width="100" height="100" style="display: none;">
 
                                     @error('thumbnail')
                                         <span class="text-danger mt-2">{{ $message }}</span>
@@ -166,8 +177,8 @@
 
                                 <div class="col-md-12 mb-3 fv-row">
                                     <label class="form-label">Description</label>
-                                    <textarea class="form-control form-control-solid mb-2" data-kt-autosize="true" name="description"
-                                        placeholder="Enter description"></textarea>
+                                    <textarea class="form-control form-control-solid mb-2" data-kt-autosize="true"
+                                        name="description" placeholder="Enter description"></textarea>
                                     @error('description')
                                         <span class="text-danger mt-2">{{ $message }}</span>
                                     @enderror
@@ -190,14 +201,14 @@
 
 @push('page_js')
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
 
             // Thumbnail preview
-            $(document).on('change', 'input[name="thumbnail"]', function(event) {
+            $(document).on('change', 'input[name="thumbnail"]', function (event) {
                 let input = event.target;
                 if (input.files && input.files[0]) {
                     let reader = new FileReader();
-                    reader.onload = function(e) {
+                    reader.onload = function (e) {
                         $('#thumbnail-preview').attr('src', e.target.result).show();
                     };
                     reader.readAsDataURL(input.files[0]);
@@ -205,13 +216,13 @@
             });
 
             // Multiple images preview
-            $(document).on('change', 'input[name="images[]"]', function(event) {
+            $(document).on('change', 'input[name="images[]"]', function (event) {
                 let input = event.target;
                 $('#images-preview').empty(); // Clear old previews
                 if (input.files) {
-                    $.each(input.files, function(index, file) {
+                    $.each(input.files, function (index, file) {
                         let reader = new FileReader();
-                        reader.onload = function(e) {
+                        reader.onload = function (e) {
                             $('#images-preview').append(
                                 '<img src="' + e.target.result +
                                 '" class="img-thumbnail me-2" width="100" height="100">'
@@ -219,6 +230,26 @@
                         };
                         reader.readAsDataURL(file);
                     });
+                }
+            });
+
+            $('#category').change(function () {
+                let categoryId = $(this).val();
+                if (categoryId) {
+                    $.getJSON('/admin/get-subcategories/' + categoryId, function (response) {
+                        if (response.success) {
+                            $('#subcategory').empty().append('<option value="">Select Subcategory</option>');
+                            $.each(response.subcategories, function (key, value) {
+                                $('#subcategory').append('<option value="' + value.id + '">' + value.name + '</option>');
+                            });
+                        } else {
+                            console.error("Error:", response.message);
+                        }
+                    }).fail(function (jqXHR, textStatus, errorThrown) {
+                        console.error("AJAX Error:", textStatus, errorThrown);
+                    });
+                } else {
+                    $('#subcategory').empty().append('<option value="">Select Subcategory</option>');
                 }
             });
         });

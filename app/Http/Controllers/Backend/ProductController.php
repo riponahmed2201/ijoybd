@@ -26,7 +26,7 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $products = Product::with(['category', 'brand'])->latest()->get();
+        $products = Product::with(['category', 'subcategory', 'brand'])->latest()->get();
 
         return view('backend.products.index', compact('products'));
     }
@@ -59,11 +59,9 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        $input = $request->only(['name', 'description', 'price', 'discount', 'stock_quantity', 'category', 'brand',  'size', 'color', 'status']);
+        $input = $request->only(['category_id', 'subcategory_id', 'brand_id', 'name', 'description', 'price', 'discount', 'stock_quantity', 'category', 'brand',  'size', 'color', 'status']);
 
         $input['slug'] = strtolower(Str::slug($input['name']));
-        $input['category_id'] = $input['category'];
-        $input['brand_id'] = $input['brand'];
         $input['sizes'] = $input['size'];
         $input['colors'] = $input['color'];
 
@@ -159,11 +157,9 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        $input = $request->only(['name', 'description', 'price', 'discount', 'stock_quantity', 'category', 'brand', 'size', 'color', 'status']);
+        $input = $request->only(['category_id', 'subcategory_id', 'brand_id', 'name', 'description', 'price', 'discount', 'stock_quantity', 'category', 'brand', 'size', 'color', 'status']);
 
         $input['slug'] = strtolower(Str::slug($input['name']));
-        $input['category_id'] = $input['category'];
-        $input['brand_id'] = $input['brand'];
         $input['sizes'] = $input['size'];
         $input['colors'] = $input['color'];
 

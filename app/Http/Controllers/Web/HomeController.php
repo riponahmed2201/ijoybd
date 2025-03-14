@@ -13,10 +13,6 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $categories = Category::query()
-            ->where('status', '=', StatusEnum::ACTIVE->value)
-            ->get(['id', 'name', 'slug', 'category_type', 'avatar']);
-
         $brands = Brand::query()
             ->where('status', '=', StatusEnum::ACTIVE->value)
             ->get(['id', 'name', 'slug', 'logo']);
@@ -24,7 +20,6 @@ class HomeController extends Controller
         $products = Product::with(['category', 'brand'])->where('status', 'active')->latest()->get();
 
         $data = [
-            'categories' => $categories,
             'brands' => $brands,
             'products' => $products,
         ];

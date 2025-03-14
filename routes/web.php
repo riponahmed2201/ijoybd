@@ -90,6 +90,8 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
         'products' => ProductController::class,
     ]);
 
+    Route::get('/get-subcategories/{category_id}', [CategoryController::class, 'getSubcategories']);
+
     //Customers
     Route::get('customers', [CustomerController::class, 'index'])->name('customers.index');
 

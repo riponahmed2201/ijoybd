@@ -15,6 +15,7 @@ class Product extends Model
         'discount',
         'stock_quantity',
         'category_id',
+        'subcategory_id',
         'brand_id',
         'sizes',
         'colors',
@@ -49,22 +50,17 @@ class Product extends Model
 
     public function category()
     {
-        return $this->hasOne(Category::class, 'id', 'category_id');
+        return $this->belongsTo(Category::class, 'category_id', 'id');
+    }
+
+    public function subcategory()
+    {
+        return $this->belongsTo(Subcategory::class, 'subcategory_id', 'id');
     }
 
     public function brand()
     {
-        return $this->hasOne(Brand::class, 'id', 'brand_id');
-    }
-
-    public function size()
-    {
-        return $this->hasMany(ProductSize::class, 'id', 'size_id');
-    }
-
-    public function color()
-    {
-        return $this->hasMany(ProductColor::class, 'id', 'colro_id');
+        return $this->belongsTo(Brand::class, 'brand_id', 'id');
     }
 
     // Relationship with the Review model
