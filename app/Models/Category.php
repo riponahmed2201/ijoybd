@@ -20,4 +20,10 @@ class Category extends Model
     protected $casts = [
         'status' => StatusEnum::class,
     ];
+
+    // Relationship: A category has many subcategories
+    public function subcategories()
+    {
+        return $this->hasMany(Subcategory::class);
+    }
 }

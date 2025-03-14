@@ -23,6 +23,7 @@ class StoreSubcategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'category_id'=> 'required',
             'name' => 'required|string|max:255|unique:categories',
             'description' => 'nullable|string|max:1000',
             'status' => 'required|string|min:6|max:8|in:' . implode(',', array_map(fn($case) => $case->value, StatusEnum::cases())),
@@ -36,7 +37,8 @@ class StoreSubcategoryRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.unique' => 'The category name must be unique.',
+            'category_id.required' => 'The category name is required.',
+            'name.unique' => 'The subcategory name must be unique.',
             'avatar.mimes' => 'The avatar must be a file of type: jpg, jpeg, png.',
             'avatar.max' => 'The avatar may not be greater than 2MB.',
         ];

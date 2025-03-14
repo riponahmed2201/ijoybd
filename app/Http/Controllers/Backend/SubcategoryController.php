@@ -21,7 +21,7 @@ class SubcategoryController extends Controller
      */
     public function index()
     {
-        $subcategories = Category::latest()->get();
+        $subcategories = Subcategory::with('category')->latest()->get();
 
         return view('backend.subcategories.index', compact('subcategories'));
     }
@@ -31,7 +31,7 @@ class SubcategoryController extends Controller
      */
     public function create()
     {
-        $categories = Category::where('status', 'YES')->latest()->get();
+        $categories = Category::where('status', 'active')->latest()->get();
         $statuses = StatusEnum::options();
 
         return view('backend.subcategories.form', compact('categories', 'statuses'));
@@ -42,7 +42,7 @@ class SubcategoryController extends Controller
      */
     public function store(StoreSubcategoryRequest $request)
     {
-        $input = $request->only(['name', 'description', 'status']);
+        $input = $request->only(['category_id', 'name', 'description', 'status']);
         $input['slug'] = strtolower(Str::slug($input['name'])); // Ensure slug is derived from 'name'
 
         $avatar = $request->file('avatar');
@@ -98,7 +98,7 @@ class SubcategoryController extends Controller
      */
     public function edit(Subcategory $subcategory)
     {
-        $categories = Category::where('status', 'YES')->latest()->get();
+        $categories = Category::where('status', 'active')->latest()->get();
         $statuses = StatusEnum::options();
 
         return view('backend.subcategories.form', compact('subcategory', 'categories', 'statuses'));
@@ -110,7 +110,7 @@ class SubcategoryController extends Controller
     public function update(UpdateSubcategoryRequest $request, Subcategory $subcategory)
     {
         // Get only the necessary inputs
-        $input = $request->only(['name', 'description', 'status']);
+        $input = $request->only(['category_id', 'name', 'description', 'status']);
         $input['slug'] = strtolower(Str::slug($input['name'])); // Ensure slug is derived from 'name'
 
         // Check if a new avatar is being uploaded

@@ -12,7 +12,7 @@
         ['label' => 'Home', 'url' => route('admin.dashboard')],
         ['label' => 'Subcategories', 'url' => route('subcategories.index')],
         ['label' => isset($subcategory) && $subcategory->id ? 'Edit Subcategory' : 'Add Subcategory', 'active' => true],
-    ]" :actionUrl="route('categories.index')" actionIcon="fas fa-list" actionLabel="Back to List" />
+    ]" :actionUrl="route('subcategories.index')" actionIcon="fas fa-list" actionLabel="Back to List" />
     <!--end::Toolbar -->
 
     <div class="post d-flex flex-column-fluid" id="kt_post">
@@ -79,34 +79,34 @@
                         <div class="card-body pt-0">
                             <div class="mb-3 fv-row">
                                 <label class="required form-label">Category</label>
-                                <select class="form-select" name="category_name" required data-control="select2"
+                                <select class="form-select form-select-solid" name="category_id" required data-control="select2"
                                     data-hide-search="true" data-placeholder="Select Category Name">
                                     <option></option>
                                     @foreach ($categories as $category)
                                         <option value="{{ $category->id }}"
-                                            {{ isset($subcategory) && $category?->category_id == $category->id ? 'selected' : '' }}>
+                                            {{ isset($subcategory) && $subcategory?->category_id == $category->id ? 'selected' : '' }}>
                                             {{ $category->name }}
                                         </option>
                                     @endforeach
                                 </select>
-                                @error('category_name')
+                                @error('category_id')
                                     <span class="text-danger mt-2">{{ $message }}</span>
                                 @enderror
                             </div>
 
                             <div class="mb-3 fv-row">
                                 <label class="required form-label">Subcategory Name</label>
-                                <input type="text" name="subcategory_name" class="form-control mb-2"
+                                <input type="text" name="name" class="form-control form-control-solid mb-2"
                                     placeholder="Enter subcategory name" required
-                                    value="{{ isset($subcategory) ? $subcategory->subcategory_name : '' }}" />
-                                @error('subcategory_name')
+                                    value="{{ isset($subcategory) ? $subcategory->name : '' }}" />
+                                @error('name')
                                     <span class="text-danger mt-2">{{ $message }}</span>
                                 @enderror
                             </div>
 
                             <div class="mb-3 fv-row">
                                 <label class="form-label">Description</label>
-                                <textarea class="form-control mb-2" data-kt-autosize="true" name="description" placeholder="Enter description">{{ isset($subcategory) ? $subcategory->description : '' }}</textarea>
+                                <textarea class="form-control form-control-solid mb-2" data-kt-autosize="true" name="description" placeholder="Enter description">{{ isset($subcategory) ? $subcategory->description : '' }}</textarea>
                                 @error('description')
                                     <span class="text-danger mt-2">{{ $message }}</span>
                                 @enderror
@@ -114,7 +114,7 @@
 
                             <div class="fv-row">
                                 <label class="required form-label">Status</label>
-                                <select class="form-select" name="status" data-control="select2" data-hide-search="true"
+                                <select class="form-select form-select-solid" name="status" data-control="select2" data-hide-search="true"
                                     required data-placeholder="Select Status">
                                     <option></option>
                                     @foreach ($statuses as $status)

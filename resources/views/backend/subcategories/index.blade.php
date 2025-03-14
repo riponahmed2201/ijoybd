@@ -37,8 +37,8 @@
                             <!--begin::Table row-->
                             <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                                 <th>#</th>
-                                <th>Category Name</th>
                                 <th>Subcategory Name</th>
+                                <th>Category Name</th>
                                 <th>Status</th>
                                 <th>Actions</th>
                             </tr>
@@ -65,15 +65,13 @@
                                             </a>
                                             <div class="ms-5">
                                                 <a href="javscript:void(0)"
-                                                    class="text-gray-800 text-hover-primary fs-5 fw-bolder mb-1">{{ $subcategory?->category?->name }}</a>
-                                                <a href="javscript:void(0)"
-                                                    class="text-gray-800 text-hover-primary fs-5 fw-bolder mb-1">{{ $subcategory->subcategory_name }}</a>
+                                                    class="text-gray-800 text-hover-primary fs-5 fw-bolder mb-1">{{ $subcategory->name }}</a>
                                                 <div class="text-muted fs-7 fw-bolder">{{ $subcategory->slug }}</div>
                                                 <div class="text-muted fs-7 fw-bolder">{{ $subcategory->description }}</div>
                                             </div>
                                         </div>
                                     </td>
-                                    <td> {{ $subcategory?->subcategory_type?->label() }} </td>
+                                    <td> {{ $subcategory?->category?->name }} </td>
                                     <td>
                                         @if ($subcategory?->status?->value == 'active')
                                             <div class="badge badge-light-success">Active</div>
