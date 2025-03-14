@@ -24,7 +24,6 @@ class StoreCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'category_type' => 'required|string|min:3|max:5|in:' . implode(',', array_map(fn($case) => $case->value, CategoryType::cases())),
             'name' => 'required|string|max:255|unique:categories',
             'description' => 'nullable|string|max:1000',
             'status' => 'required|string|min:6|max:8|in:' . implode(',', array_map(fn($case) => $case->value, StatusEnum::cases())),

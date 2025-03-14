@@ -43,40 +43,13 @@ class CategoryController extends Controller
         $input = $request->only(['name', 'description', 'status']);
         $input['slug'] = strtolower(Str::slug($input['name'])); // Ensure slug is derived from 'name'
 
-        $avatar = $request->file('avatar');
-
-        if ($avatar) {
-            // Generate unique name for the avatar
-            $avatarName = md5(Str::random(30) . time()) . '.' . $avatar->getClientOriginalExtension();
-            // Store the avatar in the specified directory
-            $avatarPath = $avatar->storeAs('categories', $avatarName, 'public');
-            $input['avatar'] = $avatarPath;
-        }
-
-        DB::beginTransaction();
         try {
             Category::create($input);
-
-            DB::commit();
 
             notify()->success("Category added successfully", "Success");
 
             return to_route('categories.index');
         } catch (Exception $exception) {
-
-            DB::rollBack();
-
-            // If an avatar was uploaded, delete the file to prevent orphaned files
-            if (isset($input['avatar']) && Storage::disk('public')->exists($input['avatar'])) {
-                Storage::disk('public')->delete($input['avatar']);
-            }
-
-            // Log the error for debugging
-            Log::error('Error while storing category', [
-                'error' => $exception->getMessage(),
-                'trace' => $exception->getTraceAsString(),
-            ]);
-
             notify()->error("Something went wrong! Please try again", "Error");
 
             return back()->withInput();
@@ -107,52 +80,18 @@ class CategoryController extends Controller
     public function update(UpdateCategoryRequest $request, Category $category)
     {
         // Get only the necessary inputs
-        $input = $request->only(['category_type', 'name', 'description', 'status']);
+        $input = $request->only(['name', 'description', 'status']);
         $input['slug'] = strtolower(Str::slug($input['name'])); // Ensure slug is derived from 'name'
-
-        // Check if a new avatar is being uploaded
-        $avatar = $request->file('avatar');
-
-        if ($avatar) {
-            // Generate a unique name for the avatar
-            $avatarName = md5(Str::random(30) . time()) . '.' . $avatar->getClientOriginalExtension();
-            // Store the avatar in the specified directory
-            $avatarPath = $avatar->storeAs('categories', $avatarName, 'public');
-            $input['avatar'] = $avatarPath;
-
-            // Delete the old avatar if it exists
-            if ($category->avatar && Storage::disk('public')->exists($category->avatar)) {
-                Storage::disk('public')->delete($category->avatar);
-            }
-        }
-
-        DB::beginTransaction();
 
         try {
             // Update the category with the new data
             $category->update($input);
 
-            DB::commit();
-
             notify()->success("Category updated successfully", "Success");
 
             return to_route('categories.index');
         } catch (Exception $exception) {
-            DB::rollBack();
-
-            // If an avatar was uploaded, delete the newly uploaded file to prevent orphaned files
-            if (isset($input['avatar']) && Storage::disk('public')->exists($input['avatar'])) {
-                Storage::disk('public')->delete($input['avatar']);
-            }
-
-            // Log the error for debugging
-            Log::error('Error while updating category', [
-                'error' => $exception->getMessage(),
-                'trace' => $exception->getTraceAsString(),
-            ]);
-
             notify()->error("Something went wrong! Please try again", "Error");
-
             return back()->withInput();
         }
     }

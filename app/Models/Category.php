@@ -14,7 +14,6 @@ class Category extends Model
         'name',
         'slug',
         'description',
-        'avatar',
         'status',
     ];
 

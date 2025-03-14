@@ -8,6 +8,7 @@
     "require": {
         "php": "^8.2",
         "appslabke/lara-izitoast": "^1.1",
+        "browner12/helpers": "^3.6",
         "laravel/framework": "^11.31",
         "laravel/tinker": "^2.9",
         "yajra/laravel-datatables-oracle": "11.0"

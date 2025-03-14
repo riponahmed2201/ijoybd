@@ -14,75 +14,17 @@ class CategorySeeder extends Seeder
     {
         $categories = [
             [
-                'name' => 'T-Shirt',
-                'slug' => 't-shirt',
-                'description' => 'Devices, gadgets, and accessories.',
-                'avatar' => null,
+                'name' => 'Men',
+                'slug' => 'men',
+                'description' => 'T-Shirt, Sunglass etc',
                 'status' => 'active',
             ],
             [
-                'name' => 'Short Pant',
-                'slug' => 'short-pant',
+                'name' => 'Women',
+                'slug' => 'women',
                 'description' => 'Clothing, shoes, and accessories.',
-                'avatar' => null,
                 'status' => 'active',
-            ],
-            [
-                'name' => 'Trouser',
-                'slug' => 'trouser',
-                'description' => 'Smartphones and accessories.',
-                'avatar' => null,
-                'status' => 'active',
-            ],
-            [
-                'name' => 'Joggers',
-                'slug' => 'joggers',
-                'description' => 'Laptops, notebooks, and accessories.',
-                'avatar' => null,
-                'status' => 'active',
-            ],
-            [
-                'name' => 'Sendos',
-                'slug' => 'sendos',
-                'description' => 'Shirts, trousers, and more for men.',
-                'avatar' => null,
-                'status' => 'active',
-            ],
-            [
-                'name' => 'Shoe',
-                'slug' => 'shoe',
-                'description' => 'Dresses, tops, and more for men.',
-                'avatar' => null,
-                'status' => 'active',
-            ],
-            [
-                'name' => 'Megi',
-                'slug' => 'megi',
-                'description' => 'Dresses, tops, and more for men.',
-                'avatar' => null,
-                'status' => 'active',
-            ],
-            [
-                'name' => 'Running Shoe',
-                'slug' => 'running-shoe',
-                'description' => 'Dresses, tops, and more for men.',
-                'avatar' => null,
-                'status' => 'active',
-            ],
-            [
-                'name' => 'Bag',
-                'slug' => 'bag',
-                'description' => 'Dresses, tops, and more for men.',
-                'avatar' => null,
-                'status' => 'active',
-            ],
-            [
-                'name' => 'Sunglass',
-                'slug' => 'sunglass',
-                'description' => 'Dresses, tops, and more for men.',
-                'avatar' => null,
-                'status' => 'active',
-            ],
+            ]
         ];
 
         Category::insert($categories);
