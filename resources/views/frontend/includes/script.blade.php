@@ -14,103 +14,105 @@
 <script src="{{ asset('js/iziToast.js') }}"></script>
 
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         // Fetch cart count on page load
         $.ajax({
-            url: '{{ route("cart.count") }}',
+            url: '{{ route('cart.count') }}',
             method: 'GET',
-            success: function (response) {
+            success: function(response) {
                 $('#cart-count').text(response.cartCount);
             },
-            error: function () {
+            error: function() {
                 console.log("Something went wrong while fetching the cart count.");
             }
         });
 
         // Add to cart function
-        $('.quick-add').on('click', function () {
+        $('.quick-add').on('click', function() {
             let productId = $(this).data('id');
 
             $.ajax({
-                url: '{{ route("cart.add") }}',
+                url: '{{ route('cart.add') }}',
                 type: 'POST',
                 data: {
                     _token: '{{ csrf_token() }}',
                     product_id: productId
                 },
-                success: function (response) {
+                success: function(response) {
                     if (response.success) {
-                        alert(response.message);  // Can be replaced with a UI feedback element
+                        toast.success(response
+                            .message); // Can be replaced with a UI feedback element
                         $('#cart-count').text(response.cartCount);
                     } else {
-                        alert("Error: " + response.message);
+                        toast.error(response.message);
                     }
                 },
-                error: function () {
+                error: function() {
                     alert("Something went wrong!");
                 }
             });
         });
 
         // Remove product from cart (only once)
-        $(document).on('click', '.tf-mini-cart-remove', function () {
+        $(document).on('click', '.tf-mini-cart-remove', function() {
             let productId = $(this).data('product-id');
 
             $.ajax({
-                url: '{{ route("cart.remove") }}',
+                url: '{{ route('cart.remove') }}',
                 type: 'POST',
                 data: {
                     _token: '{{ csrf_token() }}',
                     product_id: productId
                 },
-                success: function (response) {
+                success: function(response) {
                     if (response.success) {
-                        alert(response.message);
+                        toast.success(response.message);
                         location.reload(); // Reload to update the cart and count
                     } else {
-                        alert("Error: " + response.message);
+                        toast.error(response.message);
                     }
                 },
-                error: function () {
-                    alert("Something went wrong!");
+                error: function() {
+                    toast.error("Something went wrong!");
                 }
             });
         });
 
         // Update product quantity in cart
-        $(document).on('change', '.quantity-input', function () {
+        $(document).on('change', '.quantity-input', function() {
             let productId = $(this).data('product-id');
             let quantity = $(this).val();
 
             $.ajax({
-                url: '{{ route("cart.update") }}',
+                url: '{{ route('cart.update') }}',
                 type: 'POST',
                 data: {
                     _token: '{{ csrf_token() }}',
                     product_id: productId,
                     quantity: quantity
                 },
-                success: function (response) {
+                success: function(response) {
                     if (response.success) {
-                        alert(response.message);
+                        toast.success(response.message);
                         $('#cart-count').text(response.cartCount); // Update cart count
-                        $('#cart-total').text(response.totalPrice + ' TK'); // Update total price
+                        $('#cart-total').text(response.totalPrice +
+                            ' TK'); // Update total price
                     } else {
-                        alert("Error: " + response.message);
+                        toast.error(response.message);
                     }
                 },
-                error: function () {
-                    alert("Something went wrong!");
+                error: function() {
+                    toast.error("Something went wrong!");
                 }
             });
         });
 
         // Show the shopping cart modal with updated items
-        $('#shoppingCart').on('show.bs.modal', function () {
+        $('#shoppingCart').on('show.bs.modal', function() {
             $.ajax({
                 url: '/cart',
                 method: 'GET',
-                success: function (response) {
+                success: function(response) {
                     if (response.success) {
                         var cartItems = response.cart;
                         var cartHtml = '';
@@ -118,18 +120,33 @@
 
                         $('#cart-items').empty();
 
-                        $.each(cartItems, function (key, item) {
+                        $.each(cartItems, function(key, item) {
                             cartHtml += '<div class="tf-mini-cart-item">';
-                            cartHtml += '<div class="tf-mini-cart-image"><a href="/product/' + key + '"><img src="' + item.thumbnail + '" alt=""></a></div>';
+                            cartHtml +=
+                                '<div class="tf-mini-cart-image"><a href="/product/' +
+                                key + '"><img src="' + item.thumbnail +
+                                '" alt=""></a></div>';
                             cartHtml += '<div class="tf-mini-cart-info">';
-                            cartHtml += '<a class="title link" href="/product/' + key + '">' + item.name + '</a>';
-                            cartHtml += '<div class="price fw-6">' + item.price + ' TK</div>';
+                            cartHtml += '<a class="title link" href="/product/' +
+                                key + '">' + item.name + '</a>';
+                            cartHtml += '<div class="price fw-6">' + item.price +
+                                ' TK</div>';
                             cartHtml += '<div class="wg-quantity small">';
-                            cartHtml += '<span class="btn-quantity minus-btn" data-product-id="' + key + '">-</span>';
-                            cartHtml += '<input type="text" name="quantity" value="' + item.quantity + '" class="quantity-input" data-product-id="' + key + '">';
-                            cartHtml += '<span class="btn-quantity plus-btn" data-product-id="' + key + '">+</span>';
+                            cartHtml +=
+                                '<span class="btn-quantity minus-btn" data-product-id="' +
+                                key + '">-</span>';
+                            cartHtml +=
+                                '<input type="text" name="quantity" value="' + item
+                                .quantity +
+                                '" class="quantity-input" data-product-id="' + key +
+                                '">';
+                            cartHtml +=
+                                '<span class="btn-quantity plus-btn" data-product-id="' +
+                                key + '">+</span>';
                             cartHtml += '</div>';
-                            cartHtml += '<div class="tf-mini-cart-remove" data-product-id="' + key + '">Remove</div>';
+                            cartHtml +=
+                                '<div class="tf-mini-cart-remove" data-product-id="' +
+                                key + '">Remove</div>';
                             cartHtml += '</div></div>';
 
                             totalPrice += item.price * item.quantity;
@@ -139,17 +156,18 @@
                         $('#cart-total').text(totalPrice + ' TK');
                         $('#cart-count').text(response.cartCount);
                     } else {
-                        alert("Error: " + response.message);
+                        toast.error(response.message);
                     }
                 },
-                error: function () {
-                    alert("Something went wrong!");
+                error: function() {
+                    alert();
+                    toast.error("Something went wrong!");
                 }
             });
         });
 
         // Handle quantity change (increment/decrement)
-        $(document).on('click', '.plus-btn, .minus-btn', function () {
+        $(document).on('click', '.plus-btn, .minus-btn', function() {
             var productId = $(this).data('product-id');
             var quantityInput = $(this).siblings('.quantity-input');
             var quantity = parseInt(quantityInput.val());
@@ -170,16 +188,16 @@
                     product_id: productId,
                     quantity: quantity
                 },
-                success: function (response) {
+                success: function(response) {
                     if (response.success) {
                         $('#cart-count').text(response.cartCount);
                         $('#cart-total').text(response.totalPrice + ' TK');
                     } else {
-                        alert("Error: " + response.message);
+                        toast.error(response.message);
                     }
                 },
-                error: function () {
-                    alert("Something went wrong!");
+                error: function() {
+                    toast.error("Something went wrong!");
                 }
             });
         });
