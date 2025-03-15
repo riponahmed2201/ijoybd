@@ -89,7 +89,7 @@
                                         src="{{ Storage::url($product->thumbnail) }}" alt="{{ $product->name }}">
                                 </a>
                                 <div class="list-product-btn">
-                                    <a href="#" data-bs-toggle="modal" class="box-icon bg_white quick-add tf-btn-loading">
+                                    <a href="javascript:void(0);" class="box-icon bg_white quick-add tf-btn-loading" data-id="{{ $product->id }}">
                                         <span class="icon icon-bag"></span>
                                         <span class="tooltip">Quick Add</span>
                                     </a>
