@@ -21,6 +21,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        // $categories = Category::whereNull('parent_id')->with('children.children')->get();
+
         $categories = Category::latest()->get();
 
         return view('backend.categories.index', compact('categories'));
