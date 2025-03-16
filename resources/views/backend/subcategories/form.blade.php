@@ -66,21 +66,21 @@
 
                 <!-- Begin: Main column -->
                 <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
-                    <div class="card card-flush py-4">
+                    <div class="card">
                         <div class="card-header">
                             <div class="card-title">
-                                <h2>General</h2>
+                                <h2>Subcategory Form</h2>
                             </div>
                         </div>
 
                         @include('message')
                         @include('multiple_message')
 
-                        <div class="card-body pt-0">
+                        <div class="card-body">
                             <div class="mb-3 fv-row">
                                 <label class="required form-label">Category</label>
-                                <select class="form-select form-select-solid" name="category_id" required data-control="select2"
-                                    data-hide-search="true" data-placeholder="Select Category Name">
+                                <select class="form-select form-select-solid" name="category_id" required
+                                    data-control="select2" data-hide-search="true" data-placeholder="Select Category Name">
                                     <option></option>
                                     @foreach ($categories as $category)
                                         <option value="{{ $category->id }}"
@@ -104,18 +104,10 @@
                                 @enderror
                             </div>
 
-                            <div class="mb-3 fv-row">
-                                <label class="form-label">Description</label>
-                                <textarea class="form-control form-control-solid mb-2" data-kt-autosize="true" name="description" placeholder="Enter description">{{ isset($subcategory) ? $subcategory->description : '' }}</textarea>
-                                @error('description')
-                                    <span class="text-danger mt-2">{{ $message }}</span>
-                                @enderror
-                            </div>
-
                             <div class="fv-row">
                                 <label class="required form-label">Status</label>
-                                <select class="form-select form-select-solid" name="status" data-control="select2" data-hide-search="true"
-                                    required data-placeholder="Select Status">
+                                <select class="form-select form-select-solid" name="status" data-control="select2"
+                                    data-hide-search="true" required data-placeholder="Select Status">
                                     <option></option>
                                     @foreach ($statuses as $status)
                                         <option value="{{ $status['value'] }}"
@@ -129,16 +121,15 @@
                                 @enderror
                             </div>
                         </div>
-                    </div>
 
-                    <div class="d-flex justify-content-start">
-                        <button type="submit" class="btn btn-primary">
-                            <span
-                                class="indicator-label">{{ isset($subcategory) && $subcategory->id ? 'Update' : 'Submit' }}</span>
-                        </button>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">
+                                <span
+                                    class="indicator-label">{{ isset($subcategory) && $subcategory->id ? 'Update' : 'Submit' }}</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <!-- End: Main column -->
             </form>
         </div>
     </div>

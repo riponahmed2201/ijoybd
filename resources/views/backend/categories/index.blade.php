@@ -5,10 +5,11 @@
 @section('admin-content')
     <!--begin::Toolbar  -->
     <x-toolbar title="Categories" :breadcrumbs="[
-            ['label' => 'Home', 'url' => route('admin.dashboard')],
-            ['label' => 'Categories', 'url' => 'javascript:void(0)'],
-            ['label' => 'Categories', 'active' => true],
-        ]" actionUrl="{{ route('categories.create') }}" actionIcon="fas fa-plus-circle" actionLabel="Add Category" />
+        ['label' => 'Home', 'url' => route('admin.dashboard')],
+        ['label' => 'Categories', 'url' => 'javascript:void(0)'],
+        ['label' => 'Categories', 'active' => true],
+    ]" actionUrl="{{ route('categories.create') }}"
+        actionIcon="fas fa-plus-circle" actionLabel="Add Category" />
     <!--end::Toolbar -->
 
     <div class="post d-flex flex-column-fluid" id="kt_post">
@@ -37,9 +38,9 @@
                             <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                                 <th>#</th>
                                 <th>Category</th>
-                                <th>Description</th>
+                                <th>Type</th>
                                 <th>Status</th>
-                                <th class="text-end">Actions</th>
+                                <th>Action</th>
                             </tr>
                             <!--end::Table row-->
                         </thead>
@@ -51,7 +52,7 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td> {{ $category->name }} </td>
-                                    <td>{{ $category->description }}</td>
+                                    <td>{{ $category?->type?->label() }}</td>
                                     <td>
                                         @if ($category?->status?->value == 'active')
                                             <div class="badge badge-light-success">Active</div>
@@ -59,12 +60,7 @@
                                             <div class="badge badge-light-danger">Inactive</div>
                                         @endif
                                     </td>
-                                    <td class="text-end">
-                                        <a href="{{ route('categories.edit', $category->id) }}"
-                                            class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
-                                            <i class="bi bi-eye-fill"></i>
-                                        </a>
-
+                                    <td>
                                         <a href="{{ route('categories.edit', $category->id) }}"
                                             class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
                                             <i class="bi bi-pencil-fill"></i>

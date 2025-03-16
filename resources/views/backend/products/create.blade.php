@@ -5,10 +5,11 @@
 @section('admin-content')
     <!--begin::Toolbar -->
     <x-toolbar :title="'Add product'" :breadcrumbs="[
-            ['label' => 'Home', 'url' => route('admin.dashboard')],
-            ['label' => 'Products', 'url' => route('products.index')],
-            ['label' => 'Add product', 'active' => true],
-        ]" :actionUrl="route('products.index')" actionIcon="bi bi-cart fs-3" actionLabel="Product List" />
+        ['label' => 'Home', 'url' => route('admin.dashboard')],
+        ['label' => 'Products', 'url' => route('products.index')],
+        ['label' => 'Add product', 'active' => true],
+    ]" :actionUrl="route('products.index')" actionIcon="bi bi-cart fs-3"
+        actionLabel="Product List" />
     <!--end::Toolbar -->
 
     <div class="post d-flex flex-column-fluid" id="kt_post">
@@ -139,8 +140,8 @@
                                         required />
 
                                     <!-- Thumbnail Preview -->
-                                    <img id="thumbnail-preview" src="#" alt="Thumbnail Preview" class="img-thumbnail mt-2"
-                                        width="100" height="100" style="display: none;">
+                                    <img id="thumbnail-preview" src="#" alt="Thumbnail Preview"
+                                        class="img-thumbnail mt-2" width="100" height="100" style="display: none;">
 
                                     @error('thumbnail')
                                         <span class="text-danger mt-2">{{ $message }}</span>
@@ -177,8 +178,8 @@
 
                                 <div class="col-md-12 mb-3 fv-row">
                                     <label class="form-label">Description</label>
-                                    <textarea class="form-control form-control-solid mb-2" data-kt-autosize="true"
-                                        name="description" placeholder="Enter description"></textarea>
+                                    <textarea id="kt_docs_ckeditor_classic" class="form-control form-control-solid mb-2" data-kt-autosize="true"
+                                        name="description"></textarea>
                                     @error('description')
                                         <span class="text-danger mt-2">{{ $message }}</span>
                                     @enderror
@@ -201,14 +202,24 @@
 
 @push('page_js')
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
+
+            // ClassicEditor
+            ClassicEditor
+                .create(document.querySelector('#kt_docs_ckeditor_classic'))
+                .then(editor => {
+                    console.log(editor);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
 
             // Thumbnail preview
-            $(document).on('change', 'input[name="thumbnail"]', function (event) {
+            $(document).on('change', 'input[name="thumbnail"]', function(event) {
                 let input = event.target;
                 if (input.files && input.files[0]) {
                     let reader = new FileReader();
-                    reader.onload = function (e) {
+                    reader.onload = function(e) {
                         $('#thumbnail-preview').attr('src', e.target.result).show();
                     };
                     reader.readAsDataURL(input.files[0]);
@@ -216,13 +227,13 @@
             });
 
             // Multiple images preview
-            $(document).on('change', 'input[name="images[]"]', function (event) {
+            $(document).on('change', 'input[name="images[]"]', function(event) {
                 let input = event.target;
                 $('#images-preview').empty(); // Clear old previews
                 if (input.files) {
-                    $.each(input.files, function (index, file) {
+                    $.each(input.files, function(index, file) {
                         let reader = new FileReader();
-                        reader.onload = function (e) {
+                        reader.onload = function(e) {
                             $('#images-preview').append(
                                 '<img src="' + e.target.result +
                                 '" class="img-thumbnail me-2" width="100" height="100">'
@@ -233,19 +244,21 @@
                 }
             });
 
-            $('#category').change(function () {
+            $('#category').change(function() {
                 let categoryId = $(this).val();
                 if (categoryId) {
-                    $.getJSON('/admin/get-subcategories/' + categoryId, function (response) {
+                    $.getJSON('/admin/get-subcategories/' + categoryId, function(response) {
                         if (response.success) {
-                            $('#subcategory').empty().append('<option value="">Select Subcategory</option>');
-                            $.each(response.subcategories, function (key, value) {
-                                $('#subcategory').append('<option value="' + value.id + '">' + value.name + '</option>');
+                            $('#subcategory').empty().append(
+                                '<option value="">Select Subcategory</option>');
+                            $.each(response.subcategories, function(key, value) {
+                                $('#subcategory').append('<option value="' + value.id +
+                                    '">' + value.name + '</option>');
                             });
                         } else {
                             console.error("Error:", response.message);
                         }
-                    }).fail(function (jqXHR, textStatus, errorThrown) {
+                    }).fail(function(jqXHR, textStatus, errorThrown) {
                         console.error("AJAX Error:", textStatus, errorThrown);
                     });
                 } else {

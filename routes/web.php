@@ -25,13 +25,10 @@ use Illuminate\Support\Facades\Route;
  */
 
 Route::get('/', [HomeController::class, 'index']);
-
-
-/*
- * Admin Module
- * This comment block provides details about the admin module route.
- * It includes the route name and the corresponding URL.
- */
+Route::get('shop', [HomeController::class, 'showShop']);
+Route::get('shop/view/{product}', [HomeController::class, 'showShopView'])->name('shop.view');
+Route::get('contact-us', [HomeController::class, 'showContactUs']);
+Route::get('about-us', [HomeController::class, 'showAboutUs']);
 
 //Admin Login
 Route::get('login', [AuthController::class, 'showLoginForm']);
@@ -53,18 +50,18 @@ Route::group(['middleware' => 'user'], function () {
     Route::get('/customer/logout', [AuthController::class, 'logout'])->name('customer.logout');
 });
 
+//Cart functionality
+Route::get('/cart/count', [CartController::class, 'getCartCount'])->name('cart.count');
+Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
+Route::get('/cart', [CartController::class, 'viewCart'])->name('cart.view');
+Route::post('/cart/remove', [CartController::class, 'removeFromCart'])->name('cart.remove');
+Route::post('/cart/update', [CartController::class, 'updateCart'])->name('cart.update');
 
-//Home Route
-Route::get('shop', [HomeController::class, 'showShop']);
-Route::get('shop/view/{product}', [HomeController::class, 'showShopView'])->name('shop.view');
-
-//Contact Us
-Route::get('contact-us', [HomeController::class, 'showContactUs']);
-
-//About Us
-Route::get('about-us', [HomeController::class, 'showAboutUs']);
-
-//Admin Route Here
+/*
+ * Admin Module
+ * This comment block provides details about the admin module route.
+ * It includes the route name and the corresponding URL.
+ */
 
 //Admin Login
 Route::get('admin/login', [LoginController::class, 'showLoginForm']);
@@ -72,13 +69,10 @@ Route::post('admin/login', [LoginController::class, 'login'])->name('admin.login
 
 Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
 
-    //Dashboard
     Route::get('dashboard', DashboardController::class)->name('admin.dashboard');
-
-    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+    Route::post('logout', [LoginController::class, 'logout'])->name('admin.logout');
+    Route::put('change-password', [LoginController::class, 'changePassword'])->name('changePassword');
     Route::put('password/update', [LoginController::class, 'updatePassword'])->name('password.update');
-
-    //Profile
     Route::get('profile', [ProfileController::class, 'index'])->name('profile');
     Route::put('profile/update', [ProfileController::class, 'update'])->name('profile.update');
 
@@ -92,21 +86,7 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     ]);
 
     Route::get('/get-subcategories/{category_id}', [CategoryController::class, 'getSubcategories']);
-
-    //Customers
     Route::get('customers', [CustomerController::class, 'index'])->name('customers.index');
-
-    //Users
     Route::get('users', [UserController::class, 'index'])->name('users.index');
-
-    //Order
     Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
 });
-
-
-//Cart functionality
-Route::get('/cart/count', [CartController::class, 'getCartCount'])->name('cart.count');
-Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
-Route::get('/cart', [CartController::class, 'viewCart'])->name('cart.view');
-Route::post('/cart/remove', [CartController::class, 'removeFromCart'])->name('cart.remove');
-Route::post('/cart/update', [CartController::class, 'updateCart'])->name('cart.update');

@@ -26,6 +26,106 @@
                             <a href="/shop" class="item-link">Shop</a>
                         </li>
 
+                        <li class="menu-item">
+                            <a href="#" class="item-link">Men<i class="icon icon-arrow-down"></i></a>
+                            <div class="sub-menu mega-menu">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <div class="mega-menu-item">
+                                                <div class="menu-heading">Shop layouts</div>
+                                                <ul class="menu-list">
+                                                    <li><a href="shop-default.html" class="menu-link-text link">Default</a></li>
+                                                    <li><a href="shop-left-sidebar.html" class="menu-link-text link">Left sidebar</a></li>
+                                                    <li><a href="shop-right-sidebar.html" class="menu-link-text link">Right sidebar</a></li>
+                                                    <li><a href="shop-fullwidth.html" class="menu-link-text link">Fullwidth</a></li>
+                                                    <li><a href="shop-collection-sub.html" class="menu-link-text link">Sub collection</a></li>
+                                                    <li><a href="shop-collection-list.html" class="menu-link-text link">Collections list</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <div class="mega-menu-item">
+                                                <div class="menu-heading">Features</div>
+                                                <ul class="menu-list">
+                                                    <li><a href="shop-link.html" class="menu-link-text link">Pagination links</a></li>
+                                                    <li><a href="shop-loadmore.html" class="menu-link-text link">Pagination loadmore</a></li>
+                                                    <li><a href="shop-infinite-scrolling.html" class="menu-link-text link">Pagination infinite scrolling</a></li>
+                                                    <li><a href="shop-filter-sidebar.html" class="menu-link-text link">Filter sidebar</a></li>
+                                                    <li><a href="shop-filter-hidden.html" class="menu-link-text link">Filter hidden</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <div class="mega-menu-item">
+                                                <div class="menu-heading">Product styles</div>
+                                                <ul class="menu-list">
+                                                    <li><a href="product-style-list.html" class="menu-link-text link">Product style list</a></li>
+                                                    <li><a href="product-style-01.html" class="menu-link-text link">Product style 01</a></li>
+                                                    <li><a href="product-style-02.html" class="menu-link-text link">Product style 02</a></li>
+                                                    <li><a href="product-style-03.html" class="menu-link-text link">Product style 03</a></li>
+                                                    <li><a href="product-style-04.html" class="menu-link-text link">Product style 04</a></li>
+                                                    <li><a href="product-style-05.html" class="menu-link-text link">Product style 05</a></li>
+                                                    <li><a href="product-style-06.html" class="menu-link-text link">Product style 06</a></li>
+                                                    <li><a href="product-style-07.html" class="menu-link-text link">Product style 07</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="menu-item">
+                            <a href="#" class="item-link">Women<i class="icon icon-arrow-down"></i></a>
+                            <div class="sub-menu mega-menu">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <div class="mega-menu-item">
+                                                <div class="menu-heading">Shop layouts</div>
+                                                <ul class="menu-list">
+                                                    <li><a href="shop-default.html" class="menu-link-text link">Default</a></li>
+                                                    <li><a href="shop-left-sidebar.html" class="menu-link-text link">Left sidebar</a></li>
+                                                    <li><a href="shop-right-sidebar.html" class="menu-link-text link">Right sidebar</a></li>
+                                                    <li><a href="shop-fullwidth.html" class="menu-link-text link">Fullwidth</a></li>
+                                                    <li><a href="shop-collection-sub.html" class="menu-link-text link">Sub collection</a></li>
+                                                    <li><a href="shop-collection-list.html" class="menu-link-text link">Collections list</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <div class="mega-menu-item">
+                                                <div class="menu-heading">Features</div>
+                                                <ul class="menu-list">
+                                                    <li><a href="shop-link.html" class="menu-link-text link">Pagination links</a></li>
+                                                    <li><a href="shop-loadmore.html" class="menu-link-text link">Pagination loadmore</a></li>
+                                                    <li><a href="shop-infinite-scrolling.html" class="menu-link-text link">Pagination infinite scrolling</a></li>
+                                                    <li><a href="shop-filter-sidebar.html" class="menu-link-text link">Filter sidebar</a></li>
+                                                    <li><a href="shop-filter-hidden.html" class="menu-link-text link">Filter hidden</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <div class="mega-menu-item">
+                                                <div class="menu-heading">Product styles</div>
+                                                <ul class="menu-list">
+                                                    <li><a href="product-style-list.html" class="menu-link-text link">Product style list</a></li>
+                                                    <li><a href="product-style-01.html" class="menu-link-text link">Product style 01</a></li>
+                                                    <li><a href="product-style-02.html" class="menu-link-text link">Product style 02</a></li>
+                                                    <li><a href="product-style-03.html" class="menu-link-text link">Product style 03</a></li>
+                                                    <li><a href="product-style-04.html" class="menu-link-text link">Product style 04</a></li>
+                                                    <li><a href="product-style-05.html" class="menu-link-text link">Product style 05</a></li>
+                                                    <li><a href="product-style-06.html" class="menu-link-text link">Product style 06</a></li>
+                                                    <li><a href="product-style-07.html" class="menu-link-text link">Product style 07</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
                         @foreach (getCategories() as $category)
                             <li class="menu-item position-relative">
                                 <a href="#" class="item-link">{{$category->name}}<i class="icon icon-arrow-down"></i></a>

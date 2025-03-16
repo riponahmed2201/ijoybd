@@ -13,27 +13,14 @@ class Category extends Model
     protected $fillable = [
         'name',
         'slug',
-        'parent_id',
-        'description',
         'status',
-        'avatar'
+        'type'
     ];
 
     protected $casts = [
         'status' => StatusEnum::class,
+        'type' => CategoryType::class,
     ];
-
-    // Parent category
-    public function parent()
-    {
-        return $this->belongsTo(Category::class, 'parent_id');
-    }
-
-    // Subcategories (Children)
-    public function children()
-    {
-        return $this->hasMany(Category::class, 'parent_id');
-    }
 
     // Relationship: A category has many subcategories
     public function subcategories()

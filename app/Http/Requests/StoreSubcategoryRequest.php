@@ -23,9 +23,8 @@ class StoreSubcategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'category_id'=> 'required',
+            'category_id' => 'required',
             'name' => 'required|string|max:255|unique:categories',
-            'description' => 'nullable|string|max:1000',
             'status' => 'required|string|min:6|max:8|in:' . implode(',', array_map(fn($case) => $case->value, StatusEnum::cases())),
             'avatar' => 'nullable|file|mimes:jpg,jpeg,png|max:2048',
         ];

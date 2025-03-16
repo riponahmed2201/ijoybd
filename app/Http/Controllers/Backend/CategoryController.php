@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Enums\CategoryType;
 use App\Enums\StatusEnum;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
@@ -10,9 +11,6 @@ use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Subcategory;
 use Exception;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Log;
 
 class CategoryController extends Controller
 {
@@ -21,10 +19,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        // $categories = Category::whereNull('parent_id')->with('children.children')->get();
-
         $categories = Category::latest()->get();
-
         return view('backend.categories.index', compact('categories'));
     }
 
@@ -33,9 +28,10 @@ class CategoryController extends Controller
      */
     public function create()
     {
+        $types = CategoryType::options();
         $statuses = StatusEnum::options();
 
-        return view('backend.categories.form', compact('statuses'));
+        return view('backend.categories.form', compact('statuses', 'types'));
     }
 
     /**
@@ -43,7 +39,7 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        $input = $request->only(['name', 'description', 'status']);
+        $input = $request->only(['type', 'name', 'description', 'status']);
         $input['slug'] = strtolower(Str::slug($input['name'])); // Ensure slug is derived from 'name'
 
         try {
@@ -83,7 +79,7 @@ class CategoryController extends Controller
     public function update(UpdateCategoryRequest $request, Category $category)
     {
         // Get only the necessary inputs
-        $input = $request->only(['name', 'description', 'status']);
+        $input = $request->only(['type', 'name', 'description', 'status']);
         $input['slug'] = strtolower(Str::slug($input['name'])); // Ensure slug is derived from 'name'
 
         try {

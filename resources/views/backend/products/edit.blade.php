@@ -5,10 +5,11 @@
 @section('admin-content')
     <!--begin::Toolbar -->
     <x-toolbar :title="'Edit product'" :breadcrumbs="[
-            ['label' => 'Home', 'url' => route('admin.dashboard')],
-            ['label' => 'Products', 'url' => route('products.index')],
-            ['label' => 'Edit product', 'active' => true],
-        ]" :actionUrl="route('products.index')" actionIcon="bi bi-cart fs-3" actionLabel="Product List" />
+        ['label' => 'Home', 'url' => route('admin.dashboard')],
+        ['label' => 'Products', 'url' => route('products.index')],
+        ['label' => 'Edit product', 'active' => true],
+    ]" :actionUrl="route('products.index')" actionIcon="bi bi-cart fs-3"
+        actionLabel="Product List" />
     <!--end::Toolbar -->
 
     <div class="post d-flex flex-column-fluid" id="kt_post">
@@ -34,7 +35,8 @@
                                         data-control="select2" data-hide-search="true" data-placeholder="Select Category">
                                         <option value="">Select Category</option>
                                         @foreach ($categories as $category)
-                                            <option value="{{ $category->id }}" {{ $category->id == $product->category_id ? 'selected' : '' }}>
+                                            <option value="{{ $category->id }}"
+                                                {{ $category->id == $product->category_id ? 'selected' : '' }}>
                                                 {{ $category->name }}
                                             </option>
                                         @endforeach
@@ -164,8 +166,8 @@
                                     <!-- Show existing images -->
                                     <div id="images-preview" class="d-flex mt-2">
                                         @foreach (json_decode($product->images, true) ?? [] as $image)
-                                            <img src="{{ asset('storage/' . $image) }}" class="img-thumbnail me-2" width="100"
-                                                height="100">
+                                            <img src="{{ asset('storage/' . $image) }}" class="img-thumbnail me-2"
+                                                width="100" height="100">
                                         @endforeach
                                     </div>
 
@@ -194,9 +196,8 @@
 
                                 <div class="col-md-12 mb-3 fv-row">
                                     <label class="form-label">Description</label>
-                                    <textarea class="form-control form-control-solid mb-2" data-kt-autosize="true"
-                                        name="description"
-                                        placeholder="Enter description">{{ $product->description }}</textarea>
+                                    <textarea id="kt_docs_ckeditor_classic" class="form-control form-control-solid mb-2" data-kt-autosize="true"
+                                        name="description" placeholder="Enter description">{{ $product->description }}</textarea>
                                     @error('description')
                                         <span class="text-danger mt-2">{{ $message }}</span>
                                     @enderror
@@ -219,8 +220,17 @@
 
 @push('page_js')
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
 
+            // ClassicEditor
+            ClassicEditor
+                .create(document.querySelector('#kt_docs_ckeditor_classic'))
+                .then(editor => {
+                    console.log(editor);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
 
             let selectedCategory = $('#category').val();
             let selectedSubcategory = "{{ $product->subcategory_id }}";
@@ -231,7 +241,7 @@
             }
 
             // Load subcategories dynamically when category changes
-            $('#category').change(function () {
+            $('#category').change(function() {
                 let categoryId = $(this).val();
                 loadSubcategories(categoryId, null);
             });
@@ -242,13 +252,16 @@
                         url: '/admin/get-subcategories/' + categoryId,
                         type: 'GET',
                         dataType: 'json',
-                        success: function (response) {
-                            $('#subcategory').empty().append('<option value="">Select Subcategory</option>');
-                            $.each(response.subcategories, function (key, value) {
-                                $('#subcategory').append('<option value="' + value.id + '" ' + (value.id == selectedSubcategory ? 'selected' : '') + '>' + value.name + '</option>');
+                        success: function(response) {
+                            $('#subcategory').empty().append(
+                                '<option value="">Select Subcategory</option>');
+                            $.each(response.subcategories, function(key, value) {
+                                $('#subcategory').append('<option value="' + value.id + '" ' + (
+                                        value.id == selectedSubcategory ? 'selected' : '') +
+                                    '>' + value.name + '</option>');
                             });
                         },
-                        error: function (jqXHR, textStatus, errorThrown) {
+                        error: function(jqXHR, textStatus, errorThrown) {
                             console.error("AJAX Error:", textStatus, errorThrown);
                         }
                     });
@@ -258,11 +271,11 @@
             }
 
             // Preview for thumbnail
-            $('input[name="thumbnail"]').on('change', function (event) {
+            $('input[name="thumbnail"]').on('change', function(event) {
                 let input = event.target;
                 if (input.files && input.files[0]) {
                     let reader = new FileReader();
-                    reader.onload = function (e) {
+                    reader.onload = function(e) {
                         $('#thumbnail-preview').attr('src', e.target.result).show();
                     };
                     reader.readAsDataURL(input.files[0]);
@@ -270,13 +283,13 @@
             });
 
             // Preview for multiple images
-            $('input[name="images[]"]').on('change', function (event) {
+            $('input[name="images[]"]').on('change', function(event) {
                 let input = event.target;
                 $('#images-preview').empty(); // Clear old previews
                 if (input.files) {
-                    $.each(input.files, function (index, file) {
+                    $.each(input.files, function(index, file) {
                         let reader = new FileReader();
-                        reader.onload = function (e) {
+                        reader.onload = function(e) {
                             $('#images-preview').append('<img src="' + e.target.result +
                                 '" class="img-thumbnail me-2" width="100" height="100">');
                         };

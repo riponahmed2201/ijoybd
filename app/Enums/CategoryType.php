@@ -7,7 +7,6 @@ enum CategoryType: string
 {
     case MEN = 'men';
     case WOMEN = 'women';
-    case BOTH = 'both';
 
     // Returns the human-readable label for each case
     public function label(): string
@@ -15,7 +14,6 @@ enum CategoryType: string
         return match ($this) {
             self::MEN => 'Men',
             self::WOMEN => 'Women',
-            self::BOTH => 'Both',
         };
     }
 

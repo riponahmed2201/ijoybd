@@ -25,7 +25,7 @@ class UpdateCategoryRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255|unique:categories,name,' . $this->route('category')->id,
-            'description' => 'nullable|string|max:1000',
+            'type' => 'required|string|min:3|max:5|in:' . implode(',', array_map(fn($case) => $case->value, CategoryType::cases())),
             'status' => 'required|string|min:6|max:8|in:' . implode(',', array_map(fn($case) => $case->value, StatusEnum::cases())),
             'avatar' => 'nullable|file|mimes:jpg,jpeg,png|max:2048', // Optional avatar for updates
         ];

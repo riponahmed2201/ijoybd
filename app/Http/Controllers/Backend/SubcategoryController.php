@@ -42,7 +42,7 @@ class SubcategoryController extends Controller
      */
     public function store(StoreSubcategoryRequest $request)
     {
-        $input = $request->only(['category_id', 'name', 'description', 'status']);
+        $input = $request->only(['category_id', 'name', 'status']);
         $input['slug'] = strtolower(Str::slug($input['name'])); // Ensure slug is derived from 'name'
 
         $avatar = $request->file('avatar');
@@ -110,7 +110,7 @@ class SubcategoryController extends Controller
     public function update(UpdateSubcategoryRequest $request, Subcategory $subcategory)
     {
         // Get only the necessary inputs
-        $input = $request->only(['category_id', 'name', 'description', 'status']);
+        $input = $request->only(['category_id', 'name', 'status']);
         $input['slug'] = strtolower(Str::slug($input['name'])); // Ensure slug is derived from 'name'
 
         // Check if a new avatar is being uploaded

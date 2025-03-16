@@ -17,7 +17,6 @@ return new class extends Migration
             $table->unsignedBigInteger('category_id');
             $table->string('name');
             $table->string('slug')->unique();
-            $table->text('description')->nullable();
             $table->string('avatar')->nullable();
             $table->enum('status', array_column(StatusEnum::cases(), 'value'))->default(StatusEnum::INACTIVE->value);
             $table->timestamps();

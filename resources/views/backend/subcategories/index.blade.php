@@ -40,7 +40,7 @@
                                 <th>Subcategory Name</th>
                                 <th>Category Name</th>
                                 <th>Status</th>
-                                <th>Actions</th>
+                                <th>Action</th>
                             </tr>
                             <!--end::Table row-->
                         </thead>
@@ -67,11 +67,12 @@
                                                 <a href="javscript:void(0)"
                                                     class="text-gray-800 text-hover-primary fs-5 fw-bolder mb-1">{{ $subcategory->name }}</a>
                                                 <div class="text-muted fs-7 fw-bolder">{{ $subcategory->slug }}</div>
-                                                <div class="text-muted fs-7 fw-bolder">{{ $subcategory->description }}</div>
                                             </div>
                                         </div>
                                     </td>
-                                    <td> {{ $subcategory?->category?->name }} </td>
+                                    <td> {{ $subcategory?->category?->type->label() }} →
+                                        {{ $subcategory?->category?->name }}
+                                    </td>
                                     <td>
                                         @if ($subcategory?->status?->value == 'active')
                                             <div class="badge badge-light-success">Active</div>
@@ -79,12 +80,7 @@
                                             <div class="badge badge-light-danger">Inactive</div>
                                         @endif
                                     </td>
-                                    <td class="text-end">
-                                        <a href="{{ route('subcategories.edit', $subcategory->id) }}"
-                                            class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
-                                            <i class="bi bi-eye-fill"></i>
-                                        </a>
-
+                                    <td>
                                         <a href="{{ route('subcategories.edit', $subcategory->id) }}"
                                             class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
                                             <i class="bi bi-pencil-fill"></i>
