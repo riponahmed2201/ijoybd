@@ -68,9 +68,10 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
+        $types = CategoryType::options();
         $statuses = StatusEnum::options();
 
-        return view('backend.categories.form', compact('category', 'statuses'));
+        return view('backend.categories.form', compact('category', 'types', 'statuses'));
     }
 
     /**
