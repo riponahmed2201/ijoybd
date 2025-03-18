@@ -9,11 +9,11 @@
 <body class="preload-wrapper">
 
     <!-- preload -->
-    <div class="preload preload-container">
+    {{-- <div class="preload preload-container">
         <div class="preload-logo">
             <div class="spinner"></div>
         </div>
-    </div>
+    </div> --}}
     <!-- /preload -->
 
     <div id="wrapper">

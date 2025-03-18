@@ -4,6 +4,7 @@
 
 @section('home-content')
 
+{{-- @dd(getCategories()->toArray()) --}}
     <!-- Slider -->
     @include('frontend.includes.slider')
     <!-- /Slider -->
