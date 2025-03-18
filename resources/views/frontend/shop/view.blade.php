@@ -220,7 +220,7 @@
                             <div class="widget-content-inner active">
                                 <div class="">
                                     <p class="mb_30">
-                                        {{ $product->description }}
+                                        {!! $product->description !!}
                                     </p>
                                 </div>
                             </div>
