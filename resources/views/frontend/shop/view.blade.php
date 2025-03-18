@@ -10,7 +10,7 @@
                 <div class="tf-breadcrumb-list">
                     <a href="/" class="text">Home</a>
                     <i class="icon icon-arrow-right"></i>
-                    <a href="#" class="text">{{ $product?->category?->name }}</a>
+                    <a href="javascript:void(0)" class="text">{{ $product?->category?->name }}</a>
                     <i class="icon icon-arrow-right"></i>
                     <span class="text">{{ $product?->name }}</span>
                 </div>
@@ -34,7 +34,8 @@
                                         <div class="swiper-slide stagger-item" data-color="beige">
                                             <div class="item">
                                                 <img class="lazyload" data-src="{{ Storage::url($product->thumbnail) }}"
-                                                    src="{{ Storage::url($product->thumbnail) }}" alt="{{ $product->name }}">
+                                                    src="{{ Storage::url($product->thumbnail) }}"
+                                                    alt="{{ $product->name }}">
                                             </div>
                                         </div>
 
@@ -62,7 +63,8 @@
                                                 <img class="tf-image-zoom lazyload"
                                                     data-zoom="{{ Storage::url($product->thumbnail) }}"
                                                     data-src="{{ Storage::url($product->thumbnail) }}"
-                                                    src="{{ Storage::url($product->thumbnail) }}" alt="{{ $product->name }}">
+                                                    src="{{ Storage::url($product->thumbnail) }}"
+                                                    alt="{{ $product->name }}">
                                             </a>
                                         </div>
 
@@ -129,9 +131,9 @@
                                     </div>
                                 </div>
                                 <div class="tf-product-info-buy-button">
-                                    <form class="">
-                                        <a href="javascript:void(0);"
-                                            class="tf-btn btn-fill justify-content-center fw-6 fs-16 flex-grow-1 animate-hover-btn btn-add-to-cart">
+                                    <form action="javascript:void(0);">
+                                        <a href="javascript:void(0);" data-id="{{ $product->id }}"
+                                            class="tf-btn btn-fill justify-content-center fw-6 fs-16 flex-grow-1 animate-hover-btn quick-add">
                                             <span>Add to cart</span>
                                         </a>
                                     </form>
@@ -185,8 +187,8 @@
                                         <span class="btn-quantity plus-btn">+</span>
                                     </div>
                                 </div>
-                                <a href="javascript:void(0);"
-                                    class="tf-btn btn-fill radius-3 justify-content-center fw-6 fs-14 flex-grow-1 animate-hover-btn btn-add-to-cart"><span>Add
+                                <a href="javascript:void(0);" data-id="{{ $product->id }}"
+                                    class="tf-btn btn-fill radius-3 justify-content-center fw-6 fs-14 flex-grow-1 animate-hover-btn quick-add"><span>Add
                                         to cart</a>
                             </div>
                         </form>

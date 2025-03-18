@@ -22,8 +22,11 @@
                                 <div class="tf-totals-total-value fw-6" id="cart-total"></div>
                             </div>
                             <div class="tf-mini-cart-view-checkout">
-                                <a href="{{ route('cart.view') }}" class="tf-btn btn-outline radius-3 link w-100 justify-content-center">View Cart</a>
-                                <a href="{{ route('cart.view') }}" class="tf-btn btn-fill animate-hover-btn radius-3 w-100 justify-content-center"><span>Check Out</span></a>
+                                <a href="{{ route('cart.view') }}"
+                                    class="tf-btn btn-outline radius-3 link w-100 justify-content-center">View Cart</a>
+                                <a href="{{ route('checkout') }}"
+                                    class="tf-btn btn-fill animate-hover-btn radius-3 w-100 justify-content-center"><span>Check
+                                        Out</span></a>
                             </div>
                         </div>
                     </div>

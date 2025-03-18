@@ -253,21 +253,20 @@
                                         <img class="lazyload img-product"
                                             data-src="{{ Storage::url($product->thumbnail) }}"
                                             src="{{ Storage::url($product->thumbnail) }}" alt="{{ $product->name }}">
-                                        <img class="lazyload img-hover"
-                                            data-src="{{ Storage::url($product->thumbnail) }}"
+                                        <img class="lazyload img-hover" data-src="{{ Storage::url($product->thumbnail) }}"
                                             src="{{ Storage::url($product->thumbnail) }}" alt="{{ $product->name }}">
                                     </a>
                                     <div class="list-product-btn absolute-2">
-                                        <a href="#quick_add" data-bs-toggle="modal"
+                                        <a href="javascript:void(0)" data-id="{{ $product->id }}"
                                             class="box-icon bg_white quick-add tf-btn-loading">
                                             <span class="icon icon-bag"></span>
                                             <span class="tooltip">Quick Add</span>
                                         </a>
-                                        <a href="javascript:void(0);" class="box-icon bg_white wishlist btn-icon-action">
+                                        {{-- <a href="javascript:void(0);" class="box-icon bg_white wishlist btn-icon-action">
                                             <span class="icon icon-heart"></span>
                                             <span class="tooltip">Add to Wishlist</span>
                                             <span class="icon icon-delete"></span>
-                                        </a>
+                                        </a> --}}
                                         <a href="{{ route('shop.view', $product->id) }}"
                                             class="box-icon bg_white quickview tf-btn-loading">
                                             <span class="icon icon-view"></span>
@@ -276,27 +275,17 @@
                                     </div>
                                 </div>
                                 <div class="card-product-info">
-                                    <a href="{{ route('shop.view', $product->id) }}" class="title link">{{ $product->name }}</a>
+                                    <a href="{{ route('shop.view', $product->id) }}"
+                                        class="title link">{{ $product->name }}</a>
                                     <span class="price">{{ $product->price }} TK</span>
                                     <ul class="list-color-product">
-                                        <li class="list-color-item color-swatch active">
-                                            <span class="tooltip">Orange</span>
-                                            <span class="swatch-value bg_orange-3"></span>
-                                            <img class="lazyload" data-src="assets/frontend/images/products/orange-1.jpg"
-                                                src="assets/frontend/images/products/orange-1.jpg" alt="image-product">
-                                        </li>
-                                        <li class="list-color-item color-swatch">
-                                            <span class="tooltip">Black</span>
-                                            <span class="swatch-value bg_dark"></span>
-                                            <img class="lazyload" data-src="assets/frontend/images/products/black-1.jpg"
-                                                src="assets/frontend/images/products/black-1.jpg" alt="image-product">
-                                        </li>
-                                        <li class="list-color-item color-swatch">
-                                            <span class="tooltip">White</span>
-                                            <span class="swatch-value bg_white"></span>
-                                            <img class="lazyload" data-src="assets/frontend/images/products/white-1.jpg"
-                                                src="assets/frontend/images/products/white-1.jpg" alt="image-product">
-                                        </li>
+                                        @forelse ($product?->color_details as $color)
+                                            <p title="{{ $color->name }}"
+                                                style="display: inline-block; width: 18px; height: 18px; background-color: {{ $color->code }}; margin-right: 5px; border-radius: 50%; border: 3px solid transparent;">
+                                            </p>
+                                        @empty
+                                            <strong class="text-danger">No colors available</strong>
+                                        @endforelse
                                     </ul>
                                 </div>
                             </div>

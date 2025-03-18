@@ -44,13 +44,20 @@ class CartController extends Controller
         ]);
     }
 
-    public function viewCart()
+    public function getCartDetails()
     {
         $cart = session()->get('cart', []);
         return response()->json([
             'success' => true,
             'cart' => $cart
         ]);
+    }
+
+    public function showCartPage()
+    {
+        $carts = session()->get('cart', []);
+
+        return view('frontend.cart.index', compact('carts'));
     }
 
     public function removeFromCart(Request $request)

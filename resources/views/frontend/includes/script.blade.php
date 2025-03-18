@@ -40,11 +40,12 @@
                 },
                 success: function(response) {
                     if (response.success) {
-                        toastr.success(response
-                            .message); // Can be replaced with a UI feedback element
+                        alert(response.message);
+                        // toastr.success(response.message);
                         $('#cart-count').text(response.cartCount);
                     } else {
-                        toastr.error(response.message);
+                        // toastr.error(response.message);
+                        alert(response.message);
                     }
                 },
                 error: function() {
@@ -66,14 +67,17 @@
                 },
                 success: function(response) {
                     if (response.success) {
-                        toastr.success(response.message);
+                        // toastr.success(response.message);
+                        alert(response.message);
                         location.reload(); // Reload to update the cart and count
                     } else {
-                        toastr.error(response.message);
+                        // toastr.error(response.message);
+                        alert(response.message);
                     }
                 },
                 error: function() {
-                    toastr.error("Something went wrong!");
+                    // toastr.error("Something went wrong!");
+                    alert("Something went wrong");
                 }
             });
         });
@@ -93,16 +97,19 @@
                 },
                 success: function(response) {
                     if (response.success) {
-                        toastr.success(response.message);
+                        alert(response.message);
+                        // toastr.success(response.message);
                         $('#cart-count').text(response.cartCount); // Update cart count
                         $('#cart-total').text(response.totalPrice +
                             ' TK'); // Update total price
                     } else {
-                        toastr.error(response.message);
+                        // toastr.error(response.message);
+                        alert(response.message);
                     }
                 },
                 error: function() {
-                    toastr.error("Something went wrong!");
+                    // toastr.error("Something went wrong!");
+                    alert("Something went wrong!");
                 }
             });
         });
@@ -113,6 +120,9 @@
                 url: '/cart',
                 method: 'GET',
                 success: function(response) {
+
+                    console.log({response});
+
                     if (response.success) {
                         var cartItems = response.cart;
                         var cartHtml = '';
@@ -156,12 +166,13 @@
                         $('#cart-total').text(totalPrice + ' TK');
                         $('#cart-count').text(response.cartCount);
                     } else {
-                        toastr.error(response.message);
+                        // toastr.error(response.message);
+                        alert(response.message);
                     }
                 },
                 error: function() {
-                    alert();
-                    toastr.error("Something went wrong!");
+                    // toastr.error("Something went wrong!");
+                    alert("Something went wrong!");
                 }
             });
         });
@@ -193,11 +204,13 @@
                         $('#cart-count').text(response.cartCount);
                         $('#cart-total').text(response.totalPrice + ' TK');
                     } else {
-                        toastr.error(response.message);
+                        // toastr.error(response.message);
+                        alert(response.message);
                     }
                 },
                 error: function() {
-                    toastr.error("Something went wrong!");
+                    // toastr.error("Something went wrong!");
+                    alert("Something went wrong!");
                 }
             });
         });

@@ -26,9 +26,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('shop', [HomeController::class, 'showShop']);
+Route::get('checkout', [HomeController::class, 'showCheckout'])->name('checkout');
 Route::get('shop/view/{product}', [HomeController::class, 'showShopView'])->name('shop.view');
 Route::get('contact-us', [HomeController::class, 'showContactUs']);
 Route::get('about-us', [HomeController::class, 'showAboutUs']);
+Route::get('terms-conditions', [HomeController::class, 'showTermsConditions']);
 
 //Admin Login
 Route::get('login', [AuthController::class, 'showLoginForm']);
@@ -53,7 +55,8 @@ Route::group(['middleware' => 'user'], function () {
 //Cart functionality
 Route::get('/cart/count', [CartController::class, 'getCartCount'])->name('cart.count');
 Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
-Route::get('/cart', [CartController::class, 'viewCart'])->name('cart.view');
+Route::get('/cart', [CartController::class, 'getCartDetails']);
+Route::get('/cart-view', [CartController::class, 'showCartPage'])->name('cart.view');
 Route::post('/cart/remove', [CartController::class, 'removeFromCart'])->name('cart.remove');
 Route::post('/cart/update', [CartController::class, 'updateCart'])->name('cart.update');
 

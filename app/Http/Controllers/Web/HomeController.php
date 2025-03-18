@@ -32,6 +32,12 @@ class HomeController extends Controller
         return view('frontend.shop.index', compact('products'));
     }
 
+    public function showCheckout()
+    {
+        $carts = session()->get('cart', []);
+        return view('frontend.checkout.index', compact('carts'));
+    }
+
     public function showShopView(Product $product)
     {
         $product->load(['category', 'brand']);
@@ -49,5 +55,10 @@ class HomeController extends Controller
     public function showAboutUs()
     {
         return view('frontend.about.index');
+    }
+
+    public function showTermsConditions()
+    {
+        return view('frontend.pages.terms-conditions');
     }
 }
