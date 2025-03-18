@@ -134,7 +134,7 @@
                             cartHtml += '<div class="tf-mini-cart-item">';
                             cartHtml +=
                                 '<div class="tf-mini-cart-image"><a href="/product/' +
-                                key + '"><img src="' + item.thumbnail +
+                                key + '"><img src="/storage/' + item.thumbnail +
                                 '" alt=""></a></div>';
                             cartHtml += '<div class="tf-mini-cart-info">';
                             cartHtml += '<a class="title link" href="/product/' +
