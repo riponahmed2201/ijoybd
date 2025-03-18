@@ -121,7 +121,13 @@
                         <form class="tf-page-cart-checkout widget-wrap-checkout">
                             <ul class="wrap-checkout-product">
 
+                                @php
+                                    $totalAmount = 0;
+                                @endphp
                                 @forelse ($carts as $cart)
+                                    @php
+                                        $totalAmount += $cart['price'] * $cart['quantity'] ?? 0;
+                                    @endphp
                                     <li class="checkout-product-item">
                                         <figure class="img-product">
                                             <img src="{{ Storage::url($cart['thumbnail']) }}" alt="product">
@@ -139,28 +145,27 @@
                                     <p class="text-danger">No Product Found!</p>
                                 @endforelse
                             </ul>
-                            <div class="coupon-box">
+                            {{-- <div class="coupon-box">
                                 <input type="text" placeholder="Discount code">
                                 <a href="#"
                                     class="tf-btn btn-sm radius-3 btn-fill btn-icon animate-hover-btn">Apply</a>
-                            </div>
+                            </div> --}}
                             <div class="d-flex justify-content-between line pb_20">
                                 <h6 class="fw-5">Total</h6>
-                                <h6 class="total fw-5">$122.00</h6>
+                                <h6 class="total fw-5">{{ number_format($totalAmount, 2) }} TK</h6>
                             </div>
                             <div class="wd-check-payment">
-                                <div class="fieldset-radio mb_20">
+                                {{-- <div class="fieldset-radio mb_20">
                                     <input type="radio" name="payment" id="bank" class="tf-check" checked>
                                     <label for="bank">Direct bank transfer</label>
-
-                                </div>
+                                </div> --}}
                                 <div class="fieldset-radio mb_20">
                                     <input type="radio" name="payment" id="delivery" class="tf-check">
                                     <label for="delivery">Cash on delivery</label>
                                 </div>
                                 <p class="text_black-2 mb_20">Your personal data will be used to process your order,
                                     support your experience throughout this website, and for other purposes described in our
-                                    <a href="privacy-policy.html" class="text-decoration-underline">privacy policy</a>.
+                                    <a href="/privacy-policy" class="text-decoration-underline">privacy policy</a>.
                                 </p>
                                 <div class="box-checkbox fieldset-radio mb_20">
                                     <input type="checkbox" id="check-agree" class="tf-check">

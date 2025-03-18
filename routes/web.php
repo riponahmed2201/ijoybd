@@ -31,6 +31,7 @@ Route::get('shop/view/{product}', [HomeController::class, 'showShopView'])->name
 Route::get('contact-us', [HomeController::class, 'showContactUs']);
 Route::get('about-us', [HomeController::class, 'showAboutUs']);
 Route::get('terms-conditions', [HomeController::class, 'showTermsConditions']);
+Route::get('privacy-policy', [HomeController::class, 'showPrivacyPolicy']);
 
 //Admin Login
 Route::get('login', [AuthController::class, 'showLoginForm']);

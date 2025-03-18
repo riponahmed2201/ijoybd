@@ -61,4 +61,9 @@ class HomeController extends Controller
     {
         return view('frontend.pages.terms-conditions');
     }
+
+    public function showPrivacyPolicy()
+    {
+        return view('frontend.pages.privacy-policy');
+    }
 }

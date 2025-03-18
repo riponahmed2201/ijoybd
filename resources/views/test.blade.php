@@ -642,55 +642,21 @@
         <!-- page-title -->
         <div class="tf-page-title style-2">
             <div class="container-full">
-                <div class="heading text-center">Terms & Conditions</div>
+                <div class="heading text-center">Privacy Policy</div>
             </div>
         </div>
         <!-- /page-title -->
         <!-- main-page -->
         <section class="flat-spacing-25">
             <div class="container">
-                <div class="tf-main-area-page tf-terms-conditions">
-                    <div class="box">
-                        <h4>These Terms and Conditions May Change</h4>
-                        <p>We reserve the right to update or modify these terms and conditions at any time without prior notice. Your use of shop.company.com and shop.beetle.com.sg following any such change constitutes your agreement to follow and be bound by the terms and conditions as changed. For this reason, we encourage you to review these terms and conditions whenever you use this website.</p>
-                    </div>
-                    <div class="box">
-                        <h4>Limitations of Liability</h4>
-                        <p>The Company Pte Ltd shall not assume any responsibility, and shall not be liable for, any damages to, or viruses that may infect, your computer, telecommunication equipment, or other property caused by or arising from your access to, use of, or browsing this website or your downloading of any materials, from this website. IN NO EVENT WILL THE COMPANY PRIVATE LIMITED NOR THEIR RESPECTIVE OFFICERS, DIRECTORS, EMPLOYEES, SHAREHOLDERS, AFFILIATES, AGENTS, SUCCESSORS, ASSIGNS, RETAIL PARTNERS NOR ANY PARTY INVOLVED IN THE CREATION, PRODUCTION OR TRANSMISSION OF THIS WEB SITE BE LIABLE TO ANY PARTY FOR ANY INDIRECT, SPECIAL, PUNITIVE, INCIDENTAL OR CONSEQUENTIAL DAMAGES (INCLUDING, WITHOUT LIMITATION, THOSE RESULTING FROM LOST PROFITS, LOST DATA OR BUSINESS INTERRUPTION) ARISING OUT OF THE USE, INABILITY TO USE, OR THE RESULTS OF USE OF THIS WEB SITE, ANY WEB SITES LINKED TO THIS WEB SITE, OR THE MATERIALS, INFORMATION OR SERVICES CONTAINED AT ANY OR ALL SUCH SITES, WHETHER BASED ON WARRANTY, CONTRACT, TORT OR ANY OTHER LEGAL THEORY AND WHETHER OR NOT ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. THE FOREGOING LIMITATIONS OF LIABILITY DO NOT APPLY TO THE EXTENT PROHIBITED BY LAW. PLEASE REFER TO YOUR LOCAL LAWS FOR ANY SUCH PROHIBITIONS.</p>
-                        <p>IN THE EVENT OF ANY PROBLEM WITH THIS WEBSITE OR ANY CONTENT, YOU AGREE THAT YOUR SOLE REMEDY IS TO CEASE USING THIS WEBSITE. IN THE EVENT OF ANY PROBLEM WITH THE PRODUCTS OR SERVICES THAT YOU HAVE PURCHASED ON OR THROUGH THIS WEB SITE, YOU AGREE THAT YOUR REMEDY, IF ANY, IS FROM THE MANUFACTURER OF SUCH PRODUCTS OR SUPPLIER OF SUCH SERVICES, IN ACCORDANCE WITH SUCH MANUFACTURER’S OR SUPPLIER’S WARRANTY, OR TO SEEK A RETURN AND REFUND FOR SUCH PRODUCT OR SERVICES IN ACCORDANCE WITH THE RETURNS AND REFUNDS POLICIES POSTED ON THIS WEB SITE. This site may include inaccuracies, mistakes or typographical errors. CharlesKeith.com does not warrant that the content will be uninterrupted or error free.</p>
-                    </div>
-                    <div class="box">
-                        <h4>Copyright and Trademark</h4>
-                        <p>Unless otherwise indicated, material on this website, including but not limited to texts, images, illustrations, software, audio clips, video clips, animation files, is subject to the copyright and trademark rights of The Company Private Limited. Consequently, the material on this website may not be copied, reproduced, modified, posted, transmitted, distributed, in whole or in part in any form whatsoever, without the prior written consent of The Company Private Limited. All rights reserved.</p>
-                    </div>
-                    <div class="box">
-                        <h4>Products, Content and Specifications</h4>
-                        <p>All features, content, specifications, products and prices of products and services described or depicted on this website are subject to change at any time without notice. Certain weights, measures and similar descriptions are approximate and are provided for convenience purposes only. We make all reasonable efforts to accurately display the attributes of our products, including the applicable colors; however, the actual color you see will depend on your computer system and we cannot guarantee that your computer will accurately display such colors. The inclusion of any products or services in this website at a particular time does not imply or warrant that these products or services will be available at any time. It is your responsibility to ascertain and obey all applicable local, state and international laws in regard to the possession, use and sale of any item purchased from this website. By placing an order, you represent that the products ordered will be used only in a lawful manner.</p>
-                    </div>
-                    <div class="box">
-                        <h4>Shipping Limitations</h4>
-                        <p>When an order is placed, it will be shipped to an address designated by the purchaser as long as that shipping address is compliant with the shipping restrictions contained on this website. All purchases from this website are made pursuant to a shipment contract. As a result, risk of loss and title for items purchased from this website pass to you upon delivery of the items to the carrier. You are responsible for filing any claims with carriers for damaged and/or lost shipments.</p>
-                    </div>
-                    <div class="box">
-                        <h4>Duties and Taxes</h4>
-                        <p>You are responsible for duties and taxes outside Singapore. All items entering a foreign country are subject to customs inspection and assessment of the duties and taxes in accordance with that country’s national laws.</p>
-                    </div>
-                    <div class="box">
-                        <h4>Your Account</h4>
-                        <p>You are responsible for maintaining the confidentiality of your account and password information, and you agree to accept responsibility for all activities that occur under your account and password. This website and The Company Pte Ltd reserves the right to refuse service, terminate accounts remove or edit content or cancel orders.By placing an order, you warrant that you are over 18 years of age, and that you are providing shop.company.com or shop.beetle.com.sg with accurate, truthful information and that you have the authority to place the order.</p>
-                    </div>
-                    <div class="box">
-                        <h4>Exchange and Refund Policy (Singapore Outlets Only)</h4>
-                        <p>New, unused full-price merchandise purchased at store retail store may be exchange at any boutique with an original receipt within 7 days of purchase. After 7 days, the merchandise may not be exchanged.We offer a no-refund policy on all merchandises, however, for merchandise qualifying for an exchange, item may be exchange for store credits which may be used at our Singapore outlets only.Merchandise on sale may not be exchanged or returned. All merchandise must be returned in sellable condition, otherwise, an exchange would not be allowed.We reserve the right to reject any form of exchange without the original receipt.</p>
-                    </div>
-                    <div class="box">
-                        <h4>Exchange and Refund Policy (Online Shop)</h4>
-                        <span>Electronic Communications</span>
-                        <p>When you visit this website and/or send email to us, you consent to receive electronic communications from us. You agree that all agreements, notices, disclosures and other communications that we sent you electronically satisfy any legal requirement that such communications be in writing</p>
-
-                        <p>Exclusions of Warranties<br>
-                            The Company Private Limited makes no representative or warranty regarding the good working order or condition of this website, its suitability for use, or that its use will be uninterrupted or error-free. All information or material provided in this website to you â€œas isâ€ and without warranties of any kind, expressed or implied, including without limitation, warranties or conditions of merchantability, fitness, quality, durability or suitability for any particular purpose, or non-infringement.</p>
-                    </div>
+                <div class="tf-main-area-page">
+                    <h4>The Company Private Limited Policy</h4>
+                    <p>The Company Private Limited and each of their respective subsidiary, parent and affiliated companies is deemed to operate this Website (“we” or “us”) recognizes that you care how information about you is used and shared. We have created this Privacy Policy to inform you what information we collect on the Website, how we use your information and the choices you have about the way your information is collected and used. Please read this Privacy Policy carefully. Your use of the Website indicates that you have read and accepted our privacy practices, as outlined in this Privacy Policy.</p>
+                    <p>Please be advised that the practices described in this Privacy Policy apply to information gathered by us or our subsidiaries, affiliates or agents: (i) through this Website, (ii) where applicable, through our Customer Service Department in connection with this Website, (iii) through information provided to us in our free standing retail stores, and (iv) through information provided to us in conjunction with marketing promotions and sweepstakes.</p>
+                    <p>We are not responsible for the content or privacy practices on any websites.</p>
+                    <p>We reserve the right, in our sole discretion, to modify, update, add to, discontinue, remove or otherwise change any portion of this Privacy Policy, in whole or in part, at any time. When we amend this Privacy Policy, we will revise the “last updated” date located at the top of this Privacy Policy.</p>
+                    <p>If you provide information to us or access or use the Website in any way after this Privacy Policy has been changed, you will be deemed to have unconditionally consented and agreed to such changes. The most current version of this Privacy Policy will be available on the Website and will supersede all previous versions of this Privacy Policy.</p>
+                    <p>If you have any questions regarding this Privacy Policy, you should contact our Customer Service Department by email at marketing@company.com</p>
                 </div>
             </div>
         </section>
@@ -904,6 +870,7 @@
         </div>
     </div>
     <!-- /toolbar-bottom -->
+
     <!-- modalDemo -->
     <div class="modal fade modalDemo" id="modalDemo">
         <div class="modal-dialog modal-dialog-centered">
@@ -1207,6 +1174,7 @@
         </div>
     </div>
     <!-- /modalDemo -->
+
     <!-- mobile menu -->
     <div class="offcanvas offcanvas-start canvas-mb" id="mobileMenu">
         <span class="icon-close icon-close-popup" data-bs-dismiss="offcanvas" aria-label="Close"></span>
@@ -1504,7 +1472,6 @@
         </div>
     </div>
     <!-- /mobile menu -->
-
 
 
     <!-- canvasSearch -->
