@@ -3,7 +3,7 @@
         data-space="0" data-loop="true" data-auto-play="true" data-delay="2000" data-speed="1000">
         <div class="swiper-wrapper">
 
-            @foreach ($sliders as $slider)
+            {{-- @foreach ($sliders as $slider)
                 <div class="swiper-slide" lazy="true">
                     <div class="wrap-slider">
                         <img style="width: 1521px; height:856px" class="lazyload"
@@ -21,9 +21,9 @@
                         </div>
                     </div>
                 </div>
-            @endforeach
+            @endforeach --}}
 
-            {{-- <div class="swiper-slide" lazy="true">
+            <div class="swiper-slide" lazy="true">
                 <div class="wrap-slider">
                     <img class="lazyload" data-src="{{ asset('assets/frontend/images/slider/slider_adidas.png') }}"
                         src="{{ asset('assets/frontend/images/slider/slider_adidas.png') }}" alt="Adidas">
@@ -96,7 +96,7 @@
 
                     </div>
                 </div>
-            </div> --}}
+            </div>
 
         </div>
     </div>
