@@ -4,7 +4,7 @@
 
 @section('home-content')
 
-{{-- @dd(getCategories()->toArray()) --}}
+    {{-- @dd(getCategories()->toArray()) --}}
     <!-- Slider -->
     @include('frontend.includes.slider')
     <!-- /Slider -->
@@ -18,8 +18,8 @@
             </div> --}}
             <div class="tf-shop-control grid-3 align-items-center">
                 <div class="tf-control-filter">
-                    <a href="#filterShop" data-bs-toggle="offcanvas" aria-controls="offcanvasLeft" class="tf-btn-filter"><span
-                            class="icon icon-filter"></span><span class="text">Categories</span></a>
+                    <a href="#filterShop" data-bs-toggle="offcanvas" aria-controls="offcanvasLeft"
+                        class="tf-btn-filter"><span class="icon icon-filter"></span><span class="text">Categories</span></a>
                 </div>
             </div>
 
@@ -32,12 +32,11 @@
                             <div class="swiper-slide" lazy="true">
                                 <div class="collection-item style-2 hover-img">
                                     <div class="collection-inner">
-                                        <a href="#" class="collection-image img-style">
+                                        <a href="{{ route('shop', ['subcategory' => $subcategory->slug]) }}" class="collection-image img-style">
                                             @if (!empty($subcategory->avatar))
                                                 <img style="width:260px; height:317px" class="lazyload"
                                                     data-src="{{ Storage::url($subcategory->avatar) }}"
-                                                    src="{{ Storage::url($subcategory->avatar) }}"
-                                                    alt="{{ $subcategory->slug }}">
+                                                    src="{{ Storage::url($subcategory->avatar) }}" alt="{{ $subcategory->slug }}">
                                             @else
                                                 <img style="width:260px; height:317px" class="lazyload"
                                                     data-src="{{ asset('assets/frontend/images/default.jpeg') }}"
@@ -46,7 +45,7 @@
                                             @endif
                                         </a>
                                         <div class="collection-content">
-                                            <a href="#"
+                                            <a href="{{ route('shop') }}"
                                                 class="tf-btn collection-title hover-icon fs-15"><span>{{ $subcategory->name }}</span><i
                                                     class="icon icon-arrow1-top-left"></i></a>
                                         </div>
@@ -122,12 +121,10 @@
                                 @endif
                             </div>
                             <div class="card-product-info">
-                                <a href="{{ route('shop.view', $product->id) }}"
-                                    class="title link">{{ $product->name }}</a>
+                                <a href="{{ route('shop.view', $product->id) }}" class="title link">{{ $product->name }}</a>
 
                                 @if ($product->discount > 0)
-                                    <span
-                                        class="price">{{ $product->price - ($product->discount * $product->price) / 100 }}
+                                    <span class="price">{{ $product->price - ($product->discount * $product->price) / 100 }}
                                         TK</span>
                                 @else
                                     <span class="price">{{ $product->price }} TK</span>
@@ -224,25 +221,27 @@
             <div class="wrap-carousel wrap-brand wrap-brand-v2 autoplay-linear">
                 <div dir="ltr"
                     class="swiper tf-sw-brand border-0 swiper-initialized swiper-horizontal swiper-pointer-events"
-                    data-play="true" data-loop="true" data-preview="6" data-tablet="4" data-mobile="2"
-                    data-space-lg="30" data-space-md="15">
+                    data-play="true" data-loop="true" data-preview="6" data-tablet="4" data-mobile="2" data-space-lg="30"
+                    data-space-md="15">
                     <div class="swiper-wrapper" id="swiper-wrapper-6220e8bd24b1b04a" aria-live="off"
                         style="transform: translate3d(-2899.5px, 0px, 0px); transition-duration: 0ms;">
 
                         @foreach ($brands as $brand)
                             <div class="swiper-slide" data-swiper-slide-index="0" role="group" aria-label="1 / 6"
                                 style="width: 292.167px; margin-right: 30px;">
-                                <div class="brand-item-v2">
-                                    @if (!empty($brand->logo))
-                                        <img class="ls-is-cached lazyloaded" style="width:215px; height:89px"
-                                            data-src="{{ Storage::url($brand->logo) }}"
-                                            src="{{ Storage::url($brand->logo) }}" alt="{{ $brand->slug }}">
-                                    @else
-                                        <img class="ls-is-cached lazyloaded" style="width:215px; height:89px"
-                                            data-src="{{ asset('assets/frontend/images/default.jpeg') }}"
-                                            src="{{ asset('assets/frontend/images/default.jpeg') }}" alt="brand">
-                                    @endif
-                                </div>
+                                <a href="{{ route('shop', ['brand' => $brand->slug]) }}">
+                                    <div class="brand-item-v2">
+                                        @if (!empty($brand->logo))
+                                            <img class="ls-is-cached lazyloaded" style="width:215px; height:89px"
+                                                data-src="{{ Storage::url($brand->logo) }}" src="{{ Storage::url($brand->logo) }}"
+                                                alt="{{ $brand->slug }}">
+                                        @else
+                                            <img class="ls-is-cached lazyloaded" style="width:215px; height:89px"
+                                                data-src="{{ asset('assets/frontend/images/default.jpeg') }}"
+                                                src="{{ asset('assets/frontend/images/default.jpeg') }}" alt="brand">
+                                        @endif
+                                    </div>
+                                </a>
                             </div>
                         @endforeach
 

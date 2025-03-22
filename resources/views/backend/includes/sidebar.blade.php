@@ -110,7 +110,7 @@
                         <span class="menu-icon">
                             <i class="bi bi-hr fs-3"></i>
                         </span>
-                        <span class="menu-title">Product Color</span>
+                        <span class="menu-title">Product Colors</span>
                     </a>
                 </div>
 
@@ -120,7 +120,7 @@
                         <span class="menu-icon">
                             <i class="bi bi-printer fs-3"></i>
                         </span>
-                        <span class="menu-title">Product Size</span>
+                        <span class="menu-title">Product Sizes</span>
                     </a>
                 </div>
 

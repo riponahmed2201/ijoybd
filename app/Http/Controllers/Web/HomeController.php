@@ -26,9 +26,51 @@ class HomeController extends Controller
         return view('frontend.home', $data);
     }
 
-    public function showShop()
+    public function showShop(Request $request)
     {
-        $products = Product::with(['category', 'brand'])->where('status', 'active')->latest()->get();
+        // $products = Product::with(['category', 'brand'])->where('status', 'active')->latest()->get();
+
+        $query = Product::with(['category', 'subcategory', 'brand'])
+            ->where('status', 'active');
+
+
+        // Filter by brand
+        if ($request->has('brand')) {
+            $query->whereHas('brand', function ($q) use ($request) {
+                $q->where('slug', $request->brand);
+            });
+        }
+
+        // Filter by category
+        if ($request->has('category')) {
+            $query->whereHas('category', function ($q) use ($request) {
+                $q->where('slug', $request->category);
+            });
+        }
+
+        // Filter by subcategory
+        if ($request->has('subcategory')) {
+            $query->whereHas('subcategory', function ($q) use ($request) {
+                $q->where('slug', $request->subcategory);
+            });
+        }
+
+        // Filter by size
+        if ($request->has('size')) {
+            $query->whereHas('sizes', function ($q) use ($request) {
+                $q->where('name', $request->size);
+            });
+        }
+
+        // Filter by color
+        if ($request->has('color')) {
+            $query->whereHas('colors', function ($q) use ($request) {
+                $q->where('name', $request->color);
+            });
+        }
+
+        $products = $query->latest()->get();
+
         return view('frontend.shop.index', compact('products'));
     }
 
