@@ -34,10 +34,11 @@ Route::get('about-us', [HomeController::class, 'showAboutUs']);
 Route::get('terms-conditions', [HomeController::class, 'showTermsConditions']);
 Route::get('privacy-policy', [HomeController::class, 'showPrivacyPolicy']);
 
-//Admin Login
+//Customer Login
 Route::get('login', [AuthController::class, 'showLoginForm']);
 Route::post('login', [AuthController::class, 'login'])->name('customer.login');
 
+//Customer Register
 Route::get('register', [AuthController::class, 'showRegisterForm']);
 Route::post('register', [AuthController::class, 'register'])->name('customer.register');
 

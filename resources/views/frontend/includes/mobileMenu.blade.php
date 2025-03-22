@@ -13,32 +13,72 @@
                         <span>Shop</span>
                     </a>
                 </li>
+
                 <li class="nav-mb-item">
-                    <a href="#dropdown-menu-three" class="collapsed mb-menu-link current" data-bs-toggle="collapse"
-                        aria-expanded="true" aria-controls="dropdown-menu-three">
-                        <span>Products</span>
+                    <a href="#dropdown-menu-men" class="collapsed mb-menu-link current" data-bs-toggle="collapse"
+                        aria-expanded="true" aria-controls="dropdown-menu-men">
+                        <span>Men</span>
                         <span class="btn-open-sub"></span>
                     </a>
-                    <div id="dropdown-menu-three" class="collapse">
+                    <div id="dropdown-menu-men" class="collapse">
                         <ul class="sub-nav-menu" id="sub-menu-navigation">
-                            @foreach (getCategories() as $category)
-                                <li>
-                                    <a href="/shop" class="sub-nav-link collapsed">
-                                        <span>{{$category->name}}</span>
-                                        <span class="btn-open-sub"></span>
-                                    </a>
-                                    <div id="sub-product-one" class="collapse">
-                                        <ul class="sub-nav-menu sub-menu-level-2">
-                                            @foreach ($category->subcategories as $subategory)
-                                                <li>
-                                                    <a href="/shop" class="sub-nav-link">
-                                                        {{ $subategory?->name }}
-                                                    </a>
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                </li>
+                            @foreach (getCategories()->toArray() as $menCategory)
+                                @if ($menCategory['type'] === 'men')
+                                    <li>
+                                        <a href="{{ route('shop', ['category' => $menCategory['slug']]) }}"
+                                            class="sub-nav-link collapsed">
+                                            <strong>{{ $menCategory['name'] }}</strong>
+                                            <span class="btn-open-sub"></span>
+                                        </a>
+                                        <div id="sub-product-one">
+                                            <ul class="sub-nav-menu sub-menu-level-2">
+                                                @foreach ($menCategory['subcategories'] as $menSubcategory)
+                                                    <li>
+                                                        <a href="{{ route('shop', ['subcategory' => $menSubcategory['slug']]) }}"
+                                                            class="sub-nav-link">
+                                                            {{ $menSubcategory['name'] }}
+                                                        </a>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    </li>
+                                @endif
+                            @endforeach
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="nav-mb-item">
+                    <a href="#dropdown-menu-women" class="collapsed mb-menu-link current" data-bs-toggle="collapse"
+                        aria-expanded="true" aria-controls="dropdown-menu-women">
+                        <span>Women</span>
+                        <span class="btn-open-sub"></span>
+                    </a>
+                    <div id="dropdown-menu-women" class="collapse">
+                        <ul class="sub-nav-menu" id="sub-menu-navigation">
+                            @foreach (getCategories()->toArray() as $womenCategory)
+                                @if ($womenCategory['type'] === 'women')
+                                    <li>
+                                        <a href="{{ route('shop', ['category' => $womenCategory['slug']]) }}"
+                                            class="sub-nav-link collapsed">
+                                            <strong>{{ $womenCategory['name'] }}</strong>
+                                            <span class="btn-open-sub"></span>
+                                        </a>
+                                        <div id="sub-product-one">
+                                            <ul class="sub-nav-menu sub-menu-level-2">
+                                                @foreach ($womenCategory['subcategories'] as $womenSubcategory)
+                                                    <li>
+                                                        <a href="{{ route('shop', ['subcategory' => $womenSubcategory['slug']]) }}"
+                                                            class="sub-nav-link">
+                                                            {{ $womenSubcategory['name'] }}
+                                                        </a>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    </li>
+                                @endif
                             @endforeach
                         </ul>
                     </div>
