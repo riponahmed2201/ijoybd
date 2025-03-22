@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\ProductColorController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ProductSizeController;
 use App\Http\Controllers\Backend\ProfileController;
+use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubcategoryController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Web\AuthController;
@@ -81,6 +82,7 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::put('profile/update', [ProfileController::class, 'update'])->name('profile.update');
 
     Route::resources([
+        'sliders' => SliderController::class,
         'categories' => CategoryController::class,
         'subcategories' => SubcategoryController::class,
         'brands' => BrandController::class,

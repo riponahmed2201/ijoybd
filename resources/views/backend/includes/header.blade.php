@@ -22,7 +22,7 @@
         <!--end::Aside mobile toggle-->
         <!--begin::Mobile logo-->
         <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
-            <a href="../../demo1/dist/index.html" class="d-lg-none">
+            <a href="/admin/dashboard" class="d-lg-none">
                 <img alt="Logo" src="assets/media/logos/logo-2.svg" class="h-30px" />
             </a>
         </div>
@@ -70,6 +70,13 @@
                                             <i class="bi bi-box fs-3"></i>
                                         </span>
                                         <span class="menu-title">Documentation</span>
+                                    </a>
+
+                                    <a class="menu-link py-3" target="_blank" href="/">
+                                        <span class="menu-icon">
+                                            <i class="bi bi-box fs-3"></i>
+                                        </span>
+                                        <span class="menu-title">Website</span>
                                     </a>
                                 </div>
                             </div>

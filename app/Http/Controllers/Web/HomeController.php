@@ -6,12 +6,17 @@ use App\Enums\StatusEnum;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Product;
+use App\Models\Slider;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function index()
     {
+        $sliders = Slider::query()
+        ->where('status', '=', StatusEnum::ACTIVE->value)
+        ->get(['id', 'title', 'description', 'image']);
+
         $brands = Brand::query()
             ->where('status', '=', StatusEnum::ACTIVE->value)
             ->get(['id', 'name', 'slug', 'logo']);
@@ -19,6 +24,7 @@ class HomeController extends Controller
         $products = Product::with(['category', 'brand'])->where('status', 'active')->latest()->get();
 
         $data = [
+            'sliders' => $sliders,
             'brands' => $brands,
             'products' => $products,
         ];

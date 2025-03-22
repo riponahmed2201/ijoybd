@@ -59,6 +59,15 @@
                 </div>
 
                 <div class="menu-item">
+                    <a class="menu-link {{ Request::is('admin/sliders') ? 'active' : '' }}" href="/admin/sliders">
+                        <span class="menu-icon">
+                            <i class="bi bi-grid fs-3"></i>
+                        </span>
+                        <span class="menu-title">Sliders</span>
+                    </a>
+                </div>
+
+                <div class="menu-item">
                     <div class="menu-content pt-8 pb-2">
                         <span class="menu-section text-muted text-uppercase fs-8 ls-1">Category Management</span>
                     </div>

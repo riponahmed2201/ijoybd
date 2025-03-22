@@ -1,18 +1,18 @@
 @extends('backend.master')
 
-@if (isset($brand))
-    @section('title', 'Edit Brand')
+@if (isset($sliders))
+    @section('title', 'Edit Slider')
 @else
-    @section('title', 'Add Brand')
+    @section('title', 'Add Slider')
 @endif
 
 @section('admin-content')
     <!--begin::Toolbar -->
-    <x-toolbar :title="isset($brand) && $brand->id ? 'Edit brand' : 'Add brand'" :breadcrumbs="[
+    <x-toolbar :title="isset($sliders) && $sliders->id ? 'Edit slider' : 'Add slider'" :breadcrumbs="[
         ['label' => 'Home', 'url' => route('admin.dashboard')],
-        ['label' => 'brands', 'url' => route('brands.index')],
-        ['label' => isset($brand) && $brand->id ? 'Edit brand' : 'Add brand', 'active' => true],
-    ]" :actionUrl="route('brands.index')" actionIcon="fas fa-list" actionLabel="Back to List" />
+        ['label' => 'sliders', 'url' => route('sliders.index')],
+        ['label' => isset($slider) && $slider->id ? 'Edit slider' : 'Add slider', 'active' => true],
+    ]" :actionUrl="route('sliders.index')" actionIcon="fas fa-list" actionLabel="Back to List" />
     <!--end::Toolbar -->
 
     <div class="post d-flex flex-column-fluid" id="kt_post">
@@ -20,10 +20,10 @@
         <div id="kt_content_container" class="container-fluid">
             <!-- Form -->
             <form method="POST"
-                action="{{ isset($brand) && $brand->id ? route('brands.update', $brand->id) : route('brands.store') }}"
+                action="{{ isset($slider) && $slider->id ? route('sliders.update', $slider->id) : route('sliders.store') }}"
                 class="form d-flex flex-column flex-lg-row" enctype="multipart/form-data">
                 @csrf
-                @if (isset($brand) && $brand->id)
+                @if (isset($slider) && $slider->id)
                     @method('PUT')
                 @endif
 
@@ -37,27 +37,27 @@
                         </div>
                         <div class="card-body text-center pt-0">
                             <div class="image-input image-input-empty image-input-outline mb-12" data-kt-image-input="true"
-                                style="background-image: url({{ isset($brand) && $brand->logo ? Storage::url($brand->logo) : 'assets/backend/media/svg/files/blank-image.svg' }})">
+                                style="background-image: url({{ isset($slider) && $slider->image ? Storage::url($slider->image) : 'assets/backend/media/svg/files/blank-image.svg' }})">
                                 <div class="image-input-wrapper w-150px h-150px"></div>
 
                                 <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                                    data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change logo">
+                                    data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change image">
                                     <i class="bi bi-pencil-fill fs-7"></i>
-                                    <input type="file" name="logo" accept=".png, .jpg, .jpeg" />
-                                    <input type="hidden" name="logo_remove" />
+                                    <input type="file" name="image" accept=".png, .jpg, .jpeg" />
+                                    <input type="hidden" name="image_remove" />
                                 </label>
 
                                 <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                                    data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel logo">
+                                    data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel image">
                                     <i class="bi bi-x fs-2"></i>
                                 </span>
 
                                 <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                                    data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove logo">
+                                    data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove image">
                                     <i class="bi bi-x fs-2"></i>
                                 </span>
                             </div>
-                            <div class="text-muted fs-7">Set the brand logo. Only *.png, *.jpg, and *.jpeg are
+                            <div class="text-muted fs-7">Set the slider image. Only *.png, *.jpg, and *.jpeg are
                                 accepted.</div>
                         </div>
                     </div>
@@ -79,17 +79,17 @@
                         <div class="card-body pt-0">
 
                             <div class="mb-3 fv-row">
-                                <label class="required form-label">Brand Name</label>
-                                <input type="text" name="name" class="form-control form-control-solid mb-2" placeholder="Enter name"
-                                    required value="{{ isset($brand) ? $brand->name : '' }}" />
-                                @error('name')
+                                <label class="required form-label">Title</label>
+                                <input type="text" name="title" class="form-control form-control-solid mb-2" placeholder="Enter title"
+                                    required value="{{ isset($slider) ? $slider->title : '' }}" />
+                                @error('title')
                                     <span class="text-danger mt-2">{{ $message }}</span>
                                 @enderror
                             </div>
 
                             <div class="mb-3 fv-row">
                                 <label class="form-label">Description</label>
-                                <textarea class="form-control form-control-solid mb-2" data-kt-autosize="true" name="description" placeholder="Enter description">{{ isset($brand) ? $brand->description : '' }}</textarea>
+                                <textarea class="form-control form-control-solid mb-2" data-kt-autosize="true" name="description" placeholder="Enter description">{{ isset($slider) ? $slider->description : '' }}</textarea>
                                 @error('description')
                                     <span class="text-danger mt-2">{{ $message }}</span>
                                 @enderror
@@ -102,7 +102,7 @@
                                     <option></option>
                                     @foreach ($statuses as $status)
                                         <option value="{{ $status['value'] }}"
-                                            {{ isset($brand) && $brand->status->value == $status['value'] ? 'selected' : '' }}>
+                                            {{ isset($slider) && $slider->status->value == $status['value'] ? 'selected' : '' }}>
                                             {{ $status['label'] }}
                                         </option>
                                     @endforeach
@@ -115,8 +115,8 @@
                     </div>
 
                     <div class="d-flex justify-content-end">
-                        <button type="submit" id="kt_ecommerce_add_brand_submit" class="btn btn-primary">
-                            <span class="indicator-label">{{ isset($brand) && $brand->id ? 'Update' : 'Submit' }}</span>
+                        <button type="submit" id="kt_ecommerce_add_slider_submit" class="btn btn-primary">
+                            <span class="indicator-label">{{ isset($slider) && $slider->id ? 'Update' : 'Submit' }}</span>
                             <span class="indicator-progress">Please wait...
                                 <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
                             </span>

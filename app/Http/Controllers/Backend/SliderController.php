@@ -4,24 +4,25 @@ namespace App\Http\Controllers\Backend;
 
 use App\Enums\StatusEnum;
 use App\Http\Controllers\Controller;
-use App\Models\Brand;
-use App\Http\Requests\StoreBrandRequest;
-use App\Http\Requests\UpdateBrandRequest;
+use App\Http\Requests\StoreSliderRequest;
+use App\Http\Requests\UpdateSliderRequest;
+use App\Models\Slider;
+use Illuminate\Http\Request;
 use Exception;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
 
-class BrandController extends Controller
+class SliderController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $brands = Brand::latest()->get();
-        return view('backend.brands.index', compact('brands'));
+        $sliders = Slider::latest()->get();
+        return view('backend.sliders.index', compact('sliders'));
     }
 
     /**
@@ -30,43 +31,42 @@ class BrandController extends Controller
     public function create()
     {
         $statuses = StatusEnum::options();
-        return view('backend.brands.form', compact('statuses'));
+        return view('backend.sliders.form', compact('statuses'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreBrandRequest $request)
+    public function store(StoreSliderRequest $request)
     {
-        $input = $request->only(['name', 'description', 'status']);
-        $input['slug'] = Str::slug($input['name']);
+        $input = $request->only(['title', 'description', 'status']);
 
-        $logo = $request->file('logo');
+        $image = $request->file('image');
 
-        if ($logo) {
-            // Generate unique name for the logo
-            $logoName = md5(Str::random(30) . time()) . '.' . $logo->getClientOriginalExtension();
-            // Store the logo in the specified directory
-            $logoPath = $logo->storeAs('brands', $logoName, 'public');
-            $input['logo'] = $logoPath;
+        if ($image) {
+            // Generate unique name for the image
+            $imageName = md5(Str::random(30) . time()) . '.' . $image->getClientOriginalExtension();
+            // Store the image in the specified directory
+            $imagePath = $image->storeAs('sliders', $imageName, 'public');
+            $input['image'] = $imagePath;
         }
 
         DB::beginTransaction();
         try {
-            Brand::create($input);
+            Slider::create($input);
 
             DB::commit();
 
-            notify()->success("Brand added successfully", "Success");
+            notify()->success("Slider added successfully", "Success");
 
-            return to_route('brands.index');
+            return to_route('sliders.index');
         } catch (Exception $exception) {
 
             DB::rollBack();
 
-            // If an logo was uploaded, delete the file to prevent orphaned files
-            if (isset($input['logo']) && Storage::disk('public')->exists($input['logo'])) {
-                Storage::disk('public')->delete($input['logo']);
+            // If an image was uploaded, delete the file to prevent orphaned files
+            if (isset($input['image']) && Storage::disk('public')->exists($input['image'])) {
+                Storage::disk('public')->delete($input['image']);
             }
 
             // Log the error for debugging
@@ -84,7 +84,7 @@ class BrandController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Brand $brand)
+    public function show(Slider $brand)
     {
         return $brand;
     }
@@ -92,16 +92,16 @@ class BrandController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Brand $brand)
+    public function edit(Slider $slider)
     {
         $statuses = StatusEnum::options();
-        return view('backend.brands.form', compact('brand', 'statuses'));
+        return view('backend.sliders.form', compact('slider', 'statuses'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateBrandRequest $request, Brand $brand)
+    public function update(UpdateSliderRequest $request, Slider $slider)
     {
         // Get only the necessary inputs
         $input = $request->only(['name', 'description', 'status']);
@@ -114,33 +114,33 @@ class BrandController extends Controller
             // Generate a unique name for the logo
             $logoName = md5(Str::random(30) . time()) . '.' . $logo->getClientOriginalExtension();
             // Store the logo in the specified directory
-            $logoPath = $logo->storeAs('brands', $logoName, 'public');
+            $logoPath = $logo->storeAs('sliders', $logoName, 'public');
             $input['logo'] = $logoPath;
 
             // Delete the old logo if it exists
-            if ($brand->logo && Storage::disk('public')->exists($brand->logo)) {
-                Storage::disk('public')->delete($brand->logo);
+            if ($slider->logo && Storage::disk('public')->exists($slider->logo)) {
+                Storage::disk('public')->delete($slider->logo);
             }
         }
 
         DB::beginTransaction();
 
         try {
-            // Update the brand with the new data
-            $brand->update($input);
+            // Update the slider with the new data
+            $slider->update($input);
 
             DB::commit();
 
-            notify()->success("Brand updated successfully", "Success");
+            notify()->success("Slider updated successfully", "Success");
 
-            return to_route('brands.index');
+            return to_route('sliders.index');
         } catch (Exception $exception) {
             dd($exception);
             DB::rollBack();
 
-            // If an logo was uploaded, delete the newly uploaded file to prevent orphaned files
-            if (isset($input['logo']) && Storage::disk('public')->exists($input['logo'])) {
-                Storage::disk('public')->delete($input['logo']);
+            // If an image was uploaded, delete the newly uploaded file to prevent orphaned files
+            if (isset($input['image']) && Storage::disk('public')->exists($input['image'])) {
+                Storage::disk('public')->delete($input['image']);
             }
 
             // Log the error for debugging
@@ -158,7 +158,7 @@ class BrandController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Brand $brand)
+    public function destroy(Slider $slider)
     {
         //
     }
