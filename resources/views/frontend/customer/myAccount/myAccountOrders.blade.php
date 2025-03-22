@@ -27,72 +27,42 @@
                                         <th class="fw-6">Order</th>
                                         <th class="fw-6">Date</th>
                                         <th class="fw-6">Status</th>
+                                        <th class="fw-6">Payment Status</th>
                                         <th class="fw-6">Total</th>
                                         <th class="fw-6">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="tf-order-item">
-                                        <td>
-                                            #123
-                                        </td>
-                                        <td>
-                                            August 1, 2024
-                                        </td>
-                                        <td>
-                                            On hold
-                                        </td>
-                                        <td>
-                                            $200.0 for 1 items
-                                        </td>
-                                        <td>
-                                            <a href="my-account-orders-details.html"
-                                                class="tf-btn btn-fill animate-hover-btn rounded-0 justify-content-center">
-                                                <span>View</span>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr class="tf-order-item">
-                                        <td>
-                                            #345
-                                        </td>
-                                        <td>
-                                            August 2, 2024
-                                        </td>
-                                        <td>
-                                            On hold
-                                        </td>
-                                        <td>
-                                            $300.0 for 1 items
-                                        </td>
-                                        <td>
-                                            <a href="my-account-orders-details.html"
-                                                class="tf-btn btn-fill animate-hover-btn rounded-0 justify-content-center">
-                                                <span>View</span>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr class="tf-order-item">
-                                        <td>
-                                            #567
-                                        </td>
-                                        <td>
-                                            August 3, 2024
-                                        </td>
-                                        <td>
-                                            On hold
-                                        </td>
-                                        <td>
-                                            $400.0 for 1 items
-                                        </td>
-                                        <td>
-                                            <a href="my-account-orders-details.html"
-                                                class="tf-btn btn-fill animate-hover-btn rounded-0 justify-content-center">
-                                                <span>View</span>
-                                            </a>
-                                        </td>
-                                    </tr>
 
+                                    @forelse ($orders as $order)
+                                        <tr class="tf-order-item">
+                                            <td>
+                                                {{ $order->order_number }}
+                                            </td>
+                                            <td>
+                                                {{ date('F j, Y, g:i A', strtotime($order->created_at)) }}
+                                            </td>
+                                            <td>
+                                                {{ $order->status }}
+                                            </td>
+                                            <td>
+                                                {{ $order->payment_status }}
+                                            </td>
+                                            <td>
+                                                {{ number_format($order->total_amount, 2) }}
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('userOrderView', $order->id) }}"
+                                                    class="tf-btn btn-fill animate-hover-btn rounded-0 justify-content-center">
+                                                    <span>View</span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="5" class="text-center text-danger">No Order Found!</td>
+                                        </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>

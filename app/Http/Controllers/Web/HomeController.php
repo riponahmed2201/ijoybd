@@ -83,6 +83,7 @@ class HomeController extends Controller
     public function showCheckout()
     {
         $carts = session()->get('cart', []);
+
         return view('frontend.checkout.index', compact('carts'));
     }
 

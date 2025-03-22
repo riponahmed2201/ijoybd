@@ -21,12 +21,9 @@
                 <div class="col-lg-9">
                     <div class="wd-form-order">
                         <div class="order-head">
-                            <figure class="img-product">
-                                <img src="images/products/brown.jpg" alt="product">
-                            </figure>
                             <div class="content">
                                 <div class="badge">In Progress</div>
-                                <h6 class="mt-8 fw-5">Order #17493</h6>
+                                <h6 class="mt-8 fw-5">Order Number: {{ $order->order_number }}</h6>
                             </div>
                         </div>
                         <div class="tf-grid-layout md-col-2 gap-15">

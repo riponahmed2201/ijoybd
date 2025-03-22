@@ -50,6 +50,7 @@ Route::group(['middleware' => 'user'], function () {
     Route::get('my-account-address', [CustomerAccountController::class, 'myAccountAddress']);
     Route::get('my-account-edit', [CustomerAccountController::class, 'myAccountEdit']);
     Route::get('my-account-orders', [CustomerAccountController::class, 'myAccountOrders']);
+    Route::get('my-account-orders/view/{order_id}', [CustomerAccountController::class, 'myAccountOrderView'])->name('userOrderView');
     Route::get('my-account-wishlist', [CustomerAccountController::class, 'myAccountWishlist']);
 
     Route::get('/customer/logout', [AuthController::class, 'logout'])->name('customer.logout');

@@ -16,7 +16,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
-                   @include('frontend.customer.myAccount.sideHeader')
+                    @include('frontend.customer.myAccount.sideHeader')
                 </div>
                 <div class="col-lg-9">
                     <div class="my-account-content account-dashboard">
@@ -24,9 +24,9 @@
                             <h5 class="fw-5 mb_20">Hello {{ Auth::user()->name }}</h5>
                             <p>
                                 From your account dashboard you can view your <a class="text_primary"
-                                    href="my-account-orders.html">recent orders</a>, manage your <a class="text_primary"
-                                    href="my-account-address.html">shipping and billing address</a>, and <a
-                                    class="text_primary" href="my-account-edit.html">edit your password and account
+                                    href="/my-account-orders">recent orders</a>, manage your <a class="text_primary"
+                                    href="/my-account-address">shipping and billing address</a>, and <a class="text_primary"
+                                    href="/my-account-edit">edit your password and account
                                     details</a>.
                             </p>
                         </div>
