@@ -98,6 +98,7 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
 
     Route::get('/get-subcategories/{category_id}', [CategoryController::class, 'getSubcategories']);
     Route::get('customers', [CustomerController::class, 'index'])->name('customers.index');
+    Route::delete('customers/destroy/{id}', [CustomerController::class, 'destroy'])->name('customers.destroy');
     Route::get('users', [UserController::class, 'index'])->name('users.index');
     Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
 });
