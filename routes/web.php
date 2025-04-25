@@ -27,7 +27,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('shop', [HomeController::class, 'showShop'])->name('shop');
+
 Route::get('checkout', [HomeController::class, 'showCheckout'])->name('checkout');
+Route::post('store-customer-order', [HomeController::class, 'storeCustomerOrder'])->name('storeCustomerOrder');
+
 Route::get('shop/view/{product}', [HomeController::class, 'showShopView'])->name('shop.view');
 Route::get('contact-us', [HomeController::class, 'showContactUs']);
 Route::get('about-us', [HomeController::class, 'showAboutUs']);

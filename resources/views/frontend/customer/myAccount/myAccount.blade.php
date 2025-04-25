@@ -21,6 +21,9 @@
                 <div class="col-lg-9">
                     <div class="my-account-content account-dashboard">
                         <div class="mb_60">
+
+                            @include('message')
+
                             <h5 class="fw-5 mb_20">Hello {{ Auth::user()->name }}</h5>
                             <p>
                                 From your account dashboard you can view your <a class="text_primary"

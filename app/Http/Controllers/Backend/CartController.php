@@ -18,7 +18,8 @@ class CartController extends Controller
 
     public function addToCart(Request $request)
     {
-        $product = Product::find($request->product_id);
+        $product = Product::with(['brand'])->find($request->product_id);
+
         if (!$product) {
             return response()->json(['success' => false, 'message' => 'Product not found']);
         }
@@ -31,7 +32,11 @@ class CartController extends Controller
                 'id' => $product->id,
                 'name' => $product->name,
                 'price' => $product->price,
+                'brand' => $product?->brand?->name,
+                'images' => $product->images,
                 'thumbnail' => $product->thumbnail,
+                'sizes' => $product?->size_details,
+                'colors' => $product?->color_details,
                 'quantity' => 1,
             ];
         }

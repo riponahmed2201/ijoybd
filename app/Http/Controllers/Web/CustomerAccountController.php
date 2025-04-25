@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -35,7 +36,7 @@ class CustomerAccountController extends Controller
 
     public function myAccountOrderView(int $orderId)
     {
-        $order = Order::with(['user', 'orderItems'])->latest()->where('id', $orderId)->first();
+        $order = Order::with(['user', 'orderItems', 'orderItems.product'])->latest()->where('id', $orderId)->first();
 
         return view('frontend.customer.myAccount.myAccountOrdersDetails', compact('order'));
     }

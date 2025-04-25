@@ -8,18 +8,18 @@
             <a href="/my-account-orders"
                 class="my-account-nav-item {{ Request::is('my-account-orders') ? 'active' : '' }}">Orders</a>
         </li>
-        <li>
+        {{-- <li>
             <a href="/my-account-address"
                 class="my-account-nav-item {{ Request::is('my-account-address') ? 'active' : '' }}">Address</a>
-        </li>
+        </li> --}}
         <li>
             <a href="/my-account-edit"
                 class="my-account-nav-item {{ Request::is('my-account-edit') ? 'active' : '' }}">Account Details</a>
         </li>
-        <li>
+        {{-- <li>
             <a href="/my-account-wishlist"
                 class="my-account-nav-item {{ Request::is('my-account-wishlist') ? 'active' : '' }}">Wishlist</a>
-        </li>
+        </li> --}}
         <li>
             <a href="{{ route('customer.logout') }}" class="my-account-nav-item">Logout</a>
         </li>

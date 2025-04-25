@@ -28,20 +28,13 @@
                         </div>
                         <div class="tf-grid-layout md-col-2 gap-15">
                             <div class="item">
-                                <div class="text-2 text_black-2">Item</div>
-                                <div class="text-2 mt_4 fw-6">Fashion</div>
-                            </div>
-                            <div class="item">
-                                <div class="text-2 text_black-2">Courier</div>
-                                <div class="text-2 mt_4 fw-6">Ribbed modal T-shirt</div>
-                            </div>
-                            <div class="item">
-                                <div class="text-2 text_black-2">Start Time</div>
-                                <div class="text-2 mt_4 fw-6">04 September 2024, 13:30:23</div>
+                                <div class="text-2 text_black-2">Order placed At</div>
+                                <div class="text-2 mt_4 fw-6">
+                                    {{ \Carbon\Carbon::parse($order->created_at)->diffForHumans() }}</div>
                             </div>
                             <div class="item">
                                 <div class="text-2 text_black-2">Address</div>
-                                <div class="text-2 mt_4 fw-6">1234 Fashion Street, Suite 567, New York</div>
+                                <div class="text-2 mt_4 fw-6">{{ $order->billing_address }}</div>
                             </div>
                         </div>
                         <div class="widget-tabs style-has-border widget-order-tab">
@@ -51,12 +44,6 @@
                                 </li>
                                 <li class="item-title">
                                     <span class="inner">Item Details</span>
-                                </li>
-                                <li class="item-title">
-                                    <span class="inner">Courier</span>
-                                </li>
-                                <li class="item-title">
-                                    <span class="inner">Receiver</span>
                                 </li>
                             </ul>
                             <div class="widget-content-tab">
@@ -70,19 +57,7 @@
                                                         <div class="text-2 fw-6">Product Shipped</div>
                                                         <span>10/07/2024 4:30pm</span>
                                                     </a>
-                                                    <p><strong>Courier Service : </strong>FedEx World Service Center</p>
                                                     <p><strong>Estimated Delivery Date : </strong>12/07/2024</p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="timeline-badge success"></div>
-                                                <div class="timeline-box">
-                                                    <a class="timeline-panel" href="javascript:void(0);">
-                                                        <div class="text-2 fw-6">Product Shipped</div>
-                                                        <span>10/07/2024 4:30pm</span>
-                                                    </a>
-                                                    <p><strong>Tracking Number : </strong>2307-3215-6759</p>
-                                                    <p><strong>Warehouse : </strong>T-Shirt 10b</p>
                                                 </div>
                                             </li>
                                             <li>
@@ -99,7 +74,7 @@
                                                 <div class="timeline-box">
                                                     <a class="timeline-panel" href="javascript:void(0);">
                                                         <div class="text-2 fw-6">Order Placed</div>
-                                                        <span>11/07/2024 2:36pm</span>
+                                                        <span>{{ date('F j, Y \a\t g:i A', strtotime($order->created_at)) }}</span>
                                                     </a>
                                                 </div>
                                             </li>
@@ -107,52 +82,45 @@
                                     </div>
                                 </div>
                                 <div class="widget-content-inner">
-                                    <div class="order-head">
-                                        <figure class="img-product">
-                                            <img src="images/products/brown.jpg" alt="product">
-                                        </figure>
-                                        <div class="content">
-                                            <div class="text-2 fw-6">Ribbed modal T-shirt</div>
-                                            <div class="mt_4"><span class="fw-6">Price :</span> $28.95</div>
-                                            <div class="mt_4"><span class="fw-6">Size :</span> XL</div>
-                                        </div>
-                                    </div>
-                                    <ul>
-                                        <li class="d-flex justify-content-between text-2">
-                                            <span>Total Price</span>
-                                            <span class="fw-6">$28.95</span>
-                                        </li>
-                                        <li class="d-flex justify-content-between text-2 mt_4 pb_8 line">
-                                            <span>Total Discounts</span>
-                                            <span class="fw-6">$10</span>
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Product</th>
+                                                <th>Price</th>
+                                                <th>Quantity</th>
+                                                <th>Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
 
-                                        </li>
-                                        <li class="d-flex justify-content-between text-2 mt_8">
-                                            <span>Order Total</span>
-                                            <span class="fw-6">$18.95</span>
-                                        </li>
-                                    </ul>
+                                            @forelse ($order->orderItems as $item)
+                                                <tr class="tf-cart-item file-delete">
+                                                    <td class="tf-cart-item_product">
+                                                        <a href="javascript:void(0)" class="img-box">
+                                                            <img src="{{ Storage::url($item?->product?->thumbnail) }}"
+                                                                alt="img-product">
+                                                        </a>
+                                                        {{ $item?->product?->name }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $item->price }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $item->quantity }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $item->price * $item->quantity }}
+                                                    </td>
+                                                </tr>
+                                            @empty
+                                                <tr>
+                                                    <td colspan="4" class="text-center text-danger">No Product Found!
+                                                    </td>
+                                                </tr>
+                                            @endforelse
+                                        </tbody>
+                                    </table>
                                 </div>
-                                <div class="widget-content-inner">
-                                    <p>Our courier service is dedicated to providing fast, reliable, and secure delivery
-                                        solutions tailored to meet your needs. Whether you're sending documents, parcels, or
-                                        larger shipments, our team ensures that your items are handled with the utmost care
-                                        and delivered on time. With a commitment to customer satisfaction, real-time
-                                        tracking, and a wide network of routes, we make it easy for you to send and receive
-                                        packages both locally and internationally. Choose our service for a seamless and
-                                        efficient delivery experience.</p>
-                                </div>
-                                <div class="widget-content-inner">
-                                    <p class="text-2 text_success">Thank you Your order has been received</p>
-                                    <ul class="mt_20">
-                                        <li>Order Number : <span class="fw-7">#17493</span></li>
-                                        <li>Date : <span class="fw-7"> 17/07/2024, 02:34pm</span></li>
-                                        <li>Total : <span class="fw-7">$18.95</span></li>
-                                        <li>Payment Methods : <span class="fw-7">Cash on Delivery</span></li>
-
-                                    </ul>
-                                </div>
-
                             </div>
                         </div>
                     </div>

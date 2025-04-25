@@ -44,7 +44,6 @@
                                             <div class="cart-info">
                                                 <a href="{{ route('shop.view', $cart['id']) }}"
                                                     class="cart-title link">{{ $cart['name'] }}</a>
-                                                <div class="cart-meta-variant">White / M</div>
                                                 <span data-product-id="{{ $cart['id'] }}"
                                                     class="remove-cart tf-mini-cart-remove link remove">Remove</span>
                                             </div>
